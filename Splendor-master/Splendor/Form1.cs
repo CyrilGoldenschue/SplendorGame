@@ -70,6 +70,8 @@ namespace Splendor
             //they are not hard coded any more
             //TO DO
 
+            
+
             Card card11 = new Card();
             card11.Level = 1;
             card11.PrestigePt = 1;
@@ -82,7 +84,7 @@ namespace Splendor
             card12.Cout = new int[] { 0, 1, 2, 1, 0 };
             card12.Ress = Ressources.Saphir;
 
-            txtLevel11.Text = card11.ToString();
+            txtLevel21.Text = card11.ToString();
             txtLevel12.Text = card12.ToString();
 
             //load cards from the database
@@ -90,6 +92,9 @@ namespace Splendor
             //Go through the results
             //Don't forget to check when you are at the end of the stack
             
+            txtLevel11.Text = listCardOne.Peek().ToString();
+
+
             //fin TO DO
 
             this.Width = 680;

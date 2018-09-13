@@ -59,27 +59,71 @@ namespace Splendor
             //Create an object "Stack of Card"
             Stack<Card> listCard = new Stack<Card>();
 
-            string sql = "select level,  from card where level = " + level;
+            string sql = "select level, fkRessource, nbPtPrestige, idCard from card where level = " + level;
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
-            string rubis = "select nbRessource from cost where fkRessource = " + 1;
-            command = new SQLiteCommand(sql, m_dbConnection);
-            string emeraude = "select nbRessource from cost where fkRessource = " + 2;
-            command = new SQLiteCommand(sql, m_dbConnection);
-            string onyx = "select nbRessource from cost where fkRessource = " + 3;
-            command = new SQLiteCommand(sql, m_dbConnection);
-            string saphire = "select nbRessource from cost where fkRessource = " + 4;
-            command = new SQLiteCommand(sql, m_dbConnection);
-            string diamant = "select nbRessource from cost where fkRessource = " + 5;
-            command = new SQLiteCommand(sql, m_dbConnection);
             SQLiteDataReader reader = command.ExecuteReader();
-
+            
+            
             while (reader.Read())
             {
+                string ressourceCard = "select nbRessource, fkRessource from cost where fkCard = " + reader["idCard"];
+                SQLiteCommand commandCard = new SQLiteCommand(ressourceCard, m_dbConnection);
+                SQLiteDataReader readerCard = commandCard.ExecuteReader();
+
                 Card carte = new Card();
-                carte.Level = 1;
-                carte.Ress = Ressources.Rubis;
-                carte.PrestigePt = 1;
-                carte.Cout = new int[] { 1, 0, 2, 0, 2 };
+                carte.Level = (int)reader["level"];          
+                carte.Ress = (Ressources)reader["fkRessource"];
+                carte.PrestigePt = (int)reader["nbPtPrestige"];
+                while (readerCard.Read())
+                {
+                    int rubis;
+                    int emeraude;
+                    int onyx;
+                    int saphire;
+                    int diamant;
+
+                    if ((int)readerCard["fkRessource"] == 1)
+                    {
+                        rubis = (int)readerCard["nbRessource"];
+                    }
+                    else
+                    {
+                        rubis = 0;
+                    }
+                    if ((int)readerCard["fkRessource"] == 2)
+                    {
+                        emeraude = (int)readerCard["nbRessource"];
+                    }
+                    else
+                    {
+                        emeraude = 0;
+                    }
+                    if ((int)readerCard["fkRessource"] == 3)
+                    {
+                        onyx = (int)readerCard["nbRessource"];
+                    }
+                    else
+                    {
+                        onyx = 0;
+                    }
+                    if ((int)readerCard["fkRessource"] == 4)
+                    {
+                        saphire = (int)readerCard["nbRessource"];
+                    }
+                    else
+                    {
+                        saphire = 0;
+                    }
+                    if ((int)readerCard["fkRessource"] == 5)
+                    {
+                        diamant = (int)readerCard["nbRessource"];
+                    }
+                    else
+                    {
+                        diamant = 0;
+                    }
+                        carte.Cout = new int[] { rubis, emeraude, onyx, saphire, diamant};
+                }
                 listCard.Push(carte);
             }
 
