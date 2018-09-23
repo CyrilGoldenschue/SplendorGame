@@ -84,16 +84,42 @@ namespace Splendor
             card12.Cout = new int[] { 0, 1, 2, 1, 0 };
             card12.Ress = Ressources.Saphir;
 
-            txtLevel21.Text = card11.ToString();
-            txtLevel12.Text = card12.ToString();
+            //txtNoble1.Text = card11.ToString();
+            //txtNoble3.Text = card12.ToString();
+           
 
             //load cards from the database
             Stack<Card> listCardOne = conn.GetListCardAccordingToLevel(1);
+            Stack<Card> listCardTwo = conn.GetListCardAccordingToLevel(2);
+            Stack<Card> listCardThree = conn.GetListCardAccordingToLevel(3);
+            Stack<Card> listCardNoble = conn.GetListCardAccordingToLevel(4);
             //Go through the results
             //Don't forget to check when you are at the end of the stack
-            
-            txtLevel11.Text = listCardOne.Peek().ToString();
 
+
+            // Card level one
+            txtLevel14.Text = listCardOne.Pop().ToString();
+            txtLevel13.Text = listCardOne.Pop().ToString();
+            txtLevel12.Text = listCardOne.Pop().ToString();
+            txtLevel11.Text = listCardOne.Pop().ToString();
+
+            // Card level two
+            txtLevel24.Text = listCardOne.Pop().ToString();
+            txtLevel23.Text = listCardOne.Pop().ToString();
+            txtLevel22.Text = listCardOne.Pop().ToString();
+            txtLevel21.Text = listCardOne.Pop().ToString();
+
+            // Card level three
+            txtLevel34.Text = listCardOne.Pop().ToString();
+            txtLevel33.Text = listCardOne.Pop().ToString();
+            txtLevel32.Text = listCardOne.Pop().ToString();
+            txtLevel31.Text = listCardOne.Pop().ToString();
+
+            // Card level Noble
+            txtNoble4.Text = listCardOne.Pop().ToString();
+            txtNoble3.Text = listCardOne.Pop().ToString();
+            txtNoble2.Text = listCardOne.Pop().ToString();
+            txtNoble1.Text = listCardOne.Pop().ToString();
 
             //fin TO DO
 
