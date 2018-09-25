@@ -72,7 +72,7 @@ namespace Splendor
 
             
 
-            Card card11 = new Card();
+            /*Card card11 = new Card();
             card11.Level = 1;
             card11.PrestigePt = 1;
             card11.Cout = new int[] { 1, 0, 2, 0, 2 };
@@ -82,7 +82,7 @@ namespace Splendor
             card12.Level = 1;
             card12.PrestigePt = 0;
             card12.Cout = new int[] { 0, 1, 2, 1, 0 };
-            card12.Ress = Ressources.Saphir;
+            card12.Ress = Ressources.Saphir;*/
 
             //txtNoble1.Text = card11.ToString();
             //txtNoble3.Text = card12.ToString();
@@ -104,22 +104,22 @@ namespace Splendor
             txtLevel11.Text = listCardOne.Pop().ToString();
 
             // Card level two
-            txtLevel24.Text = listCardOne.Pop().ToString();
-            txtLevel23.Text = listCardOne.Pop().ToString();
-            txtLevel22.Text = listCardOne.Pop().ToString();
-            txtLevel21.Text = listCardOne.Pop().ToString();
+            txtLevel24.Text = listCardTwo.Pop().ToString();
+            txtLevel23.Text = listCardTwo.Pop().ToString();
+            txtLevel22.Text = listCardTwo.Pop().ToString();
+            txtLevel21.Text = listCardTwo.Pop().ToString();
 
             // Card level three
-            txtLevel34.Text = listCardOne.Pop().ToString();
-            txtLevel33.Text = listCardOne.Pop().ToString();
-            txtLevel32.Text = listCardOne.Pop().ToString();
-            txtLevel31.Text = listCardOne.Pop().ToString();
+            txtLevel34.Text = listCardThree.Pop().ToString();
+            txtLevel33.Text = listCardThree.Pop().ToString();
+            txtLevel32.Text = listCardThree.Pop().ToString();
+            txtLevel31.Text = listCardThree.Pop().ToString();
 
             // Card level Noble
-            txtNoble4.Text = listCardOne.Pop().ToString();
-            txtNoble3.Text = listCardOne.Pop().ToString();
-            txtNoble2.Text = listCardOne.Pop().ToString();
-            txtNoble1.Text = listCardOne.Pop().ToString();
+            txtNoble4.Text = listCardNoble.Pop().ToString();
+            txtNoble3.Text = listCardNoble.Pop().ToString();
+            txtNoble2.Text = listCardNoble.Pop().ToString();
+            txtNoble1.Text = listCardNoble.Pop().ToString();
 
             //fin TO DO
 
