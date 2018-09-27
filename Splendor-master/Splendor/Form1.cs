@@ -37,6 +37,13 @@ namespace Splendor
         Stack<Card> listCardTwo;
         Stack<Card> listCardThree;
         Stack<Card> listCardNoble;
+        int nbCardRubis = 0;
+        int nbCardEmeraude = 0;
+        int nbCardOnyx = 0;
+        int nbCardSaphire = 0;
+        int nbCardDiamant = 0;
+        string NbPtPrestige;
+        char[] MyChar = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
         //id of the player that is playing
         private int currentPlayerId;
@@ -179,6 +186,10 @@ namespace Splendor
 
                 TextBox cardOnBoard = (TextBox)sender;
 
+                String[] TableauComparatif = cardOnBoard.Lines;
+
+
+
                 cardOnBoard.Clear();
 
                 if (cardOnBoard.Name == "txtLevel11" | cardOnBoard.Name == "txtLevel12" | cardOnBoard.Name == "txtLevel13" | cardOnBoard.Name == "txtLevel14")
@@ -197,9 +208,37 @@ namespace Splendor
 
 
 
+                if (TableauComparatif[0].StartsWith("Rubis"))
+                {
+                    nbCardRubis++;
+                    txtPlayerRubisCard.Text = nbCardRubis.ToString();
+                }
+                else if (TableauComparatif[0].StartsWith("Emeraude"))
+                {
+                    nbCardEmeraude++;
+                    txtPlayerEmeraudeCard.Text = nbCardEmeraude.ToString();
+                }
+                else if (TableauComparatif[0].StartsWith("Onyx"))
+                {
+                    nbCardOnyx++;
+                    txtPlayerOnyxCard.Text = nbCardOnyx.ToString();
+                }
+                else if (TableauComparatif[0].StartsWith("Saphire"))
+                {
+                    nbCardSaphire++;
+                    txtPlayerSaphireCard.Text = nbCardSaphire.ToString();
+                }
+                else if (TableauComparatif[0].StartsWith("Diamant"))
+                {
+                    nbCardDiamant++;
+                    txtPlayerDiamantCard.Text = nbCardDiamant.ToString();
+                }
+                NbPtPrestige += Convert.ToInt32(TableauComparatif[0].Trim(MyChar));
 
 
-
+                MessageBox.Show(NbPtPrestige.ToString());
+                //lblNbPtPrestige.Text = "Nb pt prestige : " + NbPtPrestige;
+                
             }
 
         }

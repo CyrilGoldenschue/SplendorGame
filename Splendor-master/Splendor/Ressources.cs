@@ -15,7 +15,7 @@ namespace Splendor
         Rubis = 1,
         Emeraude = 2,
         Onyx = 3,
-        Saphir = 4,
+        Saphire = 4,
         Diamant = 5
     }
 }
