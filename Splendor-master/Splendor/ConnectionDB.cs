@@ -74,56 +74,71 @@ namespace Splendor
                 carte.Level = (int)reader["level"];          
                 carte.Ress = (Ressources)reader["fkRessource"];
                 carte.PrestigePt = (int)reader["nbPtPrestige"];
+                int rubis = 0;
+                int emeraude = 0;
+                int onyx = 0;
+                int saphire = 0;
+                int diamant = 0;
                 while (readerCard.Read())
                 {
-                    int rubis;
-                    int emeraude;
-                    int onyx;
-                    int saphire;
-                    int diamant;
 
-                    if ((int)readerCard["fkRessource"] == 1)
+                    if (rubis == 0)
                     {
-                        rubis = (int)readerCard["nbRessource"];
+                        if ((int)readerCard["fkRessource"] == 1 & (int)readerCard["nbRessource"] != 0)
+                        {
+                            rubis = (int)readerCard["nbRessource"];
+                        }
+                        else
+                        {
+                            rubis = 0;
+                        }
                     }
-                    else
+                    if (emeraude == 0)
                     {
-                        rubis = 0;
+                        if ((int)readerCard["fkRessource"] == 2 & (int)readerCard["nbRessource"] != 0)
+                        {
+                            emeraude = (int)readerCard["nbRessource"];
+                        }
+                        else
+                        {
+                            emeraude = 0;
+                        }
                     }
-                    if ((int)readerCard["fkRessource"] == 2)
+                    if (onyx == 0)
                     {
-                        emeraude = (int)readerCard["nbRessource"];
+                        if ((int)readerCard["fkRessource"] == 3 & (int)readerCard["nbRessource"] != 0)
+                        {
+                            onyx = (int)readerCard["nbRessource"];
+                        }
+                        else
+                        {
+                            onyx = 0;
+                        }
                     }
-                    else
+                    if (saphire == 0)
                     {
-                        emeraude = 0;
+                        if ((int)readerCard["fkRessource"] == 4 & (int)readerCard["nbRessource"] != 0)
+                        {
+                            saphire = (int)readerCard["nbRessource"];
+                        }
+                        else
+                        {
+                            saphire = 0;
+                        }
                     }
-                    if ((int)readerCard["fkRessource"] == 3)
+                    if (diamant == 0)
                     {
-                        onyx = (int)readerCard["nbRessource"];
+                        if ((int)readerCard["fkRessource"] == 5 & (int)readerCard["nbRessource"] != 0)
+                        {
+                            diamant = (int)readerCard["nbRessource"];
+                        }
+                        else
+                        {
+                            diamant = 0;
+                        }
                     }
-                    else
-                    {
-                        onyx = 0;
-                    }
-                    if ((int)readerCard["fkRessource"] == 4)
-                    {
-                        saphire = (int)readerCard["nbRessource"];
-                    }
-                    else
-                    {
-                        saphire = 0;
-                    }
-                    if ((int)readerCard["fkRessource"] == 5)
-                    {
-                        diamant = (int)readerCard["nbRessource"];
-                    }
-                    else
-                    {
-                        diamant = 0;
-                    }
-                        carte.Cout = new int[] { rubis, emeraude, onyx, saphire, diamant};
                 }
+                carte.Cout = new int[] { rubis, emeraude, onyx, saphire, diamant };
                 listCard.Push(carte);
             }
 

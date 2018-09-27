@@ -33,6 +33,10 @@ namespace Splendor
         private int nbEmeraude;
         private int nbDiamand;
         private int nbSaphir;
+        Stack<Card> listCardOne;
+        Stack<Card> listCardTwo;
+        Stack<Card> listCardThree;
+        Stack<Card> listCardNoble;
 
         //id of the player that is playing
         private int currentPlayerId;
@@ -70,7 +74,7 @@ namespace Splendor
             //they are not hard coded any more
             //TO DO
 
-            
+
 
             /*Card card11 = new Card();
             card11.Level = 1;
@@ -86,40 +90,41 @@ namespace Splendor
 
             //txtNoble1.Text = card11.ToString();
             //txtNoble3.Text = card12.ToString();
-           
+
 
             //load cards from the database
-            Stack<Card> listCardOne = conn.GetListCardAccordingToLevel(1);
-            Stack<Card> listCardTwo = conn.GetListCardAccordingToLevel(2);
-            Stack<Card> listCardThree = conn.GetListCardAccordingToLevel(3);
-            Stack<Card> listCardNoble = conn.GetListCardAccordingToLevel(4);
+            listCardOne = conn.GetListCardAccordingToLevel(1);
+            listCardTwo = conn.GetListCardAccordingToLevel(2);
+            listCardThree = conn.GetListCardAccordingToLevel(3);
+            listCardNoble = conn.GetListCardAccordingToLevel(4);
             //Go through the results
             //Don't forget to check when you are at the end of the stack
 
 
             // Card level one
-            txtLevel14.Text = listCardOne.Pop().ToString();
-            txtLevel13.Text = listCardOne.Pop().ToString();
-            txtLevel12.Text = listCardOne.Pop().ToString();
             txtLevel11.Text = listCardOne.Pop().ToString();
+            txtLevel12.Text = listCardOne.Pop().ToString();
+            txtLevel13.Text = listCardOne.Pop().ToString();
+            txtLevel14.Text = listCardOne.Pop().ToString();
 
             // Card level two
-            txtLevel24.Text = listCardTwo.Pop().ToString();
-            txtLevel23.Text = listCardTwo.Pop().ToString();
-            txtLevel22.Text = listCardTwo.Pop().ToString();
+            
             txtLevel21.Text = listCardTwo.Pop().ToString();
+            txtLevel22.Text = listCardTwo.Pop().ToString();
+            txtLevel23.Text = listCardTwo.Pop().ToString();
+            txtLevel24.Text = listCardTwo.Pop().ToString();
 
             // Card level three
-            txtLevel34.Text = listCardThree.Pop().ToString();
-            txtLevel33.Text = listCardThree.Pop().ToString();
-            txtLevel32.Text = listCardThree.Pop().ToString();
             txtLevel31.Text = listCardThree.Pop().ToString();
+            txtLevel32.Text = listCardThree.Pop().ToString();
+            txtLevel33.Text = listCardThree.Pop().ToString();
+            txtLevel34.Text = listCardThree.Pop().ToString();
 
             // Card level Noble
-            txtNoble4.Text = listCardNoble.Pop().ToString();
-            txtNoble3.Text = listCardNoble.Pop().ToString();
-            txtNoble2.Text = listCardNoble.Pop().ToString();
             txtNoble1.Text = listCardNoble.Pop().ToString();
+            txtNoble2.Text = listCardNoble.Pop().ToString();
+            txtNoble3.Text = listCardNoble.Pop().ToString();
+            txtNoble4.Text = listCardNoble.Pop().ToString();
 
             //fin TO DO
 
@@ -138,7 +143,30 @@ namespace Splendor
 
             //we wire the click on all cards to the same event
             //TO DO for all cards
+
+            // Click card level one
             txtLevel11.Click += ClickOnCard;
+            txtLevel12.Click += ClickOnCard;
+            txtLevel13.Click += ClickOnCard;
+            txtLevel14.Click += ClickOnCard;
+
+            // Click card level two
+            txtLevel21.Click += ClickOnCard;
+            txtLevel22.Click += ClickOnCard;
+            txtLevel23.Click += ClickOnCard;
+            txtLevel24.Click += ClickOnCard;
+
+            // Click card level three
+            txtLevel31.Click += ClickOnCard;
+            txtLevel32.Click += ClickOnCard;
+            txtLevel33.Click += ClickOnCard;
+            txtLevel34.Click += ClickOnCard;
+
+            // Click card level one
+            txtNoble1.Click += ClickOnCard;
+            txtNoble2.Click += ClickOnCard;
+            txtNoble3.Click += ClickOnCard;
+            txtNoble4.Click += ClickOnCard;
         }
 
         private void ClickOnCard(object sender, EventArgs e)
@@ -146,6 +174,34 @@ namespace Splendor
             //We get the value on the card and we split it to get all the values we need (number of prestige points and ressource)
             //Enable the button "Validate"
             //TO DO
+            if (enableClicLabel)
+            {
+
+                TextBox cardOnBoard = (TextBox)sender;
+
+                cardOnBoard.Clear();
+
+                if (cardOnBoard.Name == "txtLevel11" | cardOnBoard.Name == "txtLevel12" | cardOnBoard.Name == "txtLevel13" | cardOnBoard.Name == "txtLevel14")
+                {
+                    cardOnBoard.Text = listCardOne.Pop().ToString();
+
+                }
+                else if (cardOnBoard.Name == "txtLevel21" | cardOnBoard.Name == "txtLevel22" | cardOnBoard.Name == "txtLevel23" | cardOnBoard.Name == "txtLevel24")
+                {
+                    cardOnBoard.Text = listCardTwo.Pop().ToString();
+                }
+                else if (cardOnBoard.Name == "txtLevel31" | cardOnBoard.Name == "txtLevel32" | cardOnBoard.Name == "txtLevel33" | cardOnBoard.Name == "txtLevel34")
+                {
+                    cardOnBoard.Text = listCardThree.Pop().ToString();
+                }
+
+
+
+
+
+
+            }
+
         }
 
         /// <summary>
