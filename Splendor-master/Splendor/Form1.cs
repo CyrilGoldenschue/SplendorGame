@@ -42,7 +42,7 @@ namespace Splendor
         int nbCardOnyx = 0;
         int nbCardSaphire = 0;
         int nbCardDiamant = 0;
-        string NbPtPrestige;
+        int NbPtPrestige;
         char[] MyChar = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
         //id of the player that is playing
@@ -212,32 +212,34 @@ namespace Splendor
                 {
                     nbCardRubis++;
                     txtPlayerRubisCard.Text = nbCardRubis.ToString();
+                    NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(7));
                 }
                 else if (TableauComparatif[0].StartsWith("Emeraude"))
                 {
                     nbCardEmeraude++;
                     txtPlayerEmeraudeCard.Text = nbCardEmeraude.ToString();
+                    NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(10));
                 }
                 else if (TableauComparatif[0].StartsWith("Onyx"))
                 {
                     nbCardOnyx++;
                     txtPlayerOnyxCard.Text = nbCardOnyx.ToString();
+                    NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(7));
                 }
                 else if (TableauComparatif[0].StartsWith("Saphire"))
                 {
                     nbCardSaphire++;
                     txtPlayerSaphireCard.Text = nbCardSaphire.ToString();
+                    NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(9));
                 }
                 else if (TableauComparatif[0].StartsWith("Diamant"))
                 {
                     nbCardDiamant++;
                     txtPlayerDiamantCard.Text = nbCardDiamant.ToString();
+                    NbPtPrestige = NbPtPrestige + Convert.ToInt16(TableauComparatif[0].Substring(9));
                 }
-                NbPtPrestige += Convert.ToInt32(TableauComparatif[0].Trim(MyChar));
 
-
-                MessageBox.Show(NbPtPrestige.ToString());
-                //lblNbPtPrestige.Text = "Nb pt prestige : " + NbPtPrestige;
+                lblNbPtPrestige.Text = "Nb pt prestige : " + NbPtPrestige;
                 
             }
 
