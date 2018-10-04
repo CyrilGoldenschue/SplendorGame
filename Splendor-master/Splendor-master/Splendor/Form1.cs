@@ -470,12 +470,7 @@ namespace Splendor
 
             if (lblChoiceSaphir.Visible == true)
             {
-                int var = 0;
-                if (lblChoiceSaphir.Text != "")
-                {
-                    var = Convert.ToInt32(lblChoiceSaphir.Text);
-                }
-                
+                int var = Convert.ToInt32(lblChoiceSaphir.Text);
                 int var2 = Convert.ToInt32(lblPlayerSaphirCoin.Text);
                 int Result = var + var2;
 
@@ -557,10 +552,6 @@ namespace Splendor
                     lblChoiceRubis.Visible = false;
                 }
             }
-            if (nbTotal == 0;)
-            {
-                cmdValidateChoice.Visible = false;
-            }
         }
 
         private void lblChoiceSaphir_Click(object sender, EventArgs e)
@@ -577,10 +568,6 @@ namespace Splendor
                 {
                     lblChoiceSaphir.Visible = false;
                 }
-            }
-            if (lblChoiceRubis.Visible == false && lblChoiceSaphir.Visible == false && lblChoiceOnyx.Visible == false && lblChoiceEmeraude.Visible == false && lblChoiceDiamand.Visible == false)
-            {
-                cmdValidateChoice.Visible = false;
             }
         }
 
@@ -599,10 +586,6 @@ namespace Splendor
                     lblChoiceOnyx.Visible = false;
                 }
             }
-            if (lblChoiceRubis.Visible == false && lblChoiceSaphir.Visible == false && lblChoiceOnyx.Visible == false && lblChoiceEmeraude.Visible == false && lblChoiceDiamand.Visible == false)
-            {
-                cmdValidateChoice.Visible = false;
-            }
         }
 
         private void lblChoiceEmeraude_Click(object sender, EventArgs e)
@@ -620,10 +603,6 @@ namespace Splendor
                     lblChoiceEmeraude.Visible = false;
                 }
             }
-            if (lblChoiceRubis.Visible == false && lblChoiceSaphir.Visible == false && lblChoiceOnyx.Visible == false && lblChoiceEmeraude.Visible == false && lblChoiceDiamand.Visible == false)
-            {
-                cmdValidateChoice.Visible = false;
-            }
         }
 
         private void lblChoiceDiamand_Click(object sender, EventArgs e)
@@ -640,10 +619,6 @@ namespace Splendor
                 {
                     lblChoiceDiamand.Visible = false;
                 }
-            }
-            if (lblChoiceRubis.Visible == false && lblChoiceSaphir.Visible == false && lblChoiceOnyx.Visible == false && lblChoiceEmeraude.Visible == false && lblChoiceDiamand.Visible == false)
-            {
-                cmdValidateChoice.Visible = false;
             }
         }
     }
