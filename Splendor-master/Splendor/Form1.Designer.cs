@@ -52,10 +52,10 @@
             this.txtPlayerOnyxCard = new System.Windows.Forms.TextBox();
             this.txtPlayerSaphireCard = new System.Windows.Forms.TextBox();
             this.txtPlayerRubisCard = new System.Windows.Forms.TextBox();
-            this.lblPlayerDiamandCoin = new System.Windows.Forms.Label();
+            this.lblPlayerDiamantCoin = new System.Windows.Forms.Label();
             this.lblPlayerEmeraudeCoin = new System.Windows.Forms.Label();
             this.lblPlayerOnyxCoin = new System.Windows.Forms.Label();
-            this.lblPlayerSaphirCoin = new System.Windows.Forms.Label();
+            this.lblPlayerSaphireCoin = new System.Windows.Forms.Label();
             this.lblPlayerRubisCoin = new System.Windows.Forms.Label();
             this.lblPlayerGoldCoin = new System.Windows.Forms.Label();
             this.txtPlayerBookedCard = new System.Windows.Forms.TextBox();
@@ -331,17 +331,17 @@
             this.txtPlayerRubisCard.Size = new System.Drawing.Size(81, 98);
             this.txtPlayerRubisCard.TabIndex = 27;
             // 
-            // lblPlayerDiamandCoin
+            // lblPlayerDiamantCoin
             // 
-            this.lblPlayerDiamandCoin.AutoSize = true;
-            this.lblPlayerDiamandCoin.BackColor = System.Drawing.SystemColors.Window;
-            this.lblPlayerDiamandCoin.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.lblPlayerDiamandCoin.Location = new System.Drawing.Point(379, 593);
-            this.lblPlayerDiamandCoin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblPlayerDiamandCoin.Name = "lblPlayerDiamandCoin";
-            this.lblPlayerDiamandCoin.Size = new System.Drawing.Size(70, 13);
-            this.lblPlayerDiamandCoin.TabIndex = 26;
-            this.lblPlayerDiamandCoin.Text = "DiamandCoin";
+            this.lblPlayerDiamantCoin.AutoSize = true;
+            this.lblPlayerDiamantCoin.BackColor = System.Drawing.SystemColors.Window;
+            this.lblPlayerDiamantCoin.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.lblPlayerDiamantCoin.Location = new System.Drawing.Point(379, 593);
+            this.lblPlayerDiamantCoin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPlayerDiamantCoin.Name = "lblPlayerDiamantCoin";
+            this.lblPlayerDiamantCoin.Size = new System.Drawing.Size(67, 13);
+            this.lblPlayerDiamantCoin.TabIndex = 26;
+            this.lblPlayerDiamantCoin.Text = "DiamantCoin";
             // 
             // lblPlayerEmeraudeCoin
             // 
@@ -367,17 +367,17 @@
             this.lblPlayerOnyxCoin.TabIndex = 24;
             this.lblPlayerOnyxCoin.Text = "OnyxCoin";
             // 
-            // lblPlayerSaphirCoin
+            // lblPlayerSaphireCoin
             // 
-            this.lblPlayerSaphirCoin.AutoSize = true;
-            this.lblPlayerSaphirCoin.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.lblPlayerSaphirCoin.ForeColor = System.Drawing.SystemColors.Window;
-            this.lblPlayerSaphirCoin.Location = new System.Drawing.Point(108, 593);
-            this.lblPlayerSaphirCoin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblPlayerSaphirCoin.Name = "lblPlayerSaphirCoin";
-            this.lblPlayerSaphirCoin.Size = new System.Drawing.Size(58, 13);
-            this.lblPlayerSaphirCoin.TabIndex = 23;
-            this.lblPlayerSaphirCoin.Text = "SaphirCoin";
+            this.lblPlayerSaphireCoin.AutoSize = true;
+            this.lblPlayerSaphireCoin.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.lblPlayerSaphireCoin.ForeColor = System.Drawing.SystemColors.Window;
+            this.lblPlayerSaphireCoin.Location = new System.Drawing.Point(108, 593);
+            this.lblPlayerSaphireCoin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPlayerSaphireCoin.Name = "lblPlayerSaphireCoin";
+            this.lblPlayerSaphireCoin.Size = new System.Drawing.Size(64, 13);
+            this.lblPlayerSaphireCoin.TabIndex = 23;
+            this.lblPlayerSaphireCoin.Text = "SaphireCoin";
             // 
             // lblPlayerRubisCoin
             // 
@@ -644,10 +644,10 @@
             this.Controls.Add(this.txtPlayerOnyxCard);
             this.Controls.Add(this.txtPlayerSaphireCard);
             this.Controls.Add(this.txtPlayerRubisCard);
-            this.Controls.Add(this.lblPlayerDiamandCoin);
+            this.Controls.Add(this.lblPlayerDiamantCoin);
             this.Controls.Add(this.lblPlayerEmeraudeCoin);
             this.Controls.Add(this.lblPlayerOnyxCoin);
-            this.Controls.Add(this.lblPlayerSaphirCoin);
+            this.Controls.Add(this.lblPlayerSaphireCoin);
             this.Controls.Add(this.lblPlayerRubisCoin);
             this.Controls.Add(this.lblPlayerGoldCoin);
             this.Controls.Add(this.cmdPlay);
@@ -701,10 +701,10 @@
         private System.Windows.Forms.TextBox txtPlayerOnyxCard;
         private System.Windows.Forms.TextBox txtPlayerSaphireCard;
         private System.Windows.Forms.TextBox txtPlayerRubisCard;
-        private System.Windows.Forms.Label lblPlayerDiamandCoin;
+        private System.Windows.Forms.Label lblPlayerDiamantCoin;
         private System.Windows.Forms.Label lblPlayerEmeraudeCoin;
         private System.Windows.Forms.Label lblPlayerOnyxCoin;
-        private System.Windows.Forms.Label lblPlayerSaphirCoin;
+        private System.Windows.Forms.Label lblPlayerSaphireCoin;
         private System.Windows.Forms.Label lblPlayerRubisCoin;
         private System.Windows.Forms.Label lblPlayerGoldCoin;
         private System.Windows.Forms.TextBox txtPlayerBookedCard;

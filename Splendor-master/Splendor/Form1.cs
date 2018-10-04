@@ -44,6 +44,7 @@ namespace Splendor
         int nbCardDiamant = 0;
         int NbPtPrestige;
         char[] MyChar = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        int id = 0;
 
         //id of the player that is playing
         private int currentPlayerId;
@@ -188,59 +189,193 @@ namespace Splendor
 
                 String[] TableauComparatif = cardOnBoard.Lines;
 
+                int NbLines = cardOnBoard.Lines.Count()-1;
+                int NbRubisPoss = Convert.ToInt16(lblPlayerRubisCoin.Text);
+                int NbSaphirePoss = Convert.ToInt16(lblPlayerSaphireCoin.Text);
+                int NbEmeraudePoss = Convert.ToInt16(lblPlayerEmeraudeCoin.Text);
+                int NbOnyxPoss = Convert.ToInt16(lblPlayerOnyxCoin.Text);
+                int NbDiamantPoss = Convert.ToInt16(lblPlayerDiamantCoin.Text);
+                int NbCardResidualOne = listCardOne.Count();
+                int NbCardResidualTwo = listCardOne.Count();
+                int NbCardResidualThree = listCardOne.Count();
+                int NbCardResidualNoble = listCardOne.Count();
+                int NbRessource = 2;
+                bool Achat = true;
+
+                while (NbRessource != NbLines)
+                {
+                    if ((TableauComparatif[NbRessource].Substring(4)).StartsWith("Rubis"))
+                    {
+                        if(NbRubisPoss >= Convert.ToInt16(TableauComparatif[NbRessource].Substring(10)))
+                        {
+                            //MessageBox.Show("C'est du Rubis");
+                            NbRubisPoss = NbRubisPoss - Convert.ToInt16(TableauComparatif[NbRessource].Substring(10));
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Vous n'avez pas assez de Rubis");
+                            Achat = false;
+                        }
+                    }
+                    else if ((TableauComparatif[NbRessource].Substring(4)).StartsWith("Saphire"))
+                    {
+                        
+                        if (NbSaphirePoss >= Convert.ToInt16(TableauComparatif[NbRessource].Substring(12)))
+                        {
+                            //MessageBox.Show("C'est du Saphire");
+                            NbSaphirePoss = NbSaphirePoss - Convert.ToInt16(TableauComparatif[NbRessource].Substring(12));
+                        }
+                        else
+                        {
+                            MessageBox.Show("Vous n'avez pas assez de Saphire");
+                            Achat = false;
+                        }
+                    }
+                    else if ((TableauComparatif[NbRessource].Substring(4)).StartsWith("Emeraude"))
+                    {
+                        if (NbEmeraudePoss >= Convert.ToInt16(TableauComparatif[NbRessource].Substring(13)))
+                        {
+                            //MessageBox.Show("C'est du Emeraude");
+                            NbEmeraudePoss = NbEmeraudePoss - Convert.ToInt16(TableauComparatif[NbRessource].Substring(13));
+                        }
+                        else
+                        {
+                            MessageBox.Show("Vous n'avez pas assez de Emeraude");
+                            Achat = false;
+                        }
+                    }
+                    else if ((TableauComparatif[NbRessource].Substring(4)).StartsWith("Onyx"))
+                    {
+                        if (NbOnyxPoss >= Convert.ToInt16(TableauComparatif[NbRessource].Substring(9)))
+                        {
+                            //MessageBox.Show("C'est du Onyx");
+                            NbOnyxPoss = NbOnyxPoss - Convert.ToInt16(TableauComparatif[NbRessource].Substring(9));
+                        }
+                        else
+                        {
+                            MessageBox.Show("Vous n'avez pas assez de Onyx");
+                            Achat = false;
+                        }
+                    }
+                    else if ((TableauComparatif[NbRessource].Substring(4)).StartsWith("Diamant"))
+                    {
+                        if (NbDiamantPoss >= Convert.ToInt16(TableauComparatif[NbRessource].Substring(12)))
+                        {
+                            //MessageBox.Show("C'est du Diamant");
+                            NbDiamantPoss = NbDiamantPoss - Convert.ToInt16(TableauComparatif[NbRessource].Substring(12));
+                        }
+                        else
+                        {
+                            MessageBox.Show("Vous n'avez pas assez de Diamant");
+                            Achat = false;
+                        }
+                    }
+
+                    if (NbRessource+1 != NbLines) { 
+                        NbRessource++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                if (Achat)
+                {
+                    cardOnBoard.Clear();
+
+                    if (cardOnBoard.Name == "txtLevel11" | cardOnBoard.Name == "txtLevel12" | cardOnBoard.Name == "txtLevel13" | cardOnBoard.Name == "txtLevel14")
+                    {
+                        cardOnBoard.Text = listCardOne.Pop().ToString();
+                        NbCardResidualOne--;
+                    }
+                    else if (cardOnBoard.Name == "txtLevel21" | cardOnBoard.Name == "txtLevel22" | cardOnBoard.Name == "txtLevel23" | cardOnBoard.Name == "txtLevel24")
+                    {
+                        cardOnBoard.Text = listCardTwo.Pop().ToString();
+                        NbCardResidualTwo--;
+                    }
+                    else if (cardOnBoard.Name == "txtLevel31" | cardOnBoard.Name == "txtLevel32" | cardOnBoard.Name == "txtLevel33" | cardOnBoard.Name == "txtLevel34")
+                    {
+                        cardOnBoard.Text = listCardThree.Pop().ToString();
+                        NbCardResidualThree--;
+                    }
+
+                    lblPlayerRubisCoin.Text = NbRubisPoss.ToString();
+                    lblPlayerSaphireCoin.Text = NbSaphirePoss.ToString();
+                    lblPlayerOnyxCoin.Text = NbOnyxPoss.ToString();
+                    lblPlayerEmeraudeCoin.Text = NbEmeraudePoss.ToString();
+                    lblPlayerDiamantCoin.Text = NbDiamantPoss.ToString();
 
 
-                cardOnBoard.Clear();
+                    if (TableauComparatif[0].StartsWith("Rubis"))
+                    {
+                        nbCardRubis++;
+                        txtPlayerRubisCard.Text = nbCardRubis.ToString();
+                        
+                        if (TableauComparatif[0].Substring(7) != " ")
+                        {
+                            if (TableauComparatif[0].Substring(9) != "\t")
+                            {
+                                NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(7));
+                            }
+                        }
+                    }
+                    else if (TableauComparatif[0].StartsWith("Emeraude"))
+                    {
+                        nbCardEmeraude++;
+                        txtPlayerEmeraudeCard.Text = nbCardEmeraude.ToString();
+                        if (TableauComparatif[0].Substring(10) != " ")
+                        {
+                            if (TableauComparatif[0].Substring(12) != "\t")
+                            {
+                                NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(8));
+                            }
+                            
+                        }
+                    }
+                    else if (TableauComparatif[0].StartsWith("Onyx"))
+                    {
+                        nbCardOnyx++;
+                        txtPlayerOnyxCard.Text = nbCardOnyx.ToString();
+                        if (TableauComparatif[0].Substring(6) != " ")
+                        {
+                            if (TableauComparatif[0].Substring(8) != "\t")
+                            {
+                                NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(6));
+                            }
+                        }
+                    }
+                    else if (TableauComparatif[0].StartsWith("Saphire"))
+                    {
+                        nbCardSaphire++;
+                        txtPlayerSaphireCard.Text = nbCardSaphire.ToString();
+                        if (TableauComparatif[0].Substring(9) != " ")
+                        {
+                            if (TableauComparatif[0].Substring(11) != "\t")
+                            {
+                                NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(9));
+                            }
+                        }
+                    }
+                    else if (TableauComparatif[0].StartsWith("Diamant"))
+                    {
+                        nbCardDiamant++;
+                        txtPlayerDiamantCard.Text = nbCardDiamant.ToString();
+                        if (TableauComparatif[0].Substring(9) != " ")
+                        {
+                            if (TableauComparatif[0].Substring(11) != "\t")
+                            {
+                                NbPtPrestige = NbPtPrestige + Convert.ToInt16(TableauComparatif[0].Substring(9));
+                            }
+                        }
+                    }
+                    else if (TableauComparatif[0].StartsWith(" "))
+                    {
+                        NbPtPrestige = NbPtPrestige + Convert.ToInt16(TableauComparatif[0].Substring(2));
+                    }
 
-                if (cardOnBoard.Name == "txtLevel11" | cardOnBoard.Name == "txtLevel12" | cardOnBoard.Name == "txtLevel13" | cardOnBoard.Name == "txtLevel14")
-                {
-                    cardOnBoard.Text = listCardOne.Pop().ToString();
-
+                    lblNbPtPrestige.Text = "Nb pt prestige : " + NbPtPrestige;
                 }
-                else if (cardOnBoard.Name == "txtLevel21" | cardOnBoard.Name == "txtLevel22" | cardOnBoard.Name == "txtLevel23" | cardOnBoard.Name == "txtLevel24")
-                {
-                    cardOnBoard.Text = listCardTwo.Pop().ToString();
-                }
-                else if (cardOnBoard.Name == "txtLevel31" | cardOnBoard.Name == "txtLevel32" | cardOnBoard.Name == "txtLevel33" | cardOnBoard.Name == "txtLevel34")
-                {
-                    cardOnBoard.Text = listCardThree.Pop().ToString();
-                }
-
-
-
-                if (TableauComparatif[0].StartsWith("Rubis"))
-                {
-                    nbCardRubis++;
-                    txtPlayerRubisCard.Text = nbCardRubis.ToString();
-                    NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(7));
-                }
-                else if (TableauComparatif[0].StartsWith("Emeraude"))
-                {
-                    nbCardEmeraude++;
-                    txtPlayerEmeraudeCard.Text = nbCardEmeraude.ToString();
-                    NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(10));
-                }
-                else if (TableauComparatif[0].StartsWith("Onyx"))
-                {
-                    nbCardOnyx++;
-                    txtPlayerOnyxCard.Text = nbCardOnyx.ToString();
-                    NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(7));
-                }
-                else if (TableauComparatif[0].StartsWith("Saphire"))
-                {
-                    nbCardSaphire++;
-                    txtPlayerSaphireCard.Text = nbCardSaphire.ToString();
-                    NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(9));
-                }
-                else if (TableauComparatif[0].StartsWith("Diamant"))
-                {
-                    nbCardDiamant++;
-                    txtPlayerDiamantCard.Text = nbCardDiamant.ToString();
-                    NbPtPrestige = NbPtPrestige + Convert.ToInt16(TableauComparatif[0].Substring(9));
-                }
-
-                lblNbPtPrestige.Text = "Nb pt prestige : " + NbPtPrestige;
-                
             }
 
         }
@@ -255,8 +390,6 @@ namespace Splendor
             this.Width = 680;
             this.Height = 780;
 
-            int id = 0;
-           
             LoadPlayer(id);
 
         }
@@ -292,13 +425,14 @@ namespace Splendor
             player.Name = name;
             player.Id = id;
             player.Ressources = new int[] { 2, 0, 1, 1, 1 };
-            player.Coins = new int[] { 0, 1, 0, 1, 1 };
+            player.Coins = new int[] { 7, 7, 7, 7, 7 };
 
-            lblPlayerDiamandCoin.Text = player.Coins[0].ToString();
-            lblPlayerOnyxCoin.Text = player.Coins[1].ToString();
-            lblPlayerRubisCoin.Text = player.Coins[2].ToString();
-            lblPlayerSaphirCoin.Text = player.Coins[3].ToString();
-            lblPlayerEmeraudeCoin.Text = player.Coins[4].ToString();
+            lblPlayerRubisCoin.Text = player.Coins[0].ToString();
+            lblPlayerSaphireCoin.Text = player.Coins[1].ToString();
+            lblPlayerOnyxCoin.Text = player.Coins[2].ToString();
+            lblPlayerEmeraudeCoin.Text = player.Coins[3].ToString();
+            lblPlayerDiamantCoin.Text = player.Coins[4].ToString();
+
             currentPlayerId = id;
 
             lblPlayer.Text = "Jeu de " + name;
@@ -394,11 +528,15 @@ namespace Splendor
         /// <param name="e"></param>
         private void cmdNextPlayer_Click(object sender, EventArgs e)
         {
+            id++;
+            LoadPlayer(id);
+
+
             //TO DO in release 1.0 : 3 is hard coded (number of players for the game), it shouldn't. 
             //TO DO Get the id of the player : in release 0.1 there are only 3 players
             //Reload the data of the player
             //We are not allowed to click on the next button
-            
+
         }
 
     }
