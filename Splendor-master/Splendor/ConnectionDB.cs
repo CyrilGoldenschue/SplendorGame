@@ -16,6 +16,7 @@ namespace Splendor
     {
         //connection to the database
         private SQLiteConnection m_dbConnection;
+        public int NumberPlayer;
 
         /// <summary>
         /// constructor : creates the connection to the database SQLite
@@ -197,11 +198,13 @@ namespace Splendor
             string sql = "select pseudo from player where idPlayer = " + id;
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
             SQLiteDataReader reader = command.ExecuteReader();
+            NumberPlayer = 2;
             string name = "";
             while (reader.Read())
             {
                 name = reader["pseudo"].ToString();
             }
+            
             return name;
         }
 

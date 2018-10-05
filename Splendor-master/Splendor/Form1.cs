@@ -529,7 +529,15 @@ namespace Splendor
         private void cmdNextPlayer_Click(object sender, EventArgs e)
         {
             id++;
-            LoadPlayer(id);
+            if (id < conn.NumberPlayer+1)
+            {
+                LoadPlayer(id);
+
+            }
+            else
+            {
+                id = -1;
+            }
 
 
             //TO DO in release 1.0 : 3 is hard coded (number of players for the game), it shouldn't. 
