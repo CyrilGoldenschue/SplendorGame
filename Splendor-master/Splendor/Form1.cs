@@ -45,6 +45,9 @@ namespace Splendor
         int NbPtPrestige;
         char[] MyChar = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         int id = 0;
+        bool Reid;
+        int[,] Coin;
+        int[,] Ressource;
 
         //id of the player that is playing
         private int currentPlayerId;
@@ -390,6 +393,22 @@ namespace Splendor
             this.Width = 680;
             this.Height = 780;
 
+            conn.NumberPlayer = 2;
+
+            Coin = new int[3, 5];
+            Coin[id, 0] = 0;
+            Coin[id, 1] = 0;
+            Coin[id, 2] = 0;
+            Coin[id, 3] = 0;
+            Coin[id, 4] = 0;
+
+            Ressource = new int[3, 5];
+            Ressource[id, 0] = 0;
+            Ressource[id, 1] = 0;
+            Ressource[id, 2] = 0;
+            Ressource[id, 3] = 0;
+            Ressource[id, 4] = 0;
+
             LoadPlayer(id);
 
         }
@@ -424,14 +443,20 @@ namespace Splendor
             Player player = new Player();
             player.Name = name;
             player.Id = id;
-            player.Ressources = new int[] { 2, 0, 1, 1, 1 };
-            player.Coins = new int[] { 7, 7, 7, 7, 7 };
-
+            player.Ressources = new int[] { Ressource[id, 0], Ressource[id, 1], Ressource[id, 2], Ressource[id, 3], Ressource[id, 4] };
+            player.Coins = new int[] { Coin[id, 0], Coin[id, 1], Coin[id, 2], Coin[id, 3], Coin[id, 4] };
+            
             lblPlayerRubisCoin.Text = player.Coins[0].ToString();
             lblPlayerSaphireCoin.Text = player.Coins[1].ToString();
             lblPlayerOnyxCoin.Text = player.Coins[2].ToString();
             lblPlayerEmeraudeCoin.Text = player.Coins[3].ToString();
             lblPlayerDiamantCoin.Text = player.Coins[4].ToString();
+
+            txtPlayerRubisCard.Text = player.Ressources[0].ToString();
+            txtPlayerSaphireCard.Text = player.Ressources[1].ToString();
+            txtPlayerOnyxCard.Text = player.Ressources[2].ToString();
+            txtPlayerEmeraudeCard.Text = player.Ressources[3].ToString();
+            txtPlayerDiamantCard.Text = player.Ressources[4].ToString();
 
             currentPlayerId = id;
 
@@ -528,16 +553,41 @@ namespace Splendor
         /// <param name="e"></param>
         private void cmdNextPlayer_Click(object sender, EventArgs e)
         {
-            id++;
-            if (id < conn.NumberPlayer+1)
-            {
-                LoadPlayer(id);
 
-            }
-            else
+
+            Coin = new int[3, 5];
+            Coin[id, 0] = Convert.ToInt16(lblPlayerRubisCoin.Text);
+            Coin[id, 1] = Convert.ToInt16(lblPlayerSaphireCoin.Text);
+            Coin[id, 2] = Convert.ToInt16(lblPlayerOnyxCoin.Text);
+            Coin[id, 3] = Convert.ToInt16(lblPlayerEmeraudeCoin.Text);
+            Coin[id, 4] = Convert.ToInt16(lblPlayerDiamantCoin.Text);
+
+            Ressource = new int[3, 5];
+            Ressource[id, 0] = Convert.ToInt16(txtPlayerRubisCard.Text);
+            Ressource[id, 1] = Convert.ToInt16(txtPlayerSaphireCard.Text);
+            Ressource[id, 2] = Convert.ToInt16(txtPlayerOnyxCard.Text);
+            Ressource[id, 3] = Convert.ToInt16(txtPlayerEmeraudeCard.Text);
+            Ressource[id, 4] = Convert.ToInt16(txtPlayerDiamantCard.Text);
+
+            if (id < conn.NumberPlayer)
             {
-                id = -1;
+                if (id != 2 && Reid == true)
+                {
+                    id++;
+                }
+                Reid = true;
+                LoadPlayer(id);
+                
             }
+            else if(id == 2)
+            {
+                Reid = false;
+                id = -1;
+                id++;
+                
+            }
+            
+
 
 
             //TO DO in release 1.0 : 3 is hard coded (number of players for the game), it shouldn't. 
