@@ -27,6 +27,7 @@ namespace Splendor
             {
                 m_dbConnection = new SQLiteConnection("Data Source=Splendor.sqlite;Version=3;");
                 m_dbConnection.Open();
+                NumberPlayer = GetCountPlayer();
             }
             else
             {
@@ -187,7 +188,37 @@ namespace Splendor
             command.ExecuteNonQuery();
         }
 
-        
+        /// <summary>
+        /// Insert new player on the table "Player"
+        /// </summary>
+        /// /// <param name="namePlayer">Name of the player</param>
+        /// <returns></returns>
+        public void InsertNewPlayer(string namePlayer, int idPlayer)
+        {
+            string sql = "INSERT INTO player VALUES ('"+ idPlayer +"','"+ namePlayer +"')";
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+
+        }
+
+        /// <summary>
+        /// Count number of player
+        /// </summary>
+        public int GetCountPlayer()
+        {
+            string sql = "SELECT COUNT(*) as Number FROM player";
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            SQLiteDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                NumberPlayer = Convert.ToInt16(reader["Number"]);
+            }
+
+            return NumberPlayer;
+
+        }
+
         /// <summary>
         /// get the name of the player according to his id
         /// </summary>
@@ -198,7 +229,6 @@ namespace Splendor
             string sql = "select pseudo from player where idPlayer = " + id;
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
             SQLiteDataReader reader = command.ExecuteReader();
-            NumberPlayer = 2;
             string name = "";
             while (reader.Read())
             {

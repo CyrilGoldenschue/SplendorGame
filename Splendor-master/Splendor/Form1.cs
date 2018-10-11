@@ -1,6 +1,6 @@
 ﻿/**
  * \file      frmAddVideoGames.cs
- * \author    F. Andolfatto
+ * \author    C.Goldenschue & J.Alipio-Penedo
  * \version   1.0
  * \date      August 22. 2018
  * \brief     Form to play.
@@ -48,6 +48,9 @@ namespace Splendor
         bool Reid;
         int[,] Coin;
         int[,] Ressource;
+        string namePlayer;
+        Form2 form2;
+
 
         //id of the player that is playing
         private int currentPlayerId;
@@ -393,16 +396,18 @@ namespace Splendor
             this.Width = 680;
             this.Height = 780;
 
-            conn.NumberPlayer = 2;
+            cmdInsertPlayer.Enabled = false;
 
-            Coin = new int[3, 5];
+            conn.NumberPlayer = conn.GetCountPlayer();
+
+            Coin = new int[conn.NumberPlayer, 5];
             Coin[id, 0] = 0;
             Coin[id, 1] = 0;
             Coin[id, 2] = 0;
             Coin[id, 3] = 0;
             Coin[id, 4] = 0;
 
-            Ressource = new int[3, 5];
+            Ressource = new int[conn.NumberPlayer, 5];
             Ressource[id, 0] = 0;
             Ressource[id, 1] = 0;
             Ressource[id, 2] = 0;
@@ -418,8 +423,9 @@ namespace Splendor
         /// load data about the current player
         /// </summary>
         /// <param name="id">identifier of the player</param>
-        private void LoadPlayer(int id) { 
+        private void LoadPlayer(int id) {
 
+            currentPlayerId = id;
             enableClicLabel = true;
 
             string name = conn.GetPlayerName(currentPlayerId);
@@ -458,7 +464,7 @@ namespace Splendor
             txtPlayerEmeraudeCard.Text = player.Ressources[3].ToString();
             txtPlayerDiamantCard.Text = player.Ressources[4].ToString();
 
-            currentPlayerId = id;
+            
 
             lblPlayer.Text = "Jeu de " + name;
 
@@ -543,7 +549,11 @@ namespace Splendor
         /// <param name="e"></param>
         private void cmdInsertPlayer_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("A implémenter");
+
+            form2 = new Form2();
+            form2.ShowDialog();
+
+           // MessageBox.Show("A implémenter");
         }
 
         /// <summary>
@@ -555,23 +565,23 @@ namespace Splendor
         {
 
 
-            Coin = new int[3, 5];
+            Coin = new int[conn.NumberPlayer, 5];
             Coin[id, 0] = Convert.ToInt16(lblPlayerRubisCoin.Text);
             Coin[id, 1] = Convert.ToInt16(lblPlayerSaphireCoin.Text);
             Coin[id, 2] = Convert.ToInt16(lblPlayerOnyxCoin.Text);
             Coin[id, 3] = Convert.ToInt16(lblPlayerEmeraudeCoin.Text);
             Coin[id, 4] = Convert.ToInt16(lblPlayerDiamantCoin.Text);
 
-            Ressource = new int[3, 5];
+            Ressource = new int[conn.NumberPlayer, 5];
             Ressource[id, 0] = Convert.ToInt16(txtPlayerRubisCard.Text);
             Ressource[id, 1] = Convert.ToInt16(txtPlayerSaphireCard.Text);
             Ressource[id, 2] = Convert.ToInt16(txtPlayerOnyxCard.Text);
             Ressource[id, 3] = Convert.ToInt16(txtPlayerEmeraudeCard.Text);
             Ressource[id, 4] = Convert.ToInt16(txtPlayerDiamantCard.Text);
 
-            if (id < conn.NumberPlayer)
+            if (id+1 < conn.NumberPlayer)
             {
-                if (id != 2 && Reid == true)
+                if (id+1 != conn.NumberPlayer && Reid == true)
                 {
                     id++;
                 }
@@ -579,12 +589,13 @@ namespace Splendor
                 LoadPlayer(id);
                 
             }
-            else if(id == 2)
+            else if(id == conn.NumberPlayer-1)
             {
                 Reid = false;
                 id = -1;
                 id++;
-                
+                LoadPlayer(id);
+
             }
             
 
