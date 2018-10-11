@@ -50,6 +50,7 @@ namespace Splendor
         int[,] Ressource;
         string namePlayer;
         Form2 form2;
+        private int nbTotal;
 
 
         //id of the player that is playing
@@ -147,10 +148,10 @@ namespace Splendor
 
             enableClicLabel = false;
 
-            lblChoiceDiamand.Visible = false;
+            lblChoiceDiamant.Visible = false;
             lblChoiceOnyx.Visible = false;
             lblChoiceRubis.Visible = false;
-            lblChoiceSaphir.Visible = false;
+            lblChoiceSaphire.Visible = false;
             lblChoiceEmeraude.Visible = false;
             cmdValidateChoice.Visible = false;
             cmdNextPlayer.Visible = false;
@@ -431,10 +432,10 @@ namespace Splendor
             string name = conn.GetPlayerName(currentPlayerId);
 
             //no coins or card selected yet, labels are empty
-            lblChoiceDiamand.Text = "";
+            lblChoiceDiamant.Text = "";
             lblChoiceOnyx.Text = "";
             lblChoiceRubis.Text = "";
-            lblChoiceSaphir.Text = "";
+            lblChoiceSaphire.Text = "";
             lblChoiceEmeraude.Text = "";
 
             lblChoiceCard.Text = "";
@@ -532,7 +533,7 @@ namespace Splendor
             {
                 int var = Convert.ToInt32(lblSaphirCoin.Text);
                 cmdValidateChoice.Visible = true;
-                lblChoiceSaphir.Visible = true;
+                lblChoiceSaphire.Visible = true;
 
                 if (var < 4)
                 {
@@ -564,7 +565,7 @@ namespace Splendor
                                 nbSaphir++;
                                 var--; 
                                 lblSaphirCoin.Text = var.ToString();
-                                lblChoiceSaphir.Text = nbSaphir + "\r\n";
+                                lblChoiceSaphire.Text = nbSaphir + "\r\n";
                             }
 
                         }
@@ -694,7 +695,7 @@ namespace Splendor
             {
                 int var = Convert.ToInt32(lblDiamandCoin.Text);
                 cmdValidateChoice.Visible = true;
-                lblChoiceDiamand.Visible = true;
+                lblChoiceDiamant.Visible = true;
 
                 if (var < 4)
                 {
@@ -726,7 +727,7 @@ namespace Splendor
                                 nbDiamand++;
                                 var--;
                                 lblDiamandCoin.Text = var.ToString();
-                                lblChoiceDiamand.Text = nbDiamand + "\r\n";
+                                lblChoiceDiamant.Text = nbDiamand + "\r\n";
                             }
 
                         }
@@ -760,15 +761,15 @@ namespace Splendor
                 lblChoiceRubis.Visible = false;
             }
 
-            if (lblChoiceSaphir.Visible == true)
+            if (lblChoiceSaphire.Visible == true)
             {
-                int var = Convert.ToInt32(lblChoiceSaphir.Text);
-                int var2 = Convert.ToInt32(lblPlayerSaphirCoin.Text);
+                int var = Convert.ToInt32(lblChoiceSaphire.Text);
+                int var2 = Convert.ToInt32(lblPlayerSaphireCoin.Text);
                 int Result = var + var2;
 
-                lblPlayerSaphirCoin.Text = Result.ToString();
-                lblChoiceSaphir.Text = "";
-                lblChoiceSaphir.Visible = false;
+                lblPlayerSaphireCoin.Text = Result.ToString();
+                lblChoiceSaphire.Text = "";
+                lblChoiceSaphire.Visible = false;
             }
 
             if (lblChoiceEmeraude.Visible == true)
@@ -793,15 +794,15 @@ namespace Splendor
                 lblChoiceOnyx.Visible = false;
             }
 
-            if (lblChoiceDiamand.Visible == true)
+            if (lblChoiceDiamant.Visible == true)
             {
-                int var = Convert.ToInt32(lblChoiceDiamand.Text);
-                int var2 = Convert.ToInt32(lblPlayerDiamandCoin.Text);
+                int var = Convert.ToInt32(lblChoiceDiamant.Text);
+                int var2 = Convert.ToInt32(lblPlayerDiamantCoin.Text);
                 int Result = var + var2;
 
-                lblPlayerDiamandCoin.Text = Result.ToString();
-                lblChoiceDiamand.Text = "";
-                lblChoiceDiamand.Visible = false;
+                lblPlayerDiamantCoin.Text = Result.ToString();
+                lblChoiceDiamant.Text = "";
+                lblChoiceDiamant.Visible = false;
             }
         }
 
@@ -890,17 +891,17 @@ namespace Splendor
 
         private void lblChoiceSaphir_Click(object sender, EventArgs e)
         {
-            int var = Convert.ToInt32(lblChoiceSaphir.Text) - 1;
+            int var = Convert.ToInt32(lblChoiceSaphire.Text) - 1;
             int var2 = Convert.ToInt32(lblSaphirCoin.Text) + 1;
             if (var >= 0)
             {
                 nbSaphir--;
-                lblChoiceSaphir.Text = var.ToString();
+                lblChoiceSaphire.Text = var.ToString();
                 lblSaphirCoin.Text = var2.ToString();
 
                 if (var == 0)
                 {
-                    lblChoiceSaphir.Visible = false;
+                    lblChoiceSaphire.Visible = false;
                 }
             }
         }
@@ -941,17 +942,17 @@ namespace Splendor
 
         private void lblChoiceDiamand_Click(object sender, EventArgs e)
         {
-            int var = Convert.ToInt32(lblChoiceDiamand.Text) - 1;
+            int var = Convert.ToInt32(lblChoiceDiamant.Text) - 1;
             int var2 = Convert.ToInt32(lblDiamandCoin.Text) + 1;
             if (var >= 0)
             {
                 nbDiamand--;
-                lblChoiceDiamand.Text = var.ToString();
+                lblChoiceDiamant.Text = var.ToString();
                 lblDiamandCoin.Text = var2.ToString();
 
                 if (var == 0)
                 {
-                    lblChoiceDiamand.Visible = false;
+                    lblChoiceDiamant.Visible = false;
                 }
             }
         }
