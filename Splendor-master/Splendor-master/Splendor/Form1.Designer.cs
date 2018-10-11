@@ -61,10 +61,10 @@
             this.txtPlayerBookedCard = new System.Windows.Forms.TextBox();
             this.txtPlayerDiamantCard = new System.Windows.Forms.TextBox();
             this.lblChoiceRubis = new System.Windows.Forms.Label();
-            this.lblChoiceSaphir = new System.Windows.Forms.Label();
+            this.lblChoiceSaphire = new System.Windows.Forms.Label();
             this.lblChoiceOnyx = new System.Windows.Forms.Label();
             this.lblChoiceEmeraude = new System.Windows.Forms.Label();
-            this.lblChoiceDiamand = new System.Windows.Forms.Label();
+            this.lblChoiceDiamant = new System.Windows.Forms.Label();
             this.cmdValidateChoice = new System.Windows.Forms.Button();
             this.cmdNextPlayer = new System.Windows.Forms.Button();
             this.lblPlayer = new System.Windows.Forms.Label();
@@ -235,26 +235,25 @@
             // 
             // txtLevel13
             // 
-            this.txtLevel13.BackColor = System.Drawing.SystemColors.Window;
-            this.txtLevel13.Location = new System.Drawing.Point(108, 2);
+            this.txtLevel13.Location = new System.Drawing.Point(214, 2);
             this.txtLevel13.Margin = new System.Windows.Forms.Padding(2);
             this.txtLevel13.Multiline = true;
             this.txtLevel13.Name = "txtLevel13";
             this.txtLevel13.Size = new System.Drawing.Size(102, 98);
-            this.txtLevel13.TabIndex = 14;
+            this.txtLevel13.TabIndex = 16;
             // 
             // txtLevel14
             // 
-            this.txtLevel14.Location = new System.Drawing.Point(2, 2);
+            this.txtLevel14.Location = new System.Drawing.Point(320, 2);
             this.txtLevel14.Margin = new System.Windows.Forms.Padding(2);
             this.txtLevel14.Multiline = true;
             this.txtLevel14.Name = "txtLevel14";
             this.txtLevel14.Size = new System.Drawing.Size(102, 98);
-            this.txtLevel14.TabIndex = 15;
+            this.txtLevel14.TabIndex = 17;
             // 
             // txtLevel12
             // 
-            this.txtLevel12.Location = new System.Drawing.Point(214, 2);
+            this.txtLevel12.Location = new System.Drawing.Point(2, 2);
             this.txtLevel12.Margin = new System.Windows.Forms.Padding(2);
             this.txtLevel12.Multiline = true;
             this.txtLevel12.Name = "txtLevel12";
@@ -263,7 +262,8 @@
             // 
             // txtLevel11
             // 
-            this.txtLevel11.Location = new System.Drawing.Point(320, 2);
+            this.txtLevel11.BackColor = System.Drawing.SystemColors.Window;
+            this.txtLevel11.Location = new System.Drawing.Point(108, 2);
             this.txtLevel11.Margin = new System.Windows.Forms.Padding(2);
             this.txtLevel11.Multiline = true;
             this.txtLevel11.Name = "txtLevel11";
@@ -339,9 +339,9 @@
             this.lblPlayerDiamantCoin.Location = new System.Drawing.Point(379, 593);
             this.lblPlayerDiamantCoin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlayerDiamantCoin.Name = "lblPlayerDiamantCoin";
-            this.lblPlayerDiamantCoin.Size = new System.Drawing.Size(67, 13);
+            this.lblPlayerDiamantCoin.Size = new System.Drawing.Size(70, 13);
             this.lblPlayerDiamantCoin.TabIndex = 26;
-            this.lblPlayerDiamantCoin.Text = "DiamantCoin";
+            this.lblPlayerDiamantCoin.Text = "DiamandCoin";
             // 
             // lblPlayerEmeraudeCoin
             // 
@@ -375,9 +375,9 @@
             this.lblPlayerSaphireCoin.Location = new System.Drawing.Point(108, 593);
             this.lblPlayerSaphireCoin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlayerSaphireCoin.Name = "lblPlayerSaphireCoin";
-            this.lblPlayerSaphireCoin.Size = new System.Drawing.Size(64, 13);
+            this.lblPlayerSaphireCoin.Size = new System.Drawing.Size(58, 13);
             this.lblPlayerSaphireCoin.TabIndex = 23;
-            this.lblPlayerSaphireCoin.Text = "SaphireCoin";
+            this.lblPlayerSaphireCoin.Text = "SaphirCoin";
             // 
             // lblPlayerRubisCoin
             // 
@@ -433,18 +433,20 @@
             this.lblChoiceRubis.Size = new System.Drawing.Size(57, 13);
             this.lblChoiceRubis.TabIndex = 33;
             this.lblChoiceRubis.Text = "choix rubis";
+            this.lblChoiceRubis.Click += new System.EventHandler(this.lblChoiceRubis_Click);
             // 
-            // lblChoiceSaphir
+            // lblChoiceSaphire
             // 
-            this.lblChoiceSaphir.AutoSize = true;
-            this.lblChoiceSaphir.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.lblChoiceSaphir.ForeColor = System.Drawing.SystemColors.Window;
-            this.lblChoiceSaphir.Location = new System.Drawing.Point(108, 524);
-            this.lblChoiceSaphir.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblChoiceSaphir.Name = "lblChoiceSaphir";
-            this.lblChoiceSaphir.Size = new System.Drawing.Size(63, 13);
-            this.lblChoiceSaphir.TabIndex = 34;
-            this.lblChoiceSaphir.Text = "choix saphir";
+            this.lblChoiceSaphire.AutoSize = true;
+            this.lblChoiceSaphire.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.lblChoiceSaphire.ForeColor = System.Drawing.SystemColors.Window;
+            this.lblChoiceSaphire.Location = new System.Drawing.Point(108, 524);
+            this.lblChoiceSaphire.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblChoiceSaphire.Name = "lblChoiceSaphire";
+            this.lblChoiceSaphire.Size = new System.Drawing.Size(69, 13);
+            this.lblChoiceSaphire.TabIndex = 34;
+            this.lblChoiceSaphire.Text = "choix saphire";
+            this.lblChoiceSaphire.Click += new System.EventHandler(this.lblChoiceSaphir_Click);
             // 
             // lblChoiceOnyx
             // 
@@ -457,6 +459,7 @@
             this.lblChoiceOnyx.Size = new System.Drawing.Size(57, 13);
             this.lblChoiceOnyx.TabIndex = 35;
             this.lblChoiceOnyx.Text = "choix onyx";
+            this.lblChoiceOnyx.Click += new System.EventHandler(this.lblChoiceOnyx_Click);
             // 
             // lblChoiceEmeraude
             // 
@@ -469,18 +472,20 @@
             this.lblChoiceEmeraude.Size = new System.Drawing.Size(82, 13);
             this.lblChoiceEmeraude.TabIndex = 36;
             this.lblChoiceEmeraude.Text = "choix émeraude";
+            this.lblChoiceEmeraude.Click += new System.EventHandler(this.lblChoiceEmeraude_Click);
             // 
-            // lblChoiceDiamand
+            // lblChoiceDiamant
             // 
-            this.lblChoiceDiamand.AutoSize = true;
-            this.lblChoiceDiamand.BackColor = System.Drawing.SystemColors.Window;
-            this.lblChoiceDiamand.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.lblChoiceDiamand.Location = new System.Drawing.Point(379, 524);
-            this.lblChoiceDiamand.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblChoiceDiamand.Name = "lblChoiceDiamand";
-            this.lblChoiceDiamand.Size = new System.Drawing.Size(75, 13);
-            this.lblChoiceDiamand.TabIndex = 37;
-            this.lblChoiceDiamand.Text = "choix diamand";
+            this.lblChoiceDiamant.AutoSize = true;
+            this.lblChoiceDiamant.BackColor = System.Drawing.SystemColors.Window;
+            this.lblChoiceDiamant.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.lblChoiceDiamant.Location = new System.Drawing.Point(379, 524);
+            this.lblChoiceDiamant.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblChoiceDiamant.Name = "lblChoiceDiamant";
+            this.lblChoiceDiamant.Size = new System.Drawing.Size(72, 13);
+            this.lblChoiceDiamant.TabIndex = 37;
+            this.lblChoiceDiamant.Text = "choix diamant";
+            this.lblChoiceDiamant.Click += new System.EventHandler(this.lblChoiceDiamand_Click);
             // 
             // cmdValidateChoice
             // 
@@ -572,10 +577,10 @@
             // 
             // flwCardLevel1
             // 
-            this.flwCardLevel1.Controls.Add(this.txtLevel14);
-            this.flwCardLevel1.Controls.Add(this.txtLevel13);
             this.flwCardLevel1.Controls.Add(this.txtLevel12);
             this.flwCardLevel1.Controls.Add(this.txtLevel11);
+            this.flwCardLevel1.Controls.Add(this.txtLevel13);
+            this.flwCardLevel1.Controls.Add(this.txtLevel14);
             this.flwCardLevel1.Location = new System.Drawing.Point(14, 374);
             this.flwCardLevel1.Margin = new System.Windows.Forms.Padding(2);
             this.flwCardLevel1.Name = "flwCardLevel1";
@@ -622,7 +627,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(606, 763);
             this.Controls.Add(this.flwCardNoble);
             this.Controls.Add(this.flwCardLevel3);
@@ -633,10 +637,10 @@
             this.Controls.Add(this.lblPlayer);
             this.Controls.Add(this.cmdNextPlayer);
             this.Controls.Add(this.cmdValidateChoice);
-            this.Controls.Add(this.lblChoiceDiamand);
+            this.Controls.Add(this.lblChoiceDiamant);
             this.Controls.Add(this.lblChoiceEmeraude);
             this.Controls.Add(this.lblChoiceOnyx);
-            this.Controls.Add(this.lblChoiceSaphir);
+            this.Controls.Add(this.lblChoiceSaphire);
             this.Controls.Add(this.lblChoiceRubis);
             this.Controls.Add(this.txtPlayerDiamantCard);
             this.Controls.Add(this.txtPlayerBookedCard);
@@ -710,10 +714,10 @@
         private System.Windows.Forms.TextBox txtPlayerBookedCard;
         private System.Windows.Forms.TextBox txtPlayerDiamantCard;
         private System.Windows.Forms.Label lblChoiceRubis;
-        private System.Windows.Forms.Label lblChoiceSaphir;
+        private System.Windows.Forms.Label lblChoiceSaphire;
         private System.Windows.Forms.Label lblChoiceOnyx;
         private System.Windows.Forms.Label lblChoiceEmeraude;
-        private System.Windows.Forms.Label lblChoiceDiamand;
+        private System.Windows.Forms.Label lblChoiceDiamant;
         private System.Windows.Forms.Button cmdValidateChoice;
         private System.Windows.Forms.Button cmdNextPlayer;
         private System.Windows.Forms.Label lblPlayer;
