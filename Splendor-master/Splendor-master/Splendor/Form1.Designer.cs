@@ -301,6 +301,7 @@
             this.txtPlayerEmeraudeCard.Name = "txtPlayerEmeraudeCard";
             this.txtPlayerEmeraudeCard.Size = new System.Drawing.Size(81, 98);
             this.txtPlayerEmeraudeCard.TabIndex = 30;
+            this.txtPlayerEmeraudeCard.Text = "0";
             // 
             // txtPlayerOnyxCard
             // 
@@ -310,6 +311,7 @@
             this.txtPlayerOnyxCard.Name = "txtPlayerOnyxCard";
             this.txtPlayerOnyxCard.Size = new System.Drawing.Size(81, 98);
             this.txtPlayerOnyxCard.TabIndex = 29;
+            this.txtPlayerOnyxCard.Text = "0";
             // 
             // txtPlayerSaphireCard
             // 
@@ -320,6 +322,7 @@
             this.txtPlayerSaphireCard.Name = "txtPlayerSaphireCard";
             this.txtPlayerSaphireCard.Size = new System.Drawing.Size(81, 98);
             this.txtPlayerSaphireCard.TabIndex = 28;
+            this.txtPlayerSaphireCard.Text = "0";
             // 
             // txtPlayerRubisCard
             // 
@@ -330,6 +333,7 @@
             this.txtPlayerRubisCard.Name = "txtPlayerRubisCard";
             this.txtPlayerRubisCard.Size = new System.Drawing.Size(81, 98);
             this.txtPlayerRubisCard.TabIndex = 27;
+            this.txtPlayerRubisCard.Text = "0";
             // 
             // lblPlayerDiamantCoin
             // 
@@ -421,6 +425,7 @@
             this.txtPlayerDiamantCard.Name = "txtPlayerDiamantCard";
             this.txtPlayerDiamantCard.Size = new System.Drawing.Size(81, 98);
             this.txtPlayerDiamantCard.TabIndex = 32;
+            this.txtPlayerDiamantCard.Text = "0";
             // 
             // lblChoiceRubis
             // 
