@@ -27,6 +27,9 @@ namespace Splendor
     /// </summary>
     public partial class frmSplendor : Form
     {
+        
+        //connection to the database
+        private ConnectionDB conn;
         //used to store the number of coins selected for the current round of game
         private int nbRubis;
         private int nbOnyx;
@@ -45,7 +48,7 @@ namespace Splendor
         int NbPtPrestige;
         char[] MyChar = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         int id = 0;
-        bool Reid;
+        bool Reid = true;
         int[,] Coin;
         int[,] Ressource;
         string namePlayer;
@@ -57,8 +60,8 @@ namespace Splendor
         private int currentPlayerId;
         //boolean to enable us to know if the user can click on a coin or a card
         private bool enableClicLabel;
-        //connection to the database
-        private ConnectionDB conn;
+        
+        
 
         /// <summary>
         /// constructor
@@ -85,6 +88,8 @@ namespace Splendor
 
             conn = new ConnectionDB();
 
+            Coin = new int[conn.NumberPlayer, 5];
+            Ressource = new int[conn.NumberPlayer, 5];
             //load cards from the database
             //they are not hard coded any more
             //TO DO
@@ -382,6 +387,7 @@ namespace Splendor
                     }
 
                     lblNbPtPrestige.Text = "Nb pt prestige : " + NbPtPrestige;
+                    cmdNextPlayer.Enabled = true;
                 }
             }
 
@@ -804,6 +810,7 @@ namespace Splendor
                 lblChoiceDiamant.Text = "";
                 lblChoiceDiamant.Visible = false;
             }
+            cmdNextPlayer.Enabled = true;
         }
 
         /// <summary>
@@ -828,20 +835,19 @@ namespace Splendor
         private void cmdNextPlayer_Click(object sender, EventArgs e)
         {
 
-
-            Coin = new int[conn.NumberPlayer, 5];
             Coin[id, 0] = Convert.ToInt16(lblPlayerRubisCoin.Text);
             Coin[id, 1] = Convert.ToInt16(lblPlayerSaphireCoin.Text);
             Coin[id, 2] = Convert.ToInt16(lblPlayerOnyxCoin.Text);
             Coin[id, 3] = Convert.ToInt16(lblPlayerEmeraudeCoin.Text);
             Coin[id, 4] = Convert.ToInt16(lblPlayerDiamantCoin.Text);
 
-            Ressource = new int[conn.NumberPlayer, 5];
             Ressource[id, 0] = Convert.ToInt16(txtPlayerRubisCard.Text);
             Ressource[id, 1] = Convert.ToInt16(txtPlayerSaphireCard.Text);
             Ressource[id, 2] = Convert.ToInt16(txtPlayerOnyxCard.Text);
             Ressource[id, 3] = Convert.ToInt16(txtPlayerEmeraudeCard.Text);
             Ressource[id, 4] = Convert.ToInt16(txtPlayerDiamantCard.Text);
+
+
 
             if (id+1 < conn.NumberPlayer)
             {
@@ -850,6 +856,7 @@ namespace Splendor
                     id++;
                 }
                 Reid = true;
+                cmdNextPlayer.Enabled = false;
                 LoadPlayer(id);
                 
             }
@@ -858,6 +865,7 @@ namespace Splendor
                 Reid = false;
                 id = -1;
                 id++;
+                cmdNextPlayer.Enabled = false;
                 LoadPlayer(id);
 
             }
