@@ -54,6 +54,10 @@ namespace Splendor
         string namePlayer;
         Form2 form2;
         private int nbTotal = 0;
+        string[] NameCard;
+        Control NameControl;
+        int NbCardNobleName = 0;
+        String[] TableauComparatif;
 
 
         //id of the player that is playing
@@ -198,10 +202,9 @@ namespace Splendor
             {
 
                 TextBox cardOnBoard = (TextBox)sender;
-                Control NameControl = (Control)sender;
-                string NameCard = NameControl.Name.ToString();
-                MessageBox.Show(NameCard);
-                String[] TableauComparatif = cardOnBoard.Lines;
+                NameControl = (Control)sender;
+                NameCard[NbCardNobleName] = NameControl.Name.ToString();
+                TableauComparatif = cardOnBoard.Lines;
 
                 int NbLines = cardOnBoard.Lines.Count()-1;
                 //Nombre de carte de ressource
@@ -601,7 +604,10 @@ namespace Splendor
                             txtLevel33.Enabled = false;
                             txtLevel34.Enabled = false;
                             // disable card Noble
-                            NameControl.Enabled = false;
+                            txtNoble1.Enabled = false;
+                            txtNoble2.Enabled = false;
+                            txtNoble3.Enabled = false;
+                            txtNoble4.Enabled = false;
                         }
                     }
                 }
@@ -1087,21 +1093,32 @@ namespace Splendor
         {
             cmdValidateChoice.Visible = false;
             cmdValidateChoice.Enabled = true;
-            // disable card Level one
+            // enable card Level one
             txtLevel11.Enabled = true;
             txtLevel12.Enabled = true;
             txtLevel13.Enabled = true;
             txtLevel14.Enabled = true;
-            // disable card Level two
+            // enable card Level two
             txtLevel21.Enabled = true;
             txtLevel22.Enabled = true;
             txtLevel23.Enabled = true;
             txtLevel24.Enabled = true;
-            // disable card Level three
+            // enable card Level three
             txtLevel31.Enabled = true;
             txtLevel32.Enabled = true;
             txtLevel33.Enabled = true;
             txtLevel34.Enabled = true;
+            //enable card Noble except cards already purchased
+            txtNoble1.Enabled = true;
+            txtNoble2.Enabled = true;
+            txtNoble3.Enabled = true;
+            txtNoble4.Enabled = true;
+            for (int i = 0; i < NameCard.Count(); i++)
+            {
+                NameControl.Name = NameCard[i];
+                NameControl.Enabled = false;
+            }
+
 
             Coin[id, 0] = Convert.ToInt16(lblPlayerRubisCoin.Text);
             Coin[id, 1] = Convert.ToInt16(lblPlayerSaphireCoin.Text);
