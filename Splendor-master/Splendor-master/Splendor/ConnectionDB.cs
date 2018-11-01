@@ -17,6 +17,7 @@ namespace Splendor
         //connection to the database
         private SQLiteConnection m_dbConnection;
         public int NumberPlayer;
+        int NumberForget = 4;
 
         /// <summary>
         /// constructor : creates the connection to the database SQLite
@@ -37,10 +38,8 @@ namespace Splendor
                 //create and insert players
                 CreateInsertPlayer();
                 //Create and insert cards
-                //TO DO
                 CreateInsertCards();
                 //Create and insert ressources
-                //TO DO
                 CreateInsertRessources();
             }
 
@@ -53,6 +52,7 @@ namespace Splendor
         /// <summary>
         /// get the list of cards according to the level
         /// </summary>
+        /// /// <param name="level">Level of the card</param>
         /// <returns>cards stack</returns>
         public Stack<Card> GetListCardAccordingToLevel(int level)
         {
@@ -189,9 +189,47 @@ namespace Splendor
         }
 
         /// <summary>
+        /// Verify if the player id exist
+        /// </summary>
+        public int VerifyPlayer()
+        {
+            string sql = "SELECT idPlayer FROM player";
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            
+            while (reader.Read())
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    if (i == Convert.ToInt16(reader["idPlayer"]))
+                    {
+                        //break;
+                    }
+                    else
+                    {
+                        NumberForget = i;
+                    }
+                }
+                
+            }
+            return NumberForget;
+        }
+
+        /// <summary>
+        /// Delete a Player in the table "player"
+        /// </summary>
+        public void DeletePlayer(string Pseud)
+        {
+            string sql = "DELETE FROM player WHERE pseudo = '"+ Pseud+"'";
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+        }
+
+        /// <summary>
         /// Insert new player on the table "Player"
         /// </summary>
         /// /// <param name="namePlayer">Name of the player</param>
+        /// /// <param name="idPlayer">Id of the player</param>
         /// <returns></returns>
         public void InsertNewPlayer(string namePlayer, int idPlayer)
         {
