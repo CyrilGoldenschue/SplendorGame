@@ -45,7 +45,7 @@ namespace Splendor
         int nbCardOnyx = 0;
         int nbCardSaphire = 0;
         int nbCardDiamant = 0;
-        int NbPtPrestige;
+        int[] NbPtPrestige;
         char[] MyChar = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         int id = 0;
         bool Reid = true;
@@ -229,7 +229,7 @@ namespace Splendor
                 int NbCardResidualNoble = listCardNoble.Count();
                 int NbRessource = 2;
                 bool Achat = true;
-                if (NameCard != "txtNoble1" || NameCard != "txtNoble2" || NameCard != "txtNoble3" || NameCard != "txtNoble4")
+                if (!NameCard.Contains("txtNoble"))
                 {
                     while (NbRessource != NbLines)
                     {
@@ -356,7 +356,7 @@ namespace Splendor
                             {
                                 if (TableauComparatif[0].Substring(9) != "\t")
                                 {
-                                    NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(7));
+                                    NbPtPrestige[id] += Convert.ToInt16(TableauComparatif[0].Substring(7));
                                 }
                             }
                         }
@@ -368,7 +368,7 @@ namespace Splendor
                             {
                                 if (TableauComparatif[0].Substring(12) != "\t")
                                 {
-                                    NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(8));
+                                    NbPtPrestige[id] += Convert.ToInt16(TableauComparatif[0].Substring(8));
                                 }
 
                             }
@@ -381,7 +381,7 @@ namespace Splendor
                             {
                                 if (TableauComparatif[0].Substring(8) != "\t")
                                 {
-                                    NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(6));
+                                    NbPtPrestige[id] += Convert.ToInt16(TableauComparatif[0].Substring(6));
                                 }
                             }
                         }
@@ -393,7 +393,7 @@ namespace Splendor
                             {
                                 if (TableauComparatif[0].Substring(11) != "\t")
                                 {
-                                    NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(9));
+                                    NbPtPrestige[id] += Convert.ToInt16(TableauComparatif[0].Substring(9));
                                 }
                             }
                         }
@@ -405,13 +405,13 @@ namespace Splendor
                             {
                                 if (TableauComparatif[0].Substring(11) != "\t")
                                 {
-                                    NbPtPrestige = NbPtPrestige + Convert.ToInt16(TableauComparatif[0].Substring(9));
+                                    NbPtPrestige[id] += Convert.ToInt16(TableauComparatif[0].Substring(9));
                                 }
                             }
                         }
                         else if (TableauComparatif[0].StartsWith(" "))
                         {
-                            NbPtPrestige = NbPtPrestige + Convert.ToInt16(TableauComparatif[0].Substring(2));
+                            NbPtPrestige[id] += Convert.ToInt16(TableauComparatif[0].Substring(2));
                         }
 
                         lblNbPtPrestige.Text = "Nb pt prestige : " + NbPtPrestige;
@@ -437,6 +437,7 @@ namespace Splendor
                 }
                 else
                 {
+                    //Purchase of noble card
                     while (NbRessource != NbLines)
                     {
                         if ((TableauComparatif[NbRessource].Substring(4)).StartsWith("Rubis"))
@@ -513,29 +514,6 @@ namespace Splendor
                         {
                             cardOnBoard.Clear();
 
-                            if (cardOnBoard.Name == "txtLevel11" | cardOnBoard.Name == "txtLevel12" | cardOnBoard.Name == "txtLevel13" | cardOnBoard.Name == "txtLevel14")
-                            {
-                                cardOnBoard.Text = listCardOne.Pop().ToString();
-                                NbCardResidualOne--;
-                            }
-                            else if (cardOnBoard.Name == "txtLevel21" | cardOnBoard.Name == "txtLevel22" | cardOnBoard.Name == "txtLevel23" | cardOnBoard.Name == "txtLevel24")
-                            {
-                                cardOnBoard.Text = listCardTwo.Pop().ToString();
-                                NbCardResidualTwo--;
-                            }
-                            else if (cardOnBoard.Name == "txtLevel31" | cardOnBoard.Name == "txtLevel32" | cardOnBoard.Name == "txtLevel33" | cardOnBoard.Name == "txtLevel34")
-                            {
-                                cardOnBoard.Text = listCardThree.Pop().ToString();
-                                NbCardResidualThree--;
-                            }
-
-                            lblPlayerRubisCoin.Text = NbRubisPoss.ToString();
-                            lblPlayerSaphireCoin.Text = NbSaphirePoss.ToString();
-                            lblPlayerOnyxCoin.Text = NbOnyxPoss.ToString();
-                            lblPlayerEmeraudeCoin.Text = NbEmeraudePoss.ToString();
-                            lblPlayerDiamantCoin.Text = NbDiamantPoss.ToString();
-
-
                             if (TableauComparatif[0].StartsWith("Rubis"))
                             {
                                 nbCardRubis++;
@@ -545,7 +523,7 @@ namespace Splendor
                                 {
                                     if (TableauComparatif[0].Substring(9) != "\t")
                                     {
-                                        NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(7));
+                                        NbPtPrestige[id] += Convert.ToInt16(TableauComparatif[0].Substring(7));
                                     }
                                 }
                             }
@@ -557,7 +535,7 @@ namespace Splendor
                                 {
                                     if (TableauComparatif[0].Substring(12) != "\t")
                                     {
-                                        NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(8));
+                                        NbPtPrestige[id] += Convert.ToInt16(TableauComparatif[0].Substring(8));
                                     }
 
                                 }
@@ -570,7 +548,7 @@ namespace Splendor
                                 {
                                     if (TableauComparatif[0].Substring(8) != "\t")
                                     {
-                                        NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(6));
+                                        NbPtPrestige[id] += Convert.ToInt16(TableauComparatif[0].Substring(6));
                                     }
                                 }
                             }
@@ -582,7 +560,7 @@ namespace Splendor
                                 {
                                     if (TableauComparatif[0].Substring(11) != "\t")
                                     {
-                                        NbPtPrestige += Convert.ToInt16(TableauComparatif[0].Substring(9));
+                                        NbPtPrestige[id] += Convert.ToInt16(TableauComparatif[0].Substring(9));
                                     }
                                 }
                             }
@@ -594,16 +572,16 @@ namespace Splendor
                                 {
                                     if (TableauComparatif[0].Substring(11) != "\t")
                                     {
-                                        NbPtPrestige = NbPtPrestige + Convert.ToInt16(TableauComparatif[0].Substring(9));
+                                        NbPtPrestige[id] = Convert.ToInt16(TableauComparatif[0].Substring(9));
                                     }
                                 }
                             }
                             else if (TableauComparatif[0].StartsWith(" "))
                             {
-                                NbPtPrestige = NbPtPrestige + Convert.ToInt16(TableauComparatif[0].Substring(2));
+                                NbPtPrestige[id] = Convert.ToInt16(TableauComparatif[0].Substring(2));
                             }
 
-                            lblNbPtPrestige.Text = "Nb pt prestige : " + NbPtPrestige;
+                            lblNbPtPrestige.Text = "Nb pt prestige : " + NbPtPrestige[id];
                             cmdNextPlayer.Visible = true;
                             cmdNextPlayer.Enabled = true;
                             cmdValidateChoice.Enabled = false;
@@ -629,7 +607,6 @@ namespace Splendor
                 }
             }
         }
-
         /// <summary>
         /// click on the play button
         /// </summary>
@@ -652,12 +629,18 @@ namespace Splendor
             Coin[id, 4] = 0;
             Coin[id, 5] = 0;
 
+            NbPtPrestige = new int[conn.GetCountPlayer()];
+            NbPtPrestige[0] = 0;
+            NbPtPrestige[1] = 0;
+            NbPtPrestige[2] = 0;
+            NbPtPrestige[3] = 0;
+
             Ressource = new int[conn.NumberPlayer, 5];
-            Ressource[id, 0] = 0;
-            Ressource[id, 1] = 0;
-            Ressource[id, 2] = 0;
-            Ressource[id, 3] = 0;
-            Ressource[id, 4] = 0;
+            Ressource[id, 0] = 10;
+            Ressource[id, 1] = 10;
+            Ressource[id, 2] = 10;
+            Ressource[id, 3] = 10;
+            Ressource[id, 4] = 10;
             //Ressource[id, 5] = 0;
 
             LoadPlayer(id);
@@ -705,7 +688,7 @@ namespace Splendor
             lblPlayerDiamantCoin.Text = player.Coins[4].ToString();
             //Gold Coin
             //lblPlayerGoldCoin.Text = player.Coins[5].ToString();
-
+            lblNbPtPrestige.Text = NbPtPrestige[id].ToString();
 
             txtPlayerRubisCard.Text = player.Ressources[0].ToString();
             txtPlayerSaphireCard.Text = player.Ressources[1].ToString();
@@ -1132,6 +1115,8 @@ namespace Splendor
             Ressource[id, 2] = Convert.ToInt16(txtPlayerOnyxCard.Text);
             Ressource[id, 3] = Convert.ToInt16(txtPlayerEmeraudeCard.Text);
             Ressource[id, 4] = Convert.ToInt16(txtPlayerDiamantCard.Text);
+
+
 
 
             if (id+1 < conn.NumberPlayer)
