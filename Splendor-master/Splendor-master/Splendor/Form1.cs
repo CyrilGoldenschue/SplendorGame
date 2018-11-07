@@ -51,13 +51,12 @@ namespace Splendor
         bool Reid = true;
         int[,] Coin;
         int[,] Ressource;
-        string namePlayer;
+        string NameControlAll = "";
         Form2 form2;
         private int nbTotal = 0;
-        string[] NameCard;
-        Control NameControl;
-        int NbCardNobleName = 0;
-        String[] TableauComparatif;
+        string[] NumCardAll = new string[3];
+        string NameCard;
+        Control DisableControler= new Control();
 
 
         //id of the player that is playing
@@ -186,7 +185,7 @@ namespace Splendor
             txtLevel33.Click += ClickOnCard;
             txtLevel34.Click += ClickOnCard;
 
-            // Click card level one
+            // Click card level Noble
             txtNoble1.Click += ClickOnCard;
             txtNoble2.Click += ClickOnCard;
             txtNoble3.Click += ClickOnCard;
@@ -202,8 +201,11 @@ namespace Splendor
             {
 
                 TextBox cardOnBoard = (TextBox)sender;
-                NameControl = (Control)sender;
-                NameCard[NbCardNobleName] = NameControl.Name.ToString();
+                Control NameControl = (Control)sender;
+                NameControlAll = NameControl.Name;
+                NameCard = NameControl.Name.ToString();
+                NumCardAll[Convert.ToInt16(NameCard.Substring(8))-1] = NameCard;
+                string[] TableauComparatif = new string[cardOnBoard.Lines.Count()];
                 TableauComparatif = cardOnBoard.Lines;
 
                 int NbLines = cardOnBoard.Lines.Count()-1;
@@ -1091,6 +1093,7 @@ namespace Splendor
         /// <param name="e"></param>
         private void cmdNextPlayer_Click(object sender, EventArgs e)
         {
+            
             cmdValidateChoice.Visible = false;
             cmdValidateChoice.Enabled = true;
             // enable card Level one
@@ -1113,10 +1116,11 @@ namespace Splendor
             txtNoble2.Enabled = true;
             txtNoble3.Enabled = true;
             txtNoble4.Enabled = true;
-            for (int i = 0; i < NameCard.Count(); i++)
+            for (int i = 0; i < NumCardAll.Count()-1; i++)
             {
-                NameControl.Name = NameCard[i];
-                NameControl.Enabled = false;
+                NameControlAll = NumCardAll[i];
+                DisableControler.Name = NameControlAll;
+                DisableControler.Enabled = false;
             }
 
 
