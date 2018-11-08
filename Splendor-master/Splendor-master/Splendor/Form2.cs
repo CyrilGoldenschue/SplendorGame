@@ -56,11 +56,15 @@ namespace Splendor
 
         private void cmdAddPlayer_Click(object sender, EventArgs e)
         {
+            AddPlayer();
+        }
+        private void AddPlayer()
+        {
             conn = new ConnectionDB();
             Nom = txtAddPlayer.Text;
             int NbPlayer = conn.GetCountPlayer();
             int id = 0;
-            for(int i = 0; i<= NbPlayer; i++)
+            for (int i = 0; i <= NbPlayer; i++)
             {
                 id = conn.VerifyPlayer();
             }
@@ -75,11 +79,8 @@ namespace Splendor
                 MessageBox.Show("Il ne peut avoir plus de quatre joueurs");
                 //this.Close();
             }
-            
-            
-            
+            txtAddPlayer.Clear();
         }
-
         private void MessageAdd()
         {
 
@@ -92,7 +93,7 @@ namespace Splendor
                 }
                 else
                 {
-                    MessageBox.Show("Il y a "+ NbPlayer+" vous pouvez en ajouter encore "+ (4-NbPlayer) +"");
+                    MessageBox.Show("Il y a "+ NbPlayer+" vous pouvez en ajouter encore "+ (4 - NbPlayer) +"");
                 }
 
                 //this.Close();
@@ -117,9 +118,12 @@ namespace Splendor
 
         }
 
-        private void txtAddPlayer_Enter(object sender, EventArgs e)
+        private void txtAddPlayer_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Enter)
+            {
+                AddPlayer();
+            }
         }
     }
 }

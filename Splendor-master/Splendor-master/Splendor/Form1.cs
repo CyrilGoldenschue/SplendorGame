@@ -104,6 +104,7 @@ namespace Splendor
             }
 
             lblGoldCoin.Text = "5";
+            lblPlayerGoldCoin.Text = "0";
             lblDiamandCoin.Text = "7";
             lblEmeraudeCoin.Text = "7";
             lblOnyxCoin.Text = "7";
@@ -275,22 +276,27 @@ namespace Splendor
                 int NbEmeraudePoss = Convert.ToInt16(lblPlayerEmeraudeCoin.Text);
                 int NbOnyxPoss = Convert.ToInt16(lblPlayerOnyxCoin.Text);
                 int NbDiamantPoss = Convert.ToInt16(lblPlayerDiamantCoin.Text);
+                int NbGoldPoss = Convert.ToInt16(lblPlayerGoldCoin.Text);
                 //Nombre de ressources restantes
                 int BanqueRubis = Convert.ToInt16(lblRubisCoin.Text);
                 int BanqueSaphire = Convert.ToInt16(lblSaphirCoin.Text);
                 int BanqueEmeraude = Convert.ToInt16(lblEmeraudeCoin.Text);
                 int BanqueOnyx = Convert.ToInt16(lblOnyxCoin.Text);
                 int BanqueDiamant = Convert.ToInt16(lblDiamandCoin.Text);
+                int BanqueGold = Convert.ToInt16(lblGoldCoin.Text);
                 //Nombre de cartes restantes
                 int NbCardResidualOne = listCardOne.Count();
                 int NbCardResidualTwo = listCardTwo.Count();
                 int NbCardResidualThree = listCardThree.Count();
                 int NbCardResidualNoble = listCardNoble.Count();
+
+                string SorteRessourceMiss = " ";
                 int NbRessource = 2;
+                int NbRessourceMiss = 0;
                 //Boolean pour savoir si le joueur achète la carte ou non
                 bool Achat = true;
 
-                if (NameCard.Substring(1, 8) == "txtNoble")
+                if (NameCard.Substring(1, 8) != "txtNoble")
                 {
                     while (NbRessource != NbLines)
                     {
@@ -300,13 +306,18 @@ namespace Splendor
                             {
                                 //MessageBox.Show("C'est du Rubis");
                                 NbRubisPoss = NbRubisPoss - Convert.ToInt16(TableauComparatif[NbRessource].Substring(10)) + NbCardRubis;
-                                BanqueRubis = BanqueRubis + Convert.ToInt16(TableauComparatif[NbRessource].Substring(10));
                                 lblRubisCoin.Text = BanqueRubis.ToString();
                             }
                             else
                             {
+                                int NbRubisMiss = Convert.ToInt16(TableauComparatif[NbRessource].Substring(10)) - NbRubisPoss;
                                 MessageBox.Show("Vous n'avez pas assez de Rubis");
                                 Achat = false;
+                                if(NbRubisMiss == 1)
+                                {
+                                    NbRessourceMiss++;
+                                    SorteRessourceMiss = "Rubis";
+                                }
                             }
                         }
                         else if ((TableauComparatif[NbRessource].Substring(4)).StartsWith("Saphire"))
@@ -316,13 +327,18 @@ namespace Splendor
                             {
                                 //MessageBox.Show("C'est du Saphire");
                                 NbSaphirePoss = NbSaphirePoss - Convert.ToInt16(TableauComparatif[NbRessource].Substring(12)) + NbCardSaphire;
-                                BanqueSaphire = BanqueSaphire + Convert.ToInt16(TableauComparatif[NbRessource].Substring(12));
                                 lblSaphirCoin.Text = BanqueSaphire.ToString();
                             }
                             else
                             {
+                                int NbSaphireMiss = Convert.ToInt16(TableauComparatif[NbRessource].Substring(12)) - NbSaphirePoss;
                                 MessageBox.Show("Vous n'avez pas assez de Saphire");
                                 Achat = false;
+                                if (NbSaphireMiss == 1)
+                                {
+                                    NbRessourceMiss++;
+                                    SorteRessourceMiss = "Saphire";
+                                }
                             }
                         }
                         else if ((TableauComparatif[NbRessource].Substring(4)).StartsWith("Emeraude"))
@@ -331,13 +347,18 @@ namespace Splendor
                             {
                                 //MessageBox.Show("C'est de l'Emeraude");
                                 NbEmeraudePoss = NbEmeraudePoss - Convert.ToInt16(TableauComparatif[NbRessource].Substring(13)) + NbCardEmeraude;
-                                BanqueEmeraude = BanqueEmeraude + Convert.ToInt16(TableauComparatif[NbRessource].Substring(13));
                                 lblEmeraudeCoin.Text = BanqueEmeraude.ToString();
                             }
                             else
                             {
+                                int NbEmeraudeMiss = Convert.ToInt16(TableauComparatif[NbRessource].Substring(13)) - NbEmeraudePoss;
                                 MessageBox.Show("Vous n'avez pas assez de Emeraude");
-                                Achat = false;
+
+                                if (NbEmeraudeMiss == 1)
+                                {
+                                    NbRessourceMiss++;
+                                    SorteRessourceMiss = "Emeraude";
+                                }
                             }
                         }
                         else if ((TableauComparatif[NbRessource].Substring(4)).StartsWith("Onyx"))
@@ -346,13 +367,18 @@ namespace Splendor
                             {
                                 //MessageBox.Show("C'est de l'Onyx");
                                 NbOnyxPoss = NbOnyxPoss - Convert.ToInt16(TableauComparatif[NbRessource].Substring(9)) + NbCardOnyx;
-                                BanqueOnyx = BanqueOnyx + Convert.ToInt16(TableauComparatif[NbRessource].Substring(9));
                                 lblOnyxCoin.Text = BanqueOnyx.ToString();
                             }
                             else
                             {
+                                int NbOnyxMiss = Convert.ToInt16(TableauComparatif[NbRessource].Substring(9)) - NbOnyxPoss;
                                 MessageBox.Show("Vous n'avez pas assez de Onyx");
                                 Achat = false;
+                                if (NbOnyxMiss == 1)
+                                {
+                                    NbRessourceMiss++;
+                                    SorteRessourceMiss = "Onyx";
+                                }
                             }
                         }
                         else if ((TableauComparatif[NbRessource].Substring(4)).StartsWith("Diamant"))
@@ -361,16 +387,21 @@ namespace Splendor
                             {
                                 //MessageBox.Show("C'est du Diamant");
                                 NbDiamantPoss = NbDiamantPoss - Convert.ToInt16(TableauComparatif[NbRessource].Substring(12)) + NbCardDiamant;
-                                BanqueDiamant = BanqueDiamant + Convert.ToInt16(TableauComparatif[NbRessource].Substring(12));
                                 lblDiamandCoin.Text = BanqueDiamant.ToString();
                             }
                             else
                             {
+                                int NbDiamantMiss = Convert.ToInt16(TableauComparatif[NbRessource].Substring(12)) - NbDiamantPoss;
                                 MessageBox.Show("Vous n'avez pas assez de Diamant");
                                 Achat = false;
+                                if (NbDiamantMiss == 1)
+                                {
+                                    NbRessourceMiss++;
+                                    SorteRessourceMiss = "Diamant";
+                                }
                             }
                         }
-
+                        
                         if (NbRessource + 1 != NbLines)
                         {
                             NbRessource++;
@@ -380,7 +411,50 @@ namespace Splendor
                             break;
                         }
                     }
-
+                    if (NbRessourceMiss == 1)
+                    {
+                        if(MessageBox.Show("il vous manque 1  "+SorteRessourceMiss.ToString()+". Voulez-vous réserver la carte ?", "Message de confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            lblGoldCoin.Text = "" + (BanqueGold - 1) + "";
+                            lblPlayerGoldCoin.Text = "" + (NbGoldPoss + 1) + "";
+                            txtPlayerBookedCard.Text = cardOnBoard.Text;
+                            cardOnBoard.Clear();
+                            if (cardOnBoard.Name == "txtLevel11" | cardOnBoard.Name == "txtLevel12" | cardOnBoard.Name == "txtLevel13" | cardOnBoard.Name == "txtLevel14")
+                            {
+                                cardOnBoard.Text = listCardOne.Pop().ToString();
+                                NbCardResidualOne--;
+                            }
+                            else if (cardOnBoard.Name == "txtLevel21" | cardOnBoard.Name == "txtLevel22" | cardOnBoard.Name == "txtLevel23" | cardOnBoard.Name == "txtLevel24")
+                            {
+                                cardOnBoard.Text = listCardTwo.Pop().ToString();
+                                NbCardResidualTwo--;
+                            }
+                            else if (cardOnBoard.Name == "txtLevel31" | cardOnBoard.Name == "txtLevel32" | cardOnBoard.Name == "txtLevel33" | cardOnBoard.Name == "txtLevel34")
+                            {
+                                cardOnBoard.Text = listCardThree.Pop().ToString();
+                                NbCardResidualThree--;
+                            }
+                            cmdNextPlayer.Visible = true;
+                            cmdNextPlayer.Enabled = true;
+                            cmdValidateChoice.Enabled = false;
+                            // disable card Level one
+                            txtLevel11.Enabled = false;
+                            txtLevel12.Enabled = false;
+                            txtLevel13.Enabled = false;
+                            txtLevel14.Enabled = false;
+                            // disable card Level two
+                            txtLevel21.Enabled = false;
+                            txtLevel22.Enabled = false;
+                            txtLevel23.Enabled = false;
+                            txtLevel24.Enabled = false;
+                            // disable card Level three
+                            txtLevel31.Enabled = false;
+                            txtLevel32.Enabled = false;
+                            txtLevel33.Enabled = false;
+                            txtLevel34.Enabled = false;
+                            txtPlayerBookedCard.Enabled = false;
+                        }
+                    }
                     if (Achat)
                     {
                         cardOnBoard.Clear();
@@ -413,6 +487,7 @@ namespace Splendor
                         if (TableauComparatif[0].StartsWith("Rubis"))
                         {
                             nbCardRubis++;
+                            BanqueRubis = BanqueRubis + Convert.ToInt16(TableauComparatif[NbRessource].Substring(10));
                             txtPlayerRubisCard.Text = nbCardRubis.ToString();
 
                             if (TableauComparatif[0].Substring(7) != " ")
@@ -426,6 +501,7 @@ namespace Splendor
                         else if (TableauComparatif[0].StartsWith("Emeraude"))
                         {
                             nbCardEmeraude++;
+                            BanqueEmeraude = BanqueEmeraude + Convert.ToInt16(TableauComparatif[NbRessource].Substring(13));
                             txtPlayerEmeraudeCard.Text = nbCardEmeraude.ToString();
                             if (TableauComparatif[0].Substring(10) != " ")
                             {
@@ -440,6 +516,7 @@ namespace Splendor
                         {
                             nbCardOnyx++;
                             txtPlayerOnyxCard.Text = nbCardOnyx.ToString();
+                            BanqueOnyx = BanqueOnyx + Convert.ToInt16(TableauComparatif[NbRessource].Substring(9));
                             if (TableauComparatif[0].Substring(6) != " ")
                             {
                                 if (TableauComparatif[0].Substring(8) != "\t")
@@ -451,6 +528,7 @@ namespace Splendor
                         else if (TableauComparatif[0].StartsWith("Saphire"))
                         {
                             nbCardSaphire++;
+                            BanqueSaphire = BanqueSaphire + Convert.ToInt16(TableauComparatif[NbRessource].Substring(12));
                             txtPlayerSaphireCard.Text = nbCardSaphire.ToString();
                             if (TableauComparatif[0].Substring(9) != " ")
                             {
@@ -463,6 +541,7 @@ namespace Splendor
                         else if (TableauComparatif[0].StartsWith("Diamant"))
                         {
                             nbCardDiamant++;
+                            BanqueDiamant = BanqueDiamant + Convert.ToInt16(TableauComparatif[NbRessource].Substring(12));
                             txtPlayerDiamantCard.Text = nbCardDiamant.ToString();
                             if (TableauComparatif[0].Substring(9) != " ")
                             {
@@ -713,12 +792,12 @@ namespace Splendor
             conn.NumberPlayer = conn.GetCountPlayer();
 
             Coin = new int[conn.NumberPlayer, 6];
-            Coin[id, 0] = 10;
-            Coin[id, 1] = 10;
-            Coin[id, 2] = 10;
-            Coin[id, 3] = 10;
-            Coin[id, 4] = 10;
-            Coin[id, 5] = 10;
+            Coin[id, 0] = 1;
+            Coin[id, 1] = 1;
+            Coin[id, 2] = 1;
+            Coin[id, 3] = 1;
+            Coin[id, 4] = 1;
+            Coin[id, 5] = 1;
 
             NbPtPrestige = new int[conn.GetCountPlayer()];
             NbPtPrestige[0] = 0;
@@ -733,11 +812,11 @@ namespace Splendor
             }
 
             Ressource = new int[conn.NumberPlayer, 5];
-            Ressource[id, 0] = 10;
-            Ressource[id, 1] = 10;
-            Ressource[id, 2] = 10;
-            Ressource[id, 3] = 10;
-            Ressource[id, 4] = 10;
+            Ressource[id, 0] = 0;
+            Ressource[id, 1] = 0;
+            Ressource[id, 2] = 0;
+            Ressource[id, 3] = 0;
+            Ressource[id, 4] = 0;
             //Ressource[id, 5] = 0;
 
             LoadPlayer(id);
@@ -753,7 +832,10 @@ namespace Splendor
 
             currentPlayerId = id;
             enableClicLabel = true;
-
+            if (conn.GetPlayerName(id) == "")
+            {
+                currentPlayerId++;
+            }
             string name = conn.GetPlayerName(currentPlayerId);
 
             //no coins or card selected yet, labels are empty
@@ -1204,8 +1286,10 @@ namespace Splendor
             txtNoble1.Enabled = true;
             txtNoble2.Enabled = true;
             txtNoble3.Enabled = true;
-            //txtNoble4.Enabled = true;
             txtNoble4.Enabled = true;
+            //enable card booked
+            txtPlayerBookedCard.Enabled = false;
+            //disable card already purchases
             for (int i = 0; i < NumCardAll.Count()-1; i++)
             {
                 NameControlAll = NumCardAll[i];
