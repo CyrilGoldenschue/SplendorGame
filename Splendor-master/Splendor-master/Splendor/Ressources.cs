@@ -12,10 +12,10 @@ namespace Splendor
     //https://stackoverflow.com/questions/309333/enum-string-name-from-value
     enum Ressources
     {
-        Rubis,
-        Emeraude,
-        Onyx,
-        Saphir,
-        Diamand
+        Rubis = 1,
+        Emeraude = 2,
+        Onyx = 3,
+        Saphire = 4,
+        Diamant = 5
     }
 }

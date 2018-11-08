@@ -89,7 +89,7 @@ namespace Splendor
             
             res = Enum.GetName(typeof(Ressources), Ress);
             //Be careful, those \t enables to split the string when clicking on a card
-            res += "\t";
+            res += "    ";
 
             if (prestigePt != 0)
             {
@@ -97,7 +97,7 @@ namespace Splendor
             }
             res += "\t";
             res += "\r\n\r\n";
-            int boucle = 0;
+            int boucle = 1;
             
             foreach (int i in cout)
             {
@@ -106,7 +106,7 @@ namespace Splendor
 
                 if (i != 0)
                 {
-                    ressource = "    ";
+                    ressource += "    ";
                     ressource += Enum.GetName(typeof(Ressources), boucle) + " ";
                     ressource += i + "\r\n";
                 }
