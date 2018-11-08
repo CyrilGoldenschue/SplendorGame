@@ -78,6 +78,8 @@
             this.flwCardLevel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.flwCardLevel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.flwCardNoble = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtNewPlayer = new System.Windows.Forms.TextBox();
+            this.cmdValiderNewPlayer = new System.Windows.Forms.Button();
             this.flwCardLevel1.SuspendLayout();
             this.flwCardLevel2.SuspendLayout();
             this.flwCardLevel3.SuspendLayout();
@@ -623,11 +625,32 @@
             this.flwCardNoble.Size = new System.Drawing.Size(452, 109);
             this.flwCardNoble.TabIndex = 50;
             // 
+            // txtNewPlayer
+            // 
+            this.txtNewPlayer.Location = new System.Drawing.Point(489, 88);
+            this.txtNewPlayer.Name = "txtNewPlayer";
+            this.txtNewPlayer.Size = new System.Drawing.Size(107, 20);
+            this.txtNewPlayer.TabIndex = 51;
+            this.txtNewPlayer.Visible = false;
+            // 
+            // cmdValiderNewPlayer
+            // 
+            this.cmdValiderNewPlayer.Location = new System.Drawing.Point(488, 114);
+            this.cmdValiderNewPlayer.Name = "cmdValiderNewPlayer";
+            this.cmdValiderNewPlayer.Size = new System.Drawing.Size(107, 23);
+            this.cmdValiderNewPlayer.TabIndex = 52;
+            this.cmdValiderNewPlayer.Text = "Confirmer l\'ajout";
+            this.cmdValiderNewPlayer.UseVisualStyleBackColor = true;
+            this.cmdValiderNewPlayer.Visible = false;
+            this.cmdValiderNewPlayer.Click += new System.EventHandler(this.cmdValiderNewPlayer_Click);
+            // 
             // frmSplendor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(606, 763);
+            this.Controls.Add(this.cmdValiderNewPlayer);
+            this.Controls.Add(this.txtNewPlayer);
             this.Controls.Add(this.flwCardNoble);
             this.Controls.Add(this.flwCardLevel3);
             this.Controls.Add(this.flwCardLevel2);
@@ -731,6 +754,8 @@
         private System.Windows.Forms.FlowLayoutPanel flwCardLevel2;
         private System.Windows.Forms.FlowLayoutPanel flwCardLevel3;
         private System.Windows.Forms.FlowLayoutPanel flwCardNoble;
+        private System.Windows.Forms.TextBox txtNewPlayer;
+        private System.Windows.Forms.Button cmdValiderNewPlayer;
     }
 }
 

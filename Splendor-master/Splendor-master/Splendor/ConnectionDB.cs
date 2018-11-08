@@ -88,7 +88,13 @@ namespace Splendor
             command.ExecuteNonQuery();
         }
 
-        
+        public void CreateNewPlayer(string name)
+        {
+            string sql = "insert into player (pseudo) values ('" + name + "')";
+            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
+            command.ExecuteNonQuery();
+        }
+
         /// <summary>
         /// get the name of the player according to his id
         /// </summary>
@@ -112,7 +118,7 @@ namespace Splendor
         /// </summary>
         private void CreateInsertRessources()
         {
-            //TO DO
+            
         }
 
         /// <summary>
@@ -122,6 +128,8 @@ namespace Splendor
         {
            //TO DO
         }
+
+        
 
     }
 }
