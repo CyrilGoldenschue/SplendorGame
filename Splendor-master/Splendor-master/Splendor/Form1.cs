@@ -29,7 +29,7 @@ namespace Splendor
     {
         
         //connection to the database
-        private ConnectionDB conn;
+        private ConnectionDB conn = new ConnectionDB();
         //used to store the number of coins selected for the current round of game
         private int nbRubis = 0;
         private int nbOnyx = 0;
@@ -52,11 +52,12 @@ namespace Splendor
         int[,] Coin;
         int[,] Ressource;
         string NameControlAll = "";
-        Form2 form2;
+        FormAddPlayer form2;
         private int nbTotal = 0;
         string[] NumCardAll = new string[3];
         string NameCard;
         Control DisableControler= new Control();
+        int NbJeton = 0;
 
 
         //id of the player that is playing
@@ -73,23 +74,41 @@ namespace Splendor
         {
             InitializeComponent();
         }
+       
+
 
         /// <summary>
         /// loads the form and initialize data in it
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void frmSplendor_Load(object sender, EventArgs e)
+        public void frmSplendor_Load(object sender, EventArgs e)
         {
+            // conn = new ConnectionDB();
+            
+
+            int NbPlayer = conn.GetCountPlayer();
+
+            switch (NbPlayer)
+            {
+                case 2:
+                    NbJeton = 4;
+                    break;
+                case 3:
+                    NbJeton = 5;
+                    break;
+
+                case 4:
+                    NbJeton = 7;
+                    break;
+            }
+
             lblGoldCoin.Text = "5";
-
-            lblDiamandCoin.Text = "7";
-            lblEmeraudeCoin.Text = "7" ;
-            lblOnyxCoin.Text = "7";
-            lblRubisCoin.Text = "7";
-            lblSaphirCoin.Text = "7";
-
-            conn = new ConnectionDB();
+            lblDiamandCoin.Text = NbJeton.ToString();
+            lblEmeraudeCoin.Text = NbJeton.ToString();
+            lblOnyxCoin.Text = NbJeton.ToString();
+            lblRubisCoin.Text = NbJeton.ToString();
+            lblSaphirCoin.Text = NbJeton.ToString();
 
             Coin = new int[conn.NumberPlayer, 5];
             Ressource = new int[conn.NumberPlayer, 5];
@@ -147,7 +166,8 @@ namespace Splendor
             txtNoble1.Text = listCardNoble.Pop().ToString();
             txtNoble2.Text = listCardNoble.Pop().ToString();
             txtNoble3.Text = listCardNoble.Pop().ToString();
-            txtNoble4.Text = listCardNoble.Pop().ToString();
+            textBoxe1.Text = listCardNoble.Pop().ToString();
+            //txtNoble4.Text = listCardNoble.Pop().ToString();
 
             //fin TO DO
 
@@ -189,8 +209,39 @@ namespace Splendor
             txtNoble1.Click += ClickOnCard;
             txtNoble2.Click += ClickOnCard;
             txtNoble3.Click += ClickOnCard;
-            txtNoble4.Click += ClickOnCard;
+            textBoxe1.Click += ClickOnCard;
+            //txtNoble4.Click += ClickOnCard;
         }
+        /*public void NbJetonPerPlayer(int NbPlayer, int raison)
+        {
+            if (raison == 1)
+            {
+                frmSplendor_Load(null, null);
+            }
+
+            int NbJeton = 7;
+            switch (NbPlayer)
+            {
+                case 2:
+                    NbJeton = 4;
+                    break;
+                case 3:
+                    NbJeton = 5;
+                    break;
+
+                case 4:
+                    NbJeton = 7;
+                    break;
+            }
+
+            lblDiamandCoin.Text = NbJeton.ToString();
+            lblEmeraudeCoin.Text = NbJeton.ToString();
+            lblOnyxCoin.Text = NbJeton.ToString();
+            lblRubisCoin.Text = NbJeton.ToString();
+            lblSaphirCoin.Text = NbJeton.ToString();
+           
+        }*/
+
 
         private void ClickOnCard(object sender, EventArgs e)
         {
@@ -205,7 +256,12 @@ namespace Splendor
                 NameControlAll = NameControl.Name;
                 NameCard = NameControl.Name.ToString();
                 NumCardAll[Convert.ToInt16(NameCard.Substring(8))-1] = NameCard;
-                string[] TableauComparatif = new string[cardOnBoard.Lines.Count()];
+
+
+
+                string[] TableauComparatif; //= new string[cardOnBoard.Lines.Count()];
+                string test = cardOnBoard.Text;
+               // string[6] TableauComparatif = new string[6];
                 TableauComparatif = cardOnBoard.Lines;
 
                 int NbLines = cardOnBoard.Lines.Count()-1;
@@ -234,7 +290,7 @@ namespace Splendor
                 int NbCardResidualNoble = listCardNoble.Count();
                 int NbRessource = 2;
                 bool Achat = true;
-                if (!NameCard.Contains("txtNoble"))
+                if (NameCard.Contains("txtNoble") || NameCard.Contains("textBoxe"))
                 {
                     while (NbRessource != NbLines)
                     {
@@ -609,7 +665,8 @@ namespace Splendor
                             txtNoble1.Enabled = false;
                             txtNoble2.Enabled = false;
                             txtNoble3.Enabled = false;
-                            txtNoble4.Enabled = false;
+                            //txtNoble4.Enabled = false;
+                            textBoxe1.Enabled = false;
                         }
                     }
                 }
@@ -640,8 +697,14 @@ namespace Splendor
             NbPtPrestige = new int[conn.GetCountPlayer()];
             NbPtPrestige[0] = 0;
             NbPtPrestige[1] = 0;
-            NbPtPrestige[2] = 0;
-            NbPtPrestige[3] = 0;
+            if (conn.GetCountPlayer()-1 > 1)
+            {
+                NbPtPrestige[2] = 0;
+                if (conn.GetCountPlayer()-1 > 2)
+                {
+                    NbPtPrestige[3] = 0;
+                }
+            }
 
             Ressource = new int[conn.NumberPlayer, 5];
             Ressource[id, 0] = 10;
@@ -1080,8 +1143,8 @@ namespace Splendor
         private void cmdInsertPlayer_Click(object sender, EventArgs e)
         {
 
-            form2 = new Form2();
-            form2.ShowDialog();
+            form2 = new FormAddPlayer();
+            form2.Show();
 
            // MessageBox.Show("A implémenter");
         }
@@ -1115,7 +1178,8 @@ namespace Splendor
             txtNoble1.Enabled = true;
             txtNoble2.Enabled = true;
             txtNoble3.Enabled = true;
-            txtNoble4.Enabled = true;
+            //txtNoble4.Enabled = true;
+            textBoxe1.Enabled = true;
             for (int i = 0; i < NumCardAll.Count()-1; i++)
             {
                 NameControlAll = NumCardAll[i];

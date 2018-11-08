@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Splendor
 {
-    public partial class Form2 : Form
+    public partial class FormAddPlayer : Form
     {
 
 
@@ -19,16 +19,22 @@ namespace Splendor
         private ConnectionDB conn;
         private string Pseud = " ";
         private int NbPlayer = 0;
-        public Form2()
+        private frmSplendor f1 = new frmSplendor();
+        public FormAddPlayer()
         {
             InitializeComponent();
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            
             conn = new ConnectionDB();
-            for (int i = 0; i < conn.GetCountPlayer(); i++)
+            for (int i = 0; i <= conn.GetCountPlayer(); i++)
             {
+                if(conn.GetPlayerName(i) == "")
+                {
+                    i++;
+                }
                 lstPlayer.Items.Add(conn.GetPlayerName(i));
             }
             NbPlayer = conn.GetCountPlayer()+1;
@@ -44,6 +50,7 @@ namespace Splendor
                 Pseud = lstPlayer.SelectedItem.ToString();
                 lstPlayer.Items.Remove(lstPlayer.SelectedItem);
                 conn.DeletePlayer(Pseud);
+                
             }
         }
 
@@ -68,6 +75,9 @@ namespace Splendor
                 MessageBox.Show("Il ne peut avoir plus de quatre joueurs");
                 //this.Close();
             }
+            
+            
+            
         }
 
         private void MessageAdd()
@@ -96,6 +106,36 @@ namespace Splendor
             {
                 cmdDeletePlayer.Enabled = true;
             }
+        }
+
+        private void cmdCloseAddPlayer_Click(object sender, EventArgs e)
+        {
+            int NbJeton = 0;
+
+            int NbPlayer = conn.GetCountPlayer();
+
+            switch (NbPlayer)
+            {
+                case 2:
+                    NbJeton = 4;
+                    break;
+                case 3:
+                    NbJeton = 5;
+                    break;
+
+                case 4:
+                    NbJeton = 7;
+                    break;
+            }
+
+            f1.lblDiamandCoin.Text = NbJeton.ToString();
+            f1.lblEmeraudeCoin.Text = NbJeton.ToString();
+            f1.lblOnyxCoin.Text = NbJeton.ToString();
+            f1.lblRubisCoin.Text = NbJeton.ToString();
+            f1.lblSaphirCoin.Text = NbJeton.ToString();
+            this.Close();
+            
+
         }
     }
 }
