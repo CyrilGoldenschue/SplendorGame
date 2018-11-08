@@ -43,10 +43,7 @@ namespace Splendor
                 //TO DO
                 CreateInsertRessources();
             }
-
-            
-
-            
+  
         }
 
 
@@ -188,13 +185,9 @@ namespace Splendor
             command.ExecuteNonQuery();
         }
 
-<<<<<<< HEAD
-        public void CreateNewPlayer(string name)
-        {
-            string sql = "insert into player (pseudo) values ('" + name + "')";
-            SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
-            command.ExecuteNonQuery();
-=======
+
+
+
         /// <summary>
         /// Insert new player on the table "Player"
         /// </summary>
@@ -224,7 +217,7 @@ namespace Splendor
 
             return NumberPlayer;
 
->>>>>>> 85b1e3f63b9ff9cae8b7d47a5c8c3b0f0aa16686
+
         }
 
         /// <summary>
@@ -251,9 +244,6 @@ namespace Splendor
         /// </summary>
         private void CreateInsertRessources()
         {
-<<<<<<< HEAD
-            
-=======
             string sql = "CREATE TABLE ressource (idRessource INT PRIMARY KEY, NameRessource VARCHAR(20))";
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection); command.ExecuteNonQuery();
             sql = "insert into ressource(idRessource, NameRessource) values(1, 'Rubis')";
@@ -266,7 +256,7 @@ namespace Splendor
             command = new SQLiteCommand(sql, m_dbConnection); command.ExecuteNonQuery();
             sql = "insert into ressource(idRessource, NameRessource) values(5, 'Diamant')";
             command = new SQLiteCommand(sql, m_dbConnection); command.ExecuteNonQuery();
->>>>>>> 85b1e3f63b9ff9cae8b7d47a5c8c3b0f0aa16686
+
         }
 
         /// <summary>
