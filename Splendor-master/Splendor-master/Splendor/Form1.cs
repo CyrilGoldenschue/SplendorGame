@@ -57,6 +57,7 @@ namespace Splendor
         string[] NumCardAll = new string[3];
         string NameCard;
         Control DisableControler= new Control();
+        string[] Booked = new string[4];
         int NbJeton = 0;
 
 
@@ -289,6 +290,7 @@ namespace Splendor
                 int NbCardResidualTwo = listCardTwo.Count();
                 int NbCardResidualThree = listCardThree.Count();
                 int NbCardResidualNoble = listCardNoble.Count();
+
 
                 string SorteRessourceMiss = " ";
                 int NbRessource = 2;
