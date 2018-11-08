@@ -38,7 +38,7 @@ namespace Splendor
                 lstPlayer.Items.Add(conn.GetPlayerName(i));
             }
             NbPlayer = conn.GetCountPlayer()+1;
-
+            txtAddPlayer.Select();
 
         }
 
@@ -110,31 +110,15 @@ namespace Splendor
 
         private void cmdCloseAddPlayer_Click(object sender, EventArgs e)
         {
-            int NbJeton = 0;
-
-            int NbPlayer = conn.GetCountPlayer();
-
-            switch (NbPlayer)
-            {
-                case 2:
-                    NbJeton = 4;
-                    break;
-                case 3:
-                    NbJeton = 5;
-                    break;
-
-                case 4:
-                    NbJeton = 7;
-                    break;
-            }
-
-            f1.lblDiamandCoin.Text = NbJeton.ToString();
-            f1.lblEmeraudeCoin.Text = NbJeton.ToString();
-            f1.lblOnyxCoin.Text = NbJeton.ToString();
-            f1.lblRubisCoin.Text = NbJeton.ToString();
-            f1.lblSaphirCoin.Text = NbJeton.ToString();
+            
             this.Close();
             
+            
+
+        }
+
+        private void txtAddPlayer_Enter(object sender, EventArgs e)
+        {
 
         }
     }

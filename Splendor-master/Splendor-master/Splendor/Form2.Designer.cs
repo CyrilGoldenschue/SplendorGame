@@ -51,6 +51,7 @@
             this.txtAddPlayer.Name = "txtAddPlayer";
             this.txtAddPlayer.Size = new System.Drawing.Size(187, 20);
             this.txtAddPlayer.TabIndex = 1;
+            this.txtAddPlayer.Enter += new System.EventHandler(this.txtAddPlayer_Enter);
             // 
             // lstPlayer
             // 

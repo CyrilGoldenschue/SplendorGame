@@ -77,7 +77,7 @@
             this.flwCardLevel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.flwCardLevel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.flwCardNoble = new System.Windows.Forms.FlowLayoutPanel();
-            this.textBoxe1 = new System.Windows.Forms.TextBox();
+            this.txtNoble4 = new System.Windows.Forms.TextBox();
             this.flwCardLevel1.SuspendLayout();
             this.flwCardLevel2.SuspendLayout();
             this.flwCardLevel3.SuspendLayout();
@@ -609,7 +609,7 @@
             // 
             // flwCardNoble
             // 
-            this.flwCardNoble.Controls.Add(this.textBoxe1);
+            this.flwCardNoble.Controls.Add(this.txtNoble4);
             this.flwCardNoble.Controls.Add(this.txtNoble3);
             this.flwCardNoble.Controls.Add(this.txtNoble2);
             this.flwCardNoble.Controls.Add(this.txtNoble1);
@@ -619,14 +619,14 @@
             this.flwCardNoble.Size = new System.Drawing.Size(452, 109);
             this.flwCardNoble.TabIndex = 50;
             // 
-            // textBoxe1
+            // txtNoble4
             // 
-            this.textBoxe1.Location = new System.Drawing.Point(2, 2);
-            this.textBoxe1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxe1.Multiline = true;
-            this.textBoxe1.Name = "textBoxe1";
-            this.textBoxe1.Size = new System.Drawing.Size(102, 98);
-            this.textBoxe1.TabIndex = 45;
+            this.txtNoble4.Location = new System.Drawing.Point(2, 2);
+            this.txtNoble4.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNoble4.Multiline = true;
+            this.txtNoble4.Name = "txtNoble4";
+            this.txtNoble4.Size = new System.Drawing.Size(102, 98);
+            this.txtNoble4.TabIndex = 45;
             // 
             // frmSplendor
             // 
@@ -735,7 +735,7 @@
         public System.Windows.Forms.Label lblOnyxCoin;
         public System.Windows.Forms.Label lblEmeraudeCoin;
         public System.Windows.Forms.Label lblDiamandCoin;
-        private System.Windows.Forms.TextBox textBoxe1;
+        private System.Windows.Forms.TextBox txtNoble4;
     }
 }
 
