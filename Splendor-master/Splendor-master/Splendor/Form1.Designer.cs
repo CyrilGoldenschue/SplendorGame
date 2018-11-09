@@ -69,7 +69,6 @@
             this.cmdNextPlayer = new System.Windows.Forms.Button();
             this.lblPlayer = new System.Windows.Forms.Label();
             this.lblChoiceCard = new System.Windows.Forms.Label();
-            this.txtNoble4 = new System.Windows.Forms.TextBox();
             this.txtNoble3 = new System.Windows.Forms.TextBox();
             this.txtNoble2 = new System.Windows.Forms.TextBox();
             this.txtNoble1 = new System.Windows.Forms.TextBox();
@@ -78,6 +77,7 @@
             this.flwCardLevel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.flwCardLevel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.flwCardNoble = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtNoble4 = new System.Windows.Forms.TextBox();
             this.txtNewPlayer = new System.Windows.Forms.TextBox();
             this.cmdValiderNewPlayer = new System.Windows.Forms.Button();
             this.flwCardLevel1.SuspendLayout();
@@ -89,7 +89,7 @@
             // lblGoldCoin
             // 
             this.lblGoldCoin.AutoSize = true;
-            this.lblGoldCoin.ForeColor = System.Drawing.Color.Yellow;
+            this.lblGoldCoin.ForeColor = System.Drawing.Color.Orange;
             this.lblGoldCoin.Location = new System.Drawing.Point(542, 15);
             this.lblGoldCoin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGoldCoin.Name = "lblGoldCoin";
@@ -303,6 +303,7 @@
             this.txtPlayerEmeraudeCard.Name = "txtPlayerEmeraudeCard";
             this.txtPlayerEmeraudeCard.Size = new System.Drawing.Size(81, 98);
             this.txtPlayerEmeraudeCard.TabIndex = 30;
+            this.txtPlayerEmeraudeCard.Text = "0";
             // 
             // txtPlayerOnyxCard
             // 
@@ -312,6 +313,7 @@
             this.txtPlayerOnyxCard.Name = "txtPlayerOnyxCard";
             this.txtPlayerOnyxCard.Size = new System.Drawing.Size(81, 98);
             this.txtPlayerOnyxCard.TabIndex = 29;
+            this.txtPlayerOnyxCard.Text = "0";
             // 
             // txtPlayerSaphireCard
             // 
@@ -322,6 +324,7 @@
             this.txtPlayerSaphireCard.Name = "txtPlayerSaphireCard";
             this.txtPlayerSaphireCard.Size = new System.Drawing.Size(81, 98);
             this.txtPlayerSaphireCard.TabIndex = 28;
+            this.txtPlayerSaphireCard.Text = "0";
             // 
             // txtPlayerRubisCard
             // 
@@ -332,6 +335,7 @@
             this.txtPlayerRubisCard.Name = "txtPlayerRubisCard";
             this.txtPlayerRubisCard.Size = new System.Drawing.Size(81, 98);
             this.txtPlayerRubisCard.TabIndex = 27;
+            this.txtPlayerRubisCard.Text = "0";
             // 
             // lblPlayerDiamantCoin
             // 
@@ -397,7 +401,7 @@
             // lblPlayerGoldCoin
             // 
             this.lblPlayerGoldCoin.AutoSize = true;
-            this.lblPlayerGoldCoin.ForeColor = System.Drawing.Color.Yellow;
+            this.lblPlayerGoldCoin.ForeColor = System.Drawing.Color.Orange;
             this.lblPlayerGoldCoin.Location = new System.Drawing.Point(501, 348);
             this.lblPlayerGoldCoin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPlayerGoldCoin.Name = "lblPlayerGoldCoin";
@@ -407,6 +411,7 @@
             // 
             // txtPlayerBookedCard
             // 
+            this.txtPlayerBookedCard.Enabled = false;
             this.txtPlayerBookedCard.Location = new System.Drawing.Point(503, 374);
             this.txtPlayerBookedCard.Margin = new System.Windows.Forms.Padding(2);
             this.txtPlayerBookedCard.Multiline = true;
@@ -423,6 +428,7 @@
             this.txtPlayerDiamantCard.Name = "txtPlayerDiamantCard";
             this.txtPlayerDiamantCard.Size = new System.Drawing.Size(81, 98);
             this.txtPlayerDiamantCard.TabIndex = 32;
+            this.txtPlayerDiamantCard.Text = "0";
             // 
             // lblChoiceRubis
             // 
@@ -531,15 +537,6 @@
             this.lblChoiceCard.TabIndex = 41;
             this.lblChoiceCard.Text = "carte choisie";
             // 
-            // txtNoble4
-            // 
-            this.txtNoble4.Location = new System.Drawing.Point(2, 2);
-            this.txtNoble4.Margin = new System.Windows.Forms.Padding(2);
-            this.txtNoble4.Multiline = true;
-            this.txtNoble4.Name = "txtNoble4";
-            this.txtNoble4.Size = new System.Drawing.Size(102, 98);
-            this.txtNoble4.TabIndex = 45;
-            // 
             // txtNoble3
             // 
             this.txtNoble3.Location = new System.Drawing.Point(108, 2);
@@ -625,6 +622,15 @@
             this.flwCardNoble.Size = new System.Drawing.Size(452, 109);
             this.flwCardNoble.TabIndex = 50;
             // 
+            // txtNoble4
+            // 
+            this.txtNoble4.Location = new System.Drawing.Point(2, 2);
+            this.txtNoble4.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNoble4.Multiline = true;
+            this.txtNoble4.Name = "txtNoble4";
+            this.txtNoble4.Size = new System.Drawing.Size(102, 98);
+            this.txtNoble4.TabIndex = 45;
+            // 
             // txtNewPlayer
             // 
             this.txtNewPlayer.Location = new System.Drawing.Point(489, 88);
@@ -705,11 +711,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblGoldCoin;
-        private System.Windows.Forms.Label lblRubisCoin;
-        private System.Windows.Forms.Label lblSaphirCoin;
-        private System.Windows.Forms.Label lblOnyxCoin;
-        private System.Windows.Forms.Label lblEmeraudeCoin;
-        private System.Windows.Forms.Label lblDiamandCoin;
         private System.Windows.Forms.TextBox txtLevel31;
         private System.Windows.Forms.TextBox txtLevel32;
         private System.Windows.Forms.TextBox txtLevel33;
@@ -745,7 +746,6 @@
         private System.Windows.Forms.Button cmdNextPlayer;
         private System.Windows.Forms.Label lblPlayer;
         private System.Windows.Forms.Label lblChoiceCard;
-        private System.Windows.Forms.TextBox txtNoble4;
         private System.Windows.Forms.TextBox txtNoble3;
         private System.Windows.Forms.TextBox txtNoble2;
         private System.Windows.Forms.TextBox txtNoble1;
@@ -756,6 +756,12 @@
         private System.Windows.Forms.FlowLayoutPanel flwCardNoble;
         private System.Windows.Forms.TextBox txtNewPlayer;
         private System.Windows.Forms.Button cmdValiderNewPlayer;
+        public System.Windows.Forms.Label lblRubisCoin;
+        public System.Windows.Forms.Label lblSaphirCoin;
+        public System.Windows.Forms.Label lblOnyxCoin;
+        public System.Windows.Forms.Label lblEmeraudeCoin;
+        public System.Windows.Forms.Label lblDiamandCoin;
+        private System.Windows.Forms.TextBox txtNoble4;
     }
 }
 

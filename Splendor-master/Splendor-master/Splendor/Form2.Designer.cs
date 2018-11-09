@@ -1,6 +1,6 @@
 ﻿namespace Splendor
 {
-    partial class Form2
+    partial class FormAddPlayer
     {
         /// <summary>
         /// Required designer variable.
@@ -30,6 +30,9 @@
         {
             this.cmdAddPlayer = new System.Windows.Forms.Button();
             this.txtAddPlayer = new System.Windows.Forms.TextBox();
+            this.lstPlayer = new System.Windows.Forms.ListBox();
+            this.cmdDeletePlayer = new System.Windows.Forms.Button();
+            this.cmdCloseAddPlayer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cmdAddPlayer
@@ -48,16 +51,51 @@
             this.txtAddPlayer.Name = "txtAddPlayer";
             this.txtAddPlayer.Size = new System.Drawing.Size(187, 20);
             this.txtAddPlayer.TabIndex = 1;
+            this.txtAddPlayer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAddPlayer_KeyDown);
             // 
-            // Form2
+            // lstPlayer
+            // 
+            this.lstPlayer.FormattingEnabled = true;
+            this.lstPlayer.Location = new System.Drawing.Point(12, 38);
+            this.lstPlayer.Name = "lstPlayer";
+            this.lstPlayer.Size = new System.Drawing.Size(268, 134);
+            this.lstPlayer.TabIndex = 2;
+            this.lstPlayer.SelectedIndexChanged += new System.EventHandler(this.lstPlayer_SelectedIndexChanged);
+            // 
+            // cmdDeletePlayer
+            // 
+            this.cmdDeletePlayer.Enabled = false;
+            this.cmdDeletePlayer.Location = new System.Drawing.Point(12, 178);
+            this.cmdDeletePlayer.Name = "cmdDeletePlayer";
+            this.cmdDeletePlayer.Size = new System.Drawing.Size(268, 23);
+            this.cmdDeletePlayer.TabIndex = 3;
+            this.cmdDeletePlayer.Text = "Retirer";
+            this.cmdDeletePlayer.UseVisualStyleBackColor = true;
+            this.cmdDeletePlayer.Click += new System.EventHandler(this.cmdDeletePlayer_Click);
+            // 
+            // cmdCloseAddPlayer
+            // 
+            this.cmdCloseAddPlayer.Location = new System.Drawing.Point(12, 207);
+            this.cmdCloseAddPlayer.Name = "cmdCloseAddPlayer";
+            this.cmdCloseAddPlayer.Size = new System.Drawing.Size(268, 23);
+            this.cmdCloseAddPlayer.TabIndex = 4;
+            this.cmdCloseAddPlayer.Text = "Sauvegarder";
+            this.cmdCloseAddPlayer.UseVisualStyleBackColor = true;
+            this.cmdCloseAddPlayer.Click += new System.EventHandler(this.cmdCloseAddPlayer_Click);
+            // 
+            // FormAddPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(302, 45);
+            this.ClientSize = new System.Drawing.Size(290, 235);
+            this.Controls.Add(this.cmdCloseAddPlayer);
+            this.Controls.Add(this.cmdDeletePlayer);
+            this.Controls.Add(this.lstPlayer);
             this.Controls.Add(this.txtAddPlayer);
             this.Controls.Add(this.cmdAddPlayer);
-            this.Name = "Form2";
-            this.Text = "Form2";
+            this.Name = "FormAddPlayer";
+            this.Text = "Ajout de joueur";
+            this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -67,5 +105,8 @@
 
         private System.Windows.Forms.Button cmdAddPlayer;
         private System.Windows.Forms.TextBox txtAddPlayer;
+        private System.Windows.Forms.ListBox lstPlayer;
+        private System.Windows.Forms.Button cmdDeletePlayer;
+        private System.Windows.Forms.Button cmdCloseAddPlayer;
     }
 }
