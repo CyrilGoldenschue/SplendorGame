@@ -233,6 +233,23 @@
             this.txtLevel24.Size = new System.Drawing.Size(102, 98);
             this.txtLevel24.TabIndex = 13;
             // 
+            // txtLevel11
+            // 
+            this.txtLevel11.BackColor = System.Drawing.SystemColors.Window;
+            this.txtLevel11.Location = new System.Drawing.Point(144, 3);
+            this.txtLevel11.Multiline = true;
+            this.txtLevel11.Name = "txtLevel11";
+            this.txtLevel11.Size = new System.Drawing.Size(135, 120);
+            this.txtLevel11.TabIndex = 14;
+            // 
+            // txtLevel12
+            // 
+            this.txtLevel12.Location = new System.Drawing.Point(3, 3);
+            this.txtLevel12.Multiline = true;
+            this.txtLevel12.Name = "txtLevel12";
+            this.txtLevel12.Size = new System.Drawing.Size(135, 120);
+            this.txtLevel12.TabIndex = 15;
+            // 
             // txtLevel13
             // 
             this.txtLevel13.Location = new System.Drawing.Point(214, 2);
@@ -534,6 +551,14 @@
             this.lblChoiceCard.Size = new System.Drawing.Size(67, 13);
             this.lblChoiceCard.TabIndex = 41;
             this.lblChoiceCard.Text = "carte choisie";
+            // 
+            // txtNoble4
+            // 
+            this.txtNoble4.Location = new System.Drawing.Point(3, 3);
+            this.txtNoble4.Multiline = true;
+            this.txtNoble4.Name = "txtNoble4";
+            this.txtNoble4.Size = new System.Drawing.Size(135, 120);
+            this.txtNoble4.TabIndex = 45;
             // 
             // txtNoble3
             // 

@@ -31,6 +31,12 @@ namespace Splendor
         //connection to the database
         private ConnectionDB conn = new ConnectionDB();
         //used to store the number of coins selected for the current round of game
+        private int nbRubis;
+        private int nbOnyx;
+        private int nbEmeraude;
+        private int nbDiamand;
+        private int nbSaphir;
+        private int nbTotal;
         private int nbRubis = 0;
         private int nbOnyx = 0;
         private int nbEmeraude = 0;
@@ -1163,37 +1169,35 @@ namespace Splendor
                 int var = Convert.ToInt32(lblRubisCoin.Text);
                 cmdValidateChoice.Visible = true;
                 lblChoiceRubis.Visible = true;
-                if (var != 0)
-                {
-                    if (var == 2 && nbRubis == 1)
-                    {
-                        MessageBox.Show("Vous pouvez prendre 2 jetons de la même couleur uniquement à condition qu'il en reste au moin 4 dans la pile");
-                    }
 
-                    if (nbRubis == 2 || nbSaphir == 2 || nbOnyx == 2 || nbEmeraude == 2 || nbDiamand == 2)
+                if (var == 2 && nbRubis == 1 )
+                {
+                    MessageBox.Show("Vous pouvez prendre 2 jetons de la même couleur uniquement à condition qu'il en reste au moin 4 dans la pile");
+                }
+
+                if (nbRubis == 2 || nbSaphir == 2 || nbOnyx == 2 || nbEmeraude == 2 || nbDiamand == 2)
+                {
+                    MessageBox.Show("Vous ne pouvez pas prendre ce jeton car vous avez déja pris 2 mêmes pierres précieuse");
+                }
+                else
+                {
+                    if ((nbRubis == 1 && nbSaphir == 1) || (nbRubis == 1 && nbOnyx == 1) || (nbRubis == 1 && nbEmeraude == 1) || (nbRubis == 1 && nbDiamand == 1))
                     {
-                        MessageBox.Show("Vous ne pouvez pas prendre ce jeton car vous avez déja pris 2 mêmes pierres précieuse");
+                        MessageBox.Show("Vous ne pouvez par prendre 2 même jetons ainsi qu'un jeton différent");
                     }
                     else
                     {
-                        if ((nbRubis == 1 && nbSaphir == 1) || (nbRubis == 1 && nbOnyx == 1) || (nbRubis == 1 && nbEmeraude == 1) || (nbRubis == 1 && nbDiamand == 1))
+                        nbTotal = nbRubis + nbSaphir + nbOnyx + nbEmeraude + nbDiamand;
+                        if (nbTotal >= 3)
                         {
-                            MessageBox.Show("Vous ne pouvez par prendre 2 même jetons ainsi qu'un jeton différent");
+                            MessageBox.Show("Vous avez pris le nombre de jetons maximum");
                         }
                         else
                         {
-                            nbTotal = nbRubis + nbSaphir + nbOnyx + nbEmeraude + nbDiamand;
-                            if (nbTotal >= 3)
-                            {
-                                MessageBox.Show("Vous avez pris le nombre de jetons maximum");
-                            }
-                            else
-                            {
-                                nbRubis++;
-                                var--;
-                                lblRubisCoin.Text = var.ToString();
-                                lblChoiceRubis.Text = nbRubis + "\r\n";
-                            }
+                            nbRubis++;
+                            var--;
+                            lblRubisCoin.Text = var.ToString();
+                            lblChoiceRubis.Text = nbRubis + "\r\n";
                         }
                     }
                 }
@@ -1214,18 +1218,17 @@ namespace Splendor
             {
                 int var = Convert.ToInt32(lblSaphirCoin.Text);
                 cmdValidateChoice.Visible = true;
-                lblChoiceSaphire.Visible = true;
-                if (var != 0)
-                {
-                    if (var < 4)
-                    {
-                        if (nbSaphir == 2)
-                        {
-                            MessageBox.Show("Vous ne pouvez pas prendre 2 de ces jetons car il en reste moin de 4");
-                        }
-                    }
+                lblChoiceSaphir.Visible = true;
 
-                    if (nbSaphir == 2 || nbRubis == 2 || nbOnyx == 2 || nbEmeraude == 2 || nbDiamand == 2)
+                if (var < 4)
+                {
+                    if (nbSaphir == 2)
+                    {
+                        MessageBox.Show("Vous ne pouvez pas prendre 2 de ces jetons car il en reste moin de 4");
+                    }
+                }
+
+                if (nbSaphir == 2 || nbRubis == 2 || nbOnyx == 2 || nbEmeraude == 2 || nbDiamand == 2)
                     {
                         MessageBox.Show("Vous ne pouvez pas prendre ce jeton car vous en avez pris 2 d'une autre pierre précieuse");
                     }
@@ -1245,14 +1248,13 @@ namespace Splendor
                             else
                             {
                                 nbSaphir++;
-                                var--;
+                                var--; 
                                 lblSaphirCoin.Text = var.ToString();
-                                lblChoiceSaphire.Text = nbSaphir + "\r\n";
+                                lblChoiceSaphir.Text = nbSaphir + "\r\n";
                             }
 
                         }
                     }
-                }
                 
                 //TO DO check if possible to choose a coin, update the number of available coin
 
@@ -1271,17 +1273,16 @@ namespace Splendor
                 int var = Convert.ToInt32(lblOnyxCoin.Text);
                 cmdValidateChoice.Visible = true;
                 lblChoiceOnyx.Visible = true;
-                if (var != 0)
-                {
-                    if (var < 4)
-                    {
-                        if (nbOnyx == 2)
-                        {
-                            MessageBox.Show("Vous ne pouvez pas prendre 2 de ces jetons car il en reste moin de 4");
-                        }
-                    }
 
-                    if (nbOnyx == 2 || nbRubis == 2 || nbSaphir == 2 || nbEmeraude == 2 || nbDiamand == 2)
+                if (var < 4)
+                {
+                    if (nbOnyx == 2)
+                    {
+                        MessageBox.Show("Vous ne pouvez pas prendre 2 de ces jetons car il en reste moin de 4");
+                    }
+                }
+
+                if (nbOnyx == 2 || nbRubis == 2 || nbSaphir == 2 || nbEmeraude == 2 || nbDiamand == 2)
                     {
                         MessageBox.Show("Vous ne pouvez pas prendre ce jeton car vous en avez pris 2 d'une autre pierre précieuse");
                     }
@@ -1308,7 +1309,6 @@ namespace Splendor
 
                         }
                     }
-                }
                 
                 //TO DO check if possible to choose a coin, update the number of available coin
 
@@ -1327,17 +1327,16 @@ namespace Splendor
                 int var = Convert.ToInt32(lblEmeraudeCoin.Text);
                 cmdValidateChoice.Visible = true;
                 lblChoiceEmeraude.Visible = true;
-                if (var != 0)
-                {
-                    if (var < 4)
-                    {
-                        if (nbEmeraude == 2)
-                        {
-                            MessageBox.Show("Vous ne pouvez pas prendre 2 de ces jetons car il en reste moin de 4");
-                        }
-                    }
 
-                    if (nbEmeraude == 2 || nbRubis == 2 || nbOnyx == 2 || nbSaphir == 2 || nbDiamand == 2)
+                if (var < 4)
+                {
+                    if (nbEmeraude == 2)
+                    {
+                        MessageBox.Show("Vous ne pouvez pas prendre 2 de ces jetons car il en reste moin de 4");
+                    }
+                }
+
+                if (nbEmeraude == 2 || nbRubis == 2 || nbOnyx == 2 || nbSaphir == 2 || nbDiamand == 2)
                     {
                         MessageBox.Show("Vous ne pouvez pas prendre ce jeton car vous en avez pris 2 d'une autre pierre précieuse");
                     }
@@ -1364,7 +1363,6 @@ namespace Splendor
 
                         }
                     }
-                }
                 
                 //TO DO check if possible to choose a coin, update the number of available coin
 
@@ -1382,18 +1380,17 @@ namespace Splendor
             {
                 int var = Convert.ToInt32(lblDiamandCoin.Text);
                 cmdValidateChoice.Visible = true;
-                lblChoiceDiamant.Visible = true;
-                if (var != 0)
-                {
-                    if (var < 4)
-                    {
-                        if (nbDiamand == 2)
-                        {
-                            MessageBox.Show("Vous ne pouvez pas prendre 2 de ces jetons car il en reste moin de 4");
-                        }
-                    }
+                lblChoiceDiamand.Visible = true;
 
-                    if (nbDiamand == 2 || nbRubis == 2 || nbOnyx == 2 || nbEmeraude == 2 || nbSaphir == 2)
+                if (var < 4)
+                {
+                    if (nbDiamand == 2)
+                    {
+                        MessageBox.Show("Vous ne pouvez pas prendre 2 de ces jetons car il en reste moin de 4");
+                    }
+                }
+
+                if (nbDiamand == 2 || nbRubis == 2 || nbOnyx == 2 || nbEmeraude == 2 || nbSaphir == 2)
                     {
                         MessageBox.Show("Vous ne pouvez pas prendre ce jeton car vous en avez pris 2 d'une autre pierre précieuse");
                     }
@@ -1415,17 +1412,8 @@ namespace Splendor
                                 nbDiamand++;
                                 var--;
                                 lblDiamandCoin.Text = var.ToString();
-                                lblChoiceDiamant.Text = nbDiamand + "\r\n";
+                                lblChoiceDiamand.Text = nbDiamand + "\r\n";
                             }
-
-                        }
-                    }
-                }
-                
-                //TO DO check if possible to choose a coin, update the number of available coin
-
-            }
-        }
 
         /// <summary>
         /// click on the validate button to approve the selection of coins or card
@@ -1503,6 +1491,64 @@ namespace Splendor
                 lblChoiceOnyx.Text = "";
                 lblChoiceOnyx.Visible = false;
             }
+            
+            cmdNextPlayer.Enabled = true;
+
+            if (lblChoiceRubis.Visible == true)
+            {
+                int var = Convert.ToInt32(lblChoiceRubis.Text);
+                int var2 = Convert.ToInt32(lblPlayerRubisCoin.Text);
+                int Result = var + var2;
+
+                lblPlayerRubisCoin.Text = Result.ToString();
+                lblChoiceRubis.Text = "";
+                lblChoiceRubis.Visible = false;
+            }
+
+            if (lblChoiceSaphir.Visible == true)
+            {
+                int var = Convert.ToInt32(lblChoiceSaphir.Text);
+                int var2 = Convert.ToInt32(lblPlayerSaphirCoin.Text);
+                int Result = var + var2;
+
+                lblPlayerSaphirCoin.Text = Result.ToString();
+                lblChoiceSaphir.Text = "";
+                lblChoiceSaphir.Visible = false;
+            }
+
+            if (lblChoiceEmeraude.Visible == true)
+            {
+                int var = Convert.ToInt32(lblChoiceEmeraude.Text);
+                int var2 = Convert.ToInt32(lblPlayerEmeraudeCoin.Text);
+                int Result = var + var2;
+
+                lblPlayerEmeraudeCoin.Text = Result.ToString();
+                lblChoiceEmeraude.Text = "";
+                lblChoiceEmeraude.Visible = false;
+            }
+
+            if (lblChoiceOnyx.Visible == true)
+            {
+                int var = Convert.ToInt32(lblChoiceOnyx.Text);
+                int var2 = Convert.ToInt32(lblPlayerOnyxCoin.Text);
+                int Result = var + var2;
+
+                lblPlayerOnyxCoin.Text = Result.ToString();
+                lblChoiceOnyx.Text = "";
+                lblChoiceOnyx.Visible = false;
+            }
+
+            if (lblChoiceDiamand.Visible == true)
+            {
+                int var = Convert.ToInt32(lblChoiceDiamand.Text);
+                int var2 = Convert.ToInt32(lblPlayerDiamandCoin.Text);
+                int Result = var + var2;
+
+                lblPlayerDiamandCoin.Text = Result.ToString();
+                lblChoiceDiamand.Text = "";
+                lblChoiceDiamand.Visible = false;
+            }
+        }
 
             if (lblChoiceDiamant.Visible == true)
             {
@@ -1644,17 +1690,17 @@ namespace Splendor
 
         private void lblChoiceSaphir_Click(object sender, EventArgs e)
         {
-            int var = Convert.ToInt32(lblChoiceSaphire.Text) - 1;
+            int var = Convert.ToInt32(lblChoiceSaphir.Text) - 1;
             int var2 = Convert.ToInt32(lblSaphirCoin.Text) + 1;
             if (var >= 0)
             {
                 nbSaphir--;
-                lblChoiceSaphire.Text = var.ToString();
+                lblChoiceSaphir.Text = var.ToString();
                 lblSaphirCoin.Text = var2.ToString();
 
                 if (var == 0)
                 {
-                    lblChoiceSaphire.Visible = false;
+                    lblChoiceSaphir.Visible = false;
                 }
             }
         }
@@ -1695,17 +1741,17 @@ namespace Splendor
 
         private void lblChoiceDiamand_Click(object sender, EventArgs e)
         {
-            int var = Convert.ToInt32(lblChoiceDiamant.Text) - 1;
+            int var = Convert.ToInt32(lblChoiceDiamand.Text) - 1;
             int var2 = Convert.ToInt32(lblDiamandCoin.Text) + 1;
             if (var >= 0)
             {
                 nbDiamand--;
-                lblChoiceDiamant.Text = var.ToString();
+                lblChoiceDiamand.Text = var.ToString();
                 lblDiamandCoin.Text = var2.ToString();
 
                 if (var == 0)
                 {
-                    lblChoiceDiamant.Visible = false;
+                    lblChoiceDiamand.Visible = false;
                 }
             }
         }
