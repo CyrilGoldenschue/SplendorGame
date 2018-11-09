@@ -177,10 +177,10 @@ namespace Splendor
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
             command.ExecuteNonQuery();
 
-            sql = "insert into player (idPlayer, pseudo) values (0, 'Fred')";
+            sql = "insert into player (idPlayer, pseudo) values (0, 'Sacha')";
             command = new SQLiteCommand(sql, m_dbConnection);
             command.ExecuteNonQuery();
-            sql = "insert into player (idPlayer, pseudo) values (1, 'Harry')";
+            sql = "insert into player (idPlayer, pseudo) values (1, 'Cyril')";
             command = new SQLiteCommand(sql, m_dbConnection);
             command.ExecuteNonQuery();
             sql = "insert into player (idPlayer, pseudo) values (2, 'Sam')";

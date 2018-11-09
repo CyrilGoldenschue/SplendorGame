@@ -409,6 +409,7 @@
             // 
             // txtPlayerBookedCard
             // 
+            this.txtPlayerBookedCard.Enabled = false;
             this.txtPlayerBookedCard.Location = new System.Drawing.Point(503, 374);
             this.txtPlayerBookedCard.Margin = new System.Windows.Forms.Padding(2);
             this.txtPlayerBookedCard.Multiline = true;
