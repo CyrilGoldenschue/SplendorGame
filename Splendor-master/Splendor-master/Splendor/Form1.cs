@@ -197,7 +197,7 @@ namespace Splendor
         private void ClickOnBooked(object sender, EventArgs e)
         {
             TextBox CardBooked = (TextBox)sender;
-            
+
             //Nombre de carte de ressource
             int NbCardRubis = Convert.ToInt16(txtPlayerRubisCard.Text);
             int NbCardSaphire = Convert.ToInt16(txtPlayerSaphireCard.Text);
@@ -386,7 +386,7 @@ namespace Splendor
                     break;
                 }
             }
-            if(NbRessourceMiss > 1)
+            if (NbRessourceMiss > 1)
             {
                 Achat = false;
             }
@@ -401,7 +401,7 @@ namespace Splendor
                 lblPlayerDiamantCoin.Text = NbDiamantPoss.ToString();
                 lblPlayerGoldCoin.Text = NbGoldPoss.ToString();
                 Booked[id] = null;
-                
+
                 if (TabComparatif[0].StartsWith("Rubis"))
                 {
                     nbCardRubis++;
@@ -464,7 +464,7 @@ namespace Splendor
                         }
                     }
                 }
-                
+
                 lblNbPtPrestige.Text = "Nb pt prestige : " + NbPtPrestige[id];
                 cmdNextPlayer.Visible = true;
                 cmdNextPlayer.Enabled = true;
@@ -495,7 +495,6 @@ namespace Splendor
 
             txtPlayerBookedCard.Enabled = false;
         }
-
         private void ClickOnCard(object sender, EventArgs e)
         {
             //We get the value on the card and we split it to get all the values we need (number of prestige points and ressource)
@@ -509,13 +508,13 @@ namespace Splendor
                 NameCard = cardOnBoard.Name.ToString();
 
                 string[] TableauComparatif; //= new string[cardOnBoard.Lines.Count()];
-  
+
                 cardOnBoard.Visible = true;
                 string test = cardOnBoard.Text;
-               // string[6] TableauComparatif = new string[6];
+                // string[6] TableauComparatif = new string[6];
                 TableauComparatif = cardOnBoard.Lines;
 
-                int NbLines = cardOnBoard.Lines.Count()-1;
+                int NbLines = cardOnBoard.Lines.Count() - 1;
                 //Nombre de carte de ressource
                 int NbCardRubis = Convert.ToInt16(txtPlayerRubisCard.Text);
                 int NbCardSaphire = Convert.ToInt16(txtPlayerSaphireCard.Text);
@@ -566,7 +565,7 @@ namespace Splendor
                                 int NbRubisMiss = NbRubisPoss - Convert.ToInt16(TableauComparatif[NbRessource].Substring(10));
                                 SorteRessourceMiss += "Rubis ";
                                 Achat = false;
-                                if(NbRubisMiss == 1)
+                                if (NbRubisMiss == 1)
                                 {
                                     NbRessourceMiss++;
                                 }
@@ -603,7 +602,7 @@ namespace Splendor
                             else
                             {
                                 int NbEmeraudeMiss = NbEmeraudePoss - Convert.ToInt16(TableauComparatif[NbRessource].Substring(13));
-                                    SorteRessourceMiss += "Emeraude ";
+                                SorteRessourceMiss += "Emeraude ";
                                 Achat = false;
                                 if (NbEmeraudeMiss == 1)
                                 {
@@ -646,11 +645,11 @@ namespace Splendor
                                 if (NbDiamantMiss <= 1)
                                 {
                                     NbRessourceMiss++;
-                                    
+
                                 }
                             }
                         }
-                        
+
                         if (NbRessource + 1 != NbLines)
                         {
                             NbRessource++;
@@ -662,7 +661,7 @@ namespace Splendor
                     }
                     if (NbRessourceMiss == 1)
                     {
-                        if(MessageBox.Show("il vous manque une ressource. Voulez-vous réserver la carte ?", "Message de confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        if (MessageBox.Show("il vous manque une ressource. Voulez-vous réserver la carte ?", "Message de confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
                             lblGoldCoin.Text = "" + (BanqueGold - 1) + "";
                             lblPlayerGoldCoin.Text = "" + (NbGoldPoss + 1) + "";
@@ -1052,9 +1051,6 @@ namespace Splendor
             this.Width = 680;
             this.Height = 780;
 
-
-            int id = 0;
-
             cmdInsertPlayer.Enabled = false;
 
             conn.NumberPlayer = conn.GetCountPlayer();
@@ -1263,15 +1259,7 @@ namespace Splendor
             }
         }
 
-                        }
-                    }
-                }
-                
-                //TO DO check if possible to choose a coin, update the number of available coin
-
-            }
-        }
-
+                    
         /// <summary>
         /// click on the green coin (emeraude) to tell the player has selected this coin
         /// </summary>
@@ -1314,14 +1302,7 @@ namespace Splendor
             LabelChoice.Visible = false;
         }
 
-                        }
-                    }
-                }
-                
-                //TO DO check if possible to choose a coin, update the number of available coin
-
-            }
-        }
+                        
 
         /// <summary>
         /// click on the validate button to approve the selection of coins or card
@@ -1331,34 +1312,6 @@ namespace Splendor
         private void cmdValidateChoice_Click(object sender, EventArgs e)
         {
             cmdNextPlayer.Visible = true;
-            cmdNextPlayer.Enabled = true;
-
-            if (lblChoiceRubis.Visible == true)
-            {
-                VerifValidateChoice(lblChoiceRubis, lblPlayerRubisCoin);                
-            }
-
-            if (lblChoiceSaphire.Visible == true)
-            {
-                VerifValidateChoice(lblChoiceSaphire, lblPlayerSaphireCoin);
-
-            }
-
-            if (lblChoiceEmeraude.Visible == true)
-            {
-                VerifValidateChoice(lblChoiceEmeraude, lblPlayerEmeraudeCoin);
-            }
-
-            if (lblChoiceOnyx.Visible == true)
-            {
-                VerifValidateChoice(lblChoiceOnyx, lblPlayerOnyxCoin);
-            }
-
-            if (lblChoiceDiamant.Visible == true)
-            {
-                VerifValidateChoice(lblChoiceDiamant, lblPlayerDiamantCoin);
-            }
-            //TO DO Check if card or coins are selected, impossible to do both at the same time
             cmdValidateChoice.Visible = false;
             cmdNextPlayer.Enabled = true;
             // disable card Level one
@@ -1385,59 +1338,29 @@ namespace Splendor
 
             if (lblChoiceRubis.Visible == true)
             {
-                int var = Convert.ToInt32(lblChoiceRubis.Text);
-                int var2 = Convert.ToInt32(lblPlayerRubisCoin.Text);
-                int Result = var + var2;
-
-                lblPlayerRubisCoin.Text = Result.ToString();
-                lblChoiceRubis.Text = "";
-                lblChoiceRubis.Visible = false;
+                VerifValidateChoice(lblChoiceRubis, lblPlayerRubisCoin);                
             }
 
             if (lblChoiceSaphire.Visible == true)
             {
-                int var = Convert.ToInt32(lblChoiceSaphire.Text);
-                int var2 = Convert.ToInt32(lblPlayerSaphireCoin.Text);
-                int Result = var + var2;
+                VerifValidateChoice(lblChoiceSaphire, lblPlayerSaphireCoin);
 
-                lblPlayerSaphireCoin.Text = Result.ToString();
-                lblChoiceSaphire.Text = "";
-                lblChoiceSaphire.Visible = false;
             }
 
             if (lblChoiceEmeraude.Visible == true)
             {
-                int var = Convert.ToInt32(lblChoiceEmeraude.Text);
-                int var2 = Convert.ToInt32(lblPlayerEmeraudeCoin.Text);
-                int Result = var + var2;
-
-                lblPlayerEmeraudeCoin.Text = Result.ToString();
-                lblChoiceEmeraude.Text = "";
-                lblChoiceEmeraude.Visible = false;
+                VerifValidateChoice(lblChoiceEmeraude, lblPlayerEmeraudeCoin);
             }
 
             if (lblChoiceOnyx.Visible == true)
             {
-                int var = Convert.ToInt32(lblChoiceOnyx.Text);
-                int var2 = Convert.ToInt32(lblPlayerOnyxCoin.Text);
-                int Result = var + var2;
-
-                lblPlayerOnyxCoin.Text = Result.ToString();
-                lblChoiceOnyx.Text = "";
-                lblChoiceOnyx.Visible = false;
+                VerifValidateChoice(lblChoiceOnyx, lblPlayerOnyxCoin);
             }
 
             if (lblChoiceDiamant.Visible == true)
             {
-                int var = Convert.ToInt32(lblChoiceDiamant.Text);
-                int var2 = Convert.ToInt32(lblPlayerDiamantCoin.Text);
-                int Result = var + var2;
-
-                lblPlayerDiamantCoin.Text = Result.ToString();
-                lblChoiceDiamant.Text = "";
-                lblChoiceDiamant.Visible = false;
+                VerifValidateChoice(lblChoiceDiamant, lblPlayerDiamantCoin);
             }
-            cmdNextPlayer.Visible = true;
         }
 
         /// <summary>
@@ -1590,11 +1513,5 @@ namespace Splendor
         {
             JetonsBack(lblChoiceDiamant, lblDiamandCoin, nbDiamand);
         }
-
-
-        private void cmdValiderNewPlayer_Click(object sender, EventArgs e)
-        {
-            string name = txtNewPlayer.Text;
-
     }
 }
