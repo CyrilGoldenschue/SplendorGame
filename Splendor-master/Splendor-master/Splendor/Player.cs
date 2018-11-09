@@ -15,7 +15,7 @@ namespace Splendor
         private string name;
         private int id;
         private int[] ressources;
-        private int[] coins= new int[5];
+        private int[] coins;
 
         /// <summary>
         /// name of the player

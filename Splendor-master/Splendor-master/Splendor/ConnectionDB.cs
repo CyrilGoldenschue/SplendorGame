@@ -42,7 +42,10 @@ namespace Splendor
                 //Create and insert ressources
                 CreateInsertRessources();
             }
-  
+
+            
+
+            
         }
 
 
@@ -185,9 +188,6 @@ namespace Splendor
             command.ExecuteNonQuery();
         }
 
-
-
-
         /// <summary>
         /// Verify if the player id exist
         /// </summary>
@@ -255,7 +255,6 @@ namespace Splendor
 
             return NumberPlayer;
 
-
         }
 
         /// <summary>
@@ -294,7 +293,6 @@ namespace Splendor
             command = new SQLiteCommand(sql, m_dbConnection); command.ExecuteNonQuery();
             sql = "insert into ressource(idRessource, NameRessource) values(5, 'Diamant')";
             command = new SQLiteCommand(sql, m_dbConnection); command.ExecuteNonQuery();
-
         }
 
         /// <summary>
@@ -766,8 +764,6 @@ namespace Splendor
             sql = "insert into cost(fkCard, fkRessource, nbRessource) values (100, 5,1)"; command = new SQLiteCommand(sql, m_dbConnection); command.ExecuteNonQuery();
 
         }
-
-        
 
     }
 }
