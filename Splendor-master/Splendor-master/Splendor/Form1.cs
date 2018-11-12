@@ -1157,7 +1157,7 @@ namespace Splendor
         }
 
         void TestJetons(Label LabelChoix, Label LabelJeton, int nbJeton, string TypeJeton) //méthode test des jetons
-        {
+         {
             int jeton = Convert.ToInt32(LabelJeton.Text);
             const int maxSameCoin = 2;
 
@@ -1174,7 +1174,7 @@ namespace Splendor
                 }
                 else
                 {
-                    if ((nbJeton == 1 && nbSaphir == 1) || (nbJeton == 1 && nbOnyx == 1) || (nbJeton == 1 && nbEmeraude == 1) || (nbJeton == 1 && nbDiamand == 1))
+                    if ((jeton == 1 && nbSaphir == 1) || (jeton == 1 && nbOnyx == 1) || (jeton == 1 && nbEmeraude == 1) || (jeton == 1 && nbDiamand == 1) || (jeton == 1 && nbRubis == 1))
                     {
                         MessageBox.Show("Vous ne pouvez pas prendre un deuxième jeton de la même couleur si vous avez déjà choisi un jeton de couleur différente");
                     }
@@ -1289,42 +1289,46 @@ namespace Splendor
             }
         }
 
-        private void VerifValidateChoice(Label LabelChoice, Label LabelCoin, Label LabelPlayerCoin)
+        private void VerifValidateChoice(Label LabelChoice, Label LabelCoin, Label LabelPlayerCoin, int NbJetonsActif)
         {
             int Jetons = Convert.ToInt32(LabelChoice.Text);
             int JetonsPlayerCoins = Convert.ToInt32(LabelPlayerCoin.Text);
             int JetonCoins = Convert.ToInt32(LabelCoin.Text);
             int Result = Jetons + JetonsPlayerCoins;
 
-            if (Jetons < 4)
+            if (JetonCoins < 4)
             {
                 if (Jetons == 2)
                 {
-                    MessageBox.Show("Vous ne pouvez pas prendre 2 de ces jetons car il en reste moin de 4");
+                    MessageBox.Show("Vous ne pouvez pas prendre 2 de ces jetons car il en reste moins de 4");
                 }
             }
+            nbTotal = nbRubis + nbSaphir + nbOnyx + nbEmeraude + nbDiamand;
 
-            if (nbDiamand == 2 || nbRubis == 2 || nbOnyx == 2 || nbEmeraude == 2 || nbSaphir == 2)
+            if ((nbDiamand == 2 || nbRubis == 2 || nbOnyx == 2 || nbEmeraude == 2 || nbSaphir == 2) && nbTotal == 3)
             {
                 MessageBox.Show("Vous ne pouvez pas prendre ce jeton car vous en avez pris 2 d'une autre pierre précieuse");
             }
             else
             {
-                if ((nbDiamand == 1 && nbRubis == 1) || (nbDiamand == 1 && nbOnyx == 1) || (nbDiamand == 1 && nbEmeraude == 1) || (nbDiamand == 1 && nbSaphir == 1))
+                if(NbJetonsActif != 3 || NbJetonsActif != 1)
                 {
-                    MessageBox.Show("Vous ne pouvez pas faire ceci");
-                    
+                    if (((Jetons == 1 && nbRubis == 1) || (Jetons == 1 && nbOnyx == 1) || (Jetons == 1 && nbEmeraude == 1) || (Jetons == 1 && nbSaphir == 1) || (Jetons == 1 && nbDiamand == 1)) || (nbRubis == 1 || nbSaphir == 1 || nbEmeraude == 1 || nbOnyx == 1 || nbDiamand == 1))
+                    {
+                        MessageBox.Show("Vous ne pouvez pas faire ceci");
+                    }
                 }
                 else
                 {
                     nbTotal = nbRubis + nbSaphir + nbOnyx + nbEmeraude + nbDiamand;
-                    if (nbTotal >= 3)
+                    if (nbTotal >= 3 || nbTotal == 2)
                     {
                         //MessageBox.Show("Vous avez pris le nombre de jetons maximum");
                         //LabelCoin.Text = Result.ToString();
                         LabelChoice.Text = "";
                         LabelChoice.Visible = false;
-
+                        JetonsPlayerCoins += Jetons;
+                        LabelPlayerCoin.Text = JetonsPlayerCoins.ToString();
                         cmdNextPlayer.Visible = true;
                         cmdNextPlayer.Enabled = true;
                         cmdValidateChoice.Visible = false;
@@ -1396,23 +1400,23 @@ namespace Splendor
             {
                 if (lblChoiceRubis.Text != "")
                 {
-                    VerifValidateChoice(lblChoiceRubis, lblRubisCoin, lblPlayerRubisCoin);
+                    VerifValidateChoice(lblChoiceRubis, lblRubisCoin, lblPlayerRubisCoin, NbLblVisible);
                 }
                 if (lblChoiceSaphire.Text != "")
                 {
-                    VerifValidateChoice(lblChoiceSaphire, lblSaphirCoin, lblPlayerSaphireCoin);
+                    VerifValidateChoice(lblChoiceSaphire, lblSaphirCoin, lblPlayerSaphireCoin, NbLblVisible);
                 }
                 if (lblChoiceOnyx.Text != "")
                 {
-                    VerifValidateChoice(lblChoiceOnyx, lblOnyxCoin, lblPlayerOnyxCoin);
+                    VerifValidateChoice(lblChoiceOnyx, lblOnyxCoin, lblPlayerOnyxCoin, NbLblVisible);
                 }
                 if (lblChoiceEmeraude.Text != "")
                 {
-                    VerifValidateChoice(lblChoiceEmeraude, lblEmeraudeCoin, lblPlayerEmeraudeCoin);
+                    VerifValidateChoice(lblChoiceEmeraude, lblEmeraudeCoin, lblPlayerEmeraudeCoin, NbLblVisible);
                 }
                 if (lblChoiceDiamant.Text != "")
                 {
-                    VerifValidateChoice(lblChoiceDiamant, lblDiamandCoin, lblPlayerDiamantCoin);
+                    VerifValidateChoice(lblChoiceDiamant, lblDiamandCoin, lblPlayerDiamantCoin, NbLblVisible);
                 }
             }
         }
@@ -1507,18 +1511,18 @@ namespace Splendor
                 LoadPlayer(id);
             }
         }
-        private void JetonsBack(Label LabelChoice, Label LabelJeton, int NbJeton)
+        private void JetonsBack(Label LabelChoice, Label LabelJeton, int NbJeton, string TypeCoin)
         {
-            int JetonsPlayer = Convert.ToInt32(LabelChoice.Text) - 1;
+            int JetonsChoice = Convert.ToInt32(LabelChoice.Text) - 1;
             int JetonsDispo = Convert.ToInt32(LabelJeton.Text) + 1;
 
-            if (JetonsPlayer >= 0)
+            if (JetonsChoice >= 0)
             {
                 NbJeton--;
-                LabelChoice.Text = JetonsPlayer.ToString();
+                LabelChoice.Text = JetonsChoice.ToString();
                 LabelJeton.Text = JetonsDispo.ToString();
 
-                if (JetonsPlayer == 0)
+                if (JetonsChoice == 0)
                 {
                     LabelChoice.Visible = false;
                 }
@@ -1527,30 +1531,43 @@ namespace Splendor
             {
                 cmdValidateChoice.Visible = false;
             }
+
+            switch (TypeCoin)
+            {
+                case "Rubis": nbRubis--; break;
+                case "Saphire": nbSaphir--; break;
+                case "Onyx": nbOnyx--; break;
+                case "Emeraude": nbEmeraude--; break;
+                case "Diamant": nbDiamand--; break;
+
+            }
+
+
+
         }
         private void lblChoiceRubis_Click(object sender, EventArgs e)
         {
-            JetonsBack(lblChoiceRubis, lblRubisCoin, nbRubis);
+            JetonsBack(lblChoiceRubis, lblRubisCoin, nbRubis, "Rubis");
         }
 
         private void lblChoiceSaphir_Click(object sender, EventArgs e)
         {
-            JetonsBack(lblChoiceSaphire, lblSaphirCoin, nbSaphir);
+            JetonsBack(lblChoiceSaphire, lblSaphirCoin, nbSaphir, "Saphire");
         }
 
         private void lblChoiceOnyx_Click(object sender, EventArgs e)
         {
-            JetonsBack(lblChoiceOnyx, lblOnyxCoin, nbOnyx);
+            JetonsBack(lblChoiceOnyx, lblOnyxCoin, nbOnyx, "Onyx");
         }
 
         private void lblChoiceEmeraude_Click(object sender, EventArgs e)
         {
-            JetonsBack(lblChoiceEmeraude, lblEmeraudeCoin, nbEmeraude);
+            JetonsBack(lblChoiceEmeraude, lblEmeraudeCoin, nbEmeraude, "Emeraude");
         }
 
         private void lblChoiceDiamand_Click(object sender, EventArgs e)
         { 
-            JetonsBack(lblChoiceDiamant, lblDiamandCoin, nbDiamand);
+            JetonsBack(lblChoiceDiamant, lblDiamandCoin, nbDiamand, "Diamant");
         }
 
     }
