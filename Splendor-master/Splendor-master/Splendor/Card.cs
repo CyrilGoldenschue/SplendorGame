@@ -95,7 +95,7 @@ namespace Splendor
             {
                 res += prestigePt;
             }
-            res += "\t";
+            //res += "\t";
             res += "\r\n\r\n";
             int boucle = 1;
             
