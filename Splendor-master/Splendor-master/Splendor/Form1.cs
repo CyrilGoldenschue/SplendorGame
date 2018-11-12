@@ -1170,6 +1170,7 @@ namespace Splendor
                 if (nbRubis == maxSameCoin || nbSaphir == maxSameCoin || nbOnyx == maxSameCoin || nbEmeraude == maxSameCoin || nbDiamand == maxSameCoin)
                 {
                     MessageBox.Show("Nombre max de pièces de la même couleur = 2");
+                    LabelChoix.Enabled = false;
                 }
                 else
                 {
@@ -1297,7 +1298,7 @@ namespace Splendor
 
             if (Jetons < 4)
             {
-                if (nbDiamand == 2)
+                if (Jetons == 2)
                 {
                     MessageBox.Show("Vous ne pouvez pas prendre 2 de ces jetons car il en reste moin de 4");
                 }
@@ -1320,7 +1321,7 @@ namespace Splendor
                     if (nbTotal >= 3)
                     {
                         //MessageBox.Show("Vous avez pris le nombre de jetons maximum");
-                        LabelCoin.Text = Result.ToString();
+                        //LabelCoin.Text = Result.ToString();
                         LabelChoice.Text = "";
                         LabelChoice.Visible = false;
 
