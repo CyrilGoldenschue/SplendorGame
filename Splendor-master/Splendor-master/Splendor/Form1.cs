@@ -1311,7 +1311,7 @@ namespace Splendor
             }
             else
             {
-                if(NbJetonsActif != 3 || NbJetonsActif != 1)
+                if(NbJetonsActif != 3 && NbJetonsActif != 1)
                 {
                     if (((Jetons == 1 && nbRubis == 1) || (Jetons == 1 && nbOnyx == 1) || (Jetons == 1 && nbEmeraude == 1) || (Jetons == 1 && nbSaphir == 1) || (Jetons == 1 && nbDiamand == 1)) || (nbRubis == 1 || nbSaphir == 1 || nbEmeraude == 1 || nbOnyx == 1 || nbDiamand == 1))
                     {
