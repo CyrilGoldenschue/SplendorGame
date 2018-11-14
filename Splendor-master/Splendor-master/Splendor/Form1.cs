@@ -8,13 +8,12 @@
  * \details   This form enables to choose coins or cards to get ressources (precious stones) and prestige points 
  * to add and to play with other players
  */
-
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,9 +26,8 @@ namespace Splendor
     /// </summary>
     public partial class frmSplendor : Form
     {
-        
         //connection to the database
-        private ConnectionDB conn = new ConnectionDB();
+        private ConnectionDB conn;
         //used to store the number of coins selected for the current round of game
         private int nbRubis = 0;
         private int nbOnyx = 0;
@@ -48,40 +46,39 @@ namespace Splendor
         private int nbCardDiamant = 0;
         private int[] NbPtPrestige;
         private char[] MyChar = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-        private int id = 0;
-        private bool Reid = true;
-        private int[,] Coin;
-        private int[,] Ressource;
-        private string NameControlAll = "";
-        private FormAddPlayer form2;
-        private string[] NumCardAll = new string[3];
-        private string NameCard;
-        private Control DisableControler = new Control();
-        private string[] Booked = new string[4];
-        private int[] NbTour = new int[4];
-        private int NbJeton = 0;
-        private Random rnd = new Random();
-        string Nom;
+        private int id = 0;                                                                 //Variable contenant l'id du joueur
+        private bool Reid = true;                                                           
+        private int[,] Coin;                                                                //Tableau des jetons de ressources pour chaque joueur
+        private int[,] Ressource;                                                           //Tableau des cartes de ressources pour chaque joueur
+        private string NameControlAll = "";                                                 //Nom du controleur qui va être désactivé
+        private FormAddPlayer form2;                                                        //Accès au form2
+        private string NameCard;                                                            //Variable contenant le nom d'une carte
+        private Control DisableControler = new Control();                                   //Variable pour désactiver les cartes de nobles
+        private string[] Booked = new string[4];                                            //Initialisation de la variable Booked (1 résérvation max par personne)
+        private int[] NbTour = new int[4];                                                  //Nombre de joueur max
+        private int NbJeton = 0;                                                            //Nombre de ressource à l'affichage
+        private Random rnd = new Random();                                                  //Récuperation d'un nombre aléatoire
+        private string Nom;                                                                 //Récuperation du nom du joueur
         //Nombre de carte de ressource
-        int NbCardRubis;
-        int NbCardSaphire;
-        int NbCardOnyx;
-        int NbCardEmeraude;
-        int NbCardDiamant;
+        private int NbCardRubis;
+        private int NbCardSaphire;
+        private int NbCardOnyx;
+        private int NbCardEmeraude;
+        private int NbCardDiamant;
         //Nombre de ressources en stock
-        int NbRubisPoss;
-        int NbSaphirePoss;
-        int NbEmeraudePoss;
-        int NbOnyxPoss;
-        int NbDiamantPoss;
-        int NbGoldPoss;
+        private int NbRubisPoss;
+        private int NbSaphirePoss;
+        private int NbEmeraudePoss;
+        private int NbOnyxPoss;
+        private int NbDiamantPoss;
+        private int NbGoldPoss;
         //Nombre de ressources restantes
-        int BanqueRubis;
-        int BanqueSaphire;
-        int BanqueEmeraude;
-        int BanqueOnyx;
-        int BanqueDiamant;
-        int BanqueGold;
+        private int BanqueRubis;
+        private int BanqueSaphire;
+        private int BanqueEmeraude;
+        private int BanqueOnyx;
+        private int BanqueDiamant;
+        private int BanqueGold;
 
         private const int maxSameCoin = 2;
         private int[] CoinsPlayer = new int[5];
@@ -105,7 +102,10 @@ namespace Splendor
         /// <param name="e"></param>
         public void frmSplendor_Load(object sender, EventArgs e)
         {
+            conn = new ConnectionDB();
             int NbPlayer = conn.GetCountPlayer();                   //get the number of players that are in the database
+
+            ActiveButtonPlay();
 
             lblGoldCoin.Text = "5";                                 //gives basic values
             lblPlayerGoldCoin.Text = "0";
@@ -193,6 +193,18 @@ namespace Splendor
             txtPlayerBookedCard.Click += ClickOnBooked;             //When we click it buys the booked card
         }
 
+        private void ActiveButtonPlay()
+        {
+            if(conn.GetCountPlayer() < 2)
+            {
+                cmdPlay.Enabled = false;
+            }
+            else
+            {
+                cmdPlay.Enabled = true;
+            }
+        }
+        
         /// <summary>
         /// mix of stacks of cards
         /// </summary>
@@ -203,7 +215,9 @@ namespace Splendor
             var values = stack.ToArray();                           //Stock value of stack
             stack.Clear();                                          //Clear value of stack
             foreach (var value in values.OrderBy(x => rnd.Next()))  //swap the space between two cards
+            {
                 stack.Push(value);                                  //Send the stored card instead of another
+            }   
 
         }
 
@@ -513,23 +527,23 @@ namespace Splendor
 
             txtPlayerBookedCard.Enabled = false;
         }
-
+        /// <summary>
+        /// click on card to purchase this card
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClickOnCard(object sender, EventArgs e)
         {
             //We get the value on the card and we split it to get all the values we need (number of prestige points and ressource)
             //Enable the button "Validate"
-            //TO DO
             if (enableClicLabel)
             {
 
                 TextBox cardOnBoard = (TextBox)sender;
                 NameControlAll = cardOnBoard.Name;
                 NameCard = cardOnBoard.Name.ToString();
-
                 string[] TableauComparatif; 
-
                 TableauComparatif = cardOnBoard.Lines;
-
                 int NbLines = cardOnBoard.Lines.Count()-1;
                 //Nombre de carte de ressource
                 int NbCardRubis = Convert.ToInt16(txtPlayerRubisCard.Text);
@@ -709,9 +723,6 @@ namespace Splendor
                     if (Achat)
                     {
                         cardOnBoard.Clear();
-                        //NumCardAll[Convert.ToInt16(NameCard.Substring(8)) - 1] = NameCard;
-
-
                         if (cardOnBoard.Name == "txtLevel11" | cardOnBoard.Name == "txtLevel12" | cardOnBoard.Name == "txtLevel13" | cardOnBoard.Name == "txtLevel14")
                         {
                             cardOnBoard.Text = listCardOne.Pop().ToString();
@@ -1126,7 +1137,13 @@ namespace Splendor
 
             cmdPlay.Enabled = false;
         }
-
+        /// <summary>
+        /// Test number of coins 
+        /// </summary>
+        /// <param name="LabelChoix"></param>
+        /// <param name="LabelJeton"></param>
+        /// <param name="nbJeton"></param>
+        /// <param name="TypeJeton"></param>
         void TestJetons(Label LabelChoix, Label LabelJeton, int nbJeton, string TypeJeton) //méthode test des jetons
          {
             int jeton = Convert.ToInt32(LabelJeton.Text);
@@ -1195,10 +1212,7 @@ namespace Splendor
                 lblChoiceRubis.Visible = true;
                 TestJetons(lblChoiceRubis, lblRubisCoin, nbRubis, "Rubis");
             }
-            //TO DO check if possible to choose a coin, update the number of available coin  
-
         }
-
 
         /// <summary>
         /// click on the blue coin (saphir) to tell the player has selected this coin
@@ -1260,6 +1274,13 @@ namespace Splendor
             }
         }
 
+        /// <summary>
+        /// Verif number of coins when we click on validate button
+        /// </summary>
+        /// <param name="LabelChoice"></param>
+        /// <param name="LabelCoin"></param>
+        /// <param name="LabelPlayerCoin"></param>
+        /// <param name="NbJetonsActif"></param>
         private void VerifValidateChoice(Label LabelChoice, Label LabelCoin, Label LabelPlayerCoin, int NbJetonsActif)
         {
             int Jetons = Convert.ToInt32(LabelChoice.Text);
@@ -1406,6 +1427,10 @@ namespace Splendor
            // MessageBox.Show("A implémenter");
         }
 
+        /// <summary>
+        /// Verif if the player actual click on NextPlayer button are 15 Point of Prestige
+        /// </summary>
+        /// <returns></returns>
         private bool PlayerFinish()
         {
             bool Finish = true;
@@ -1420,6 +1445,7 @@ namespace Splendor
            
             return Finish;
         }
+
         /// <summary>
         /// click on the next player to tell him it is his turn
         /// </summary>
@@ -1427,7 +1453,6 @@ namespace Splendor
         /// <param name="e"></param>
         private void cmdNextPlayer_Click(object sender, EventArgs e)
         {
-
             if (PlayerFinish())
             {
                 cmdValidateChoice.Visible = false;
@@ -1458,14 +1483,6 @@ namespace Splendor
                 lblEmeraudeCoin.Enabled = true;
                 lblOnyxCoin.Enabled = true;
                 lblDiamandCoin.Enabled = true;
-
-                //disable card already purchases
-                for (int i = 0; i < NumCardAll.Count() - 1; i++)
-                {
-                    NameControlAll = NumCardAll[i];
-                    DisableControler.Name = NameControlAll;
-                    DisableControler.Enabled = false;
-                }
 
                 Coin[id, 0] = Convert.ToInt16(lblPlayerRubisCoin.Text);
                 Coin[id, 1] = Convert.ToInt16(lblPlayerSaphireCoin.Text);
@@ -1507,6 +1524,13 @@ namespace Splendor
                 }
             }
         }
+        /// <summary>
+        /// Back coins when we click on label choice
+        /// </summary>
+        /// <param name="LabelChoice"></param>
+        /// <param name="LabelJeton"></param>
+        /// <param name="NbJeton"></param>
+        /// <param name="TypeCoin"></param>
         private void JetonsBack(Label LabelChoice, Label LabelJeton, int NbJeton, string TypeCoin)
         {
             int JetonsChoice = Convert.ToInt32(LabelChoice.Text) - 1;
@@ -1538,22 +1562,47 @@ namespace Splendor
 
             }
         }
+        /// <summary>
+        /// Label (Rubis) click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lblChoiceRubis_Click(object sender, EventArgs e)
         {
             JetonsBack(lblChoiceRubis, lblRubisCoin, nbRubis, "Rubis");
         }
+        /// <summary>
+        /// Label (Saphire) click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lblChoiceSaphir_Click(object sender, EventArgs e)
         {
             JetonsBack(lblChoiceSaphire, lblSaphirCoin, nbSaphir, "Saphire");
         }
+        /// <summary>
+        /// Label (Onyx) click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lblChoiceOnyx_Click(object sender, EventArgs e)
         {
             JetonsBack(lblChoiceOnyx, lblOnyxCoin, nbOnyx, "Onyx");
         }
+        /// <summary>
+        /// Label (Emeraude) click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lblChoiceEmeraude_Click(object sender, EventArgs e)
         {
             JetonsBack(lblChoiceEmeraude, lblEmeraudeCoin, nbEmeraude, "Emeraude");
         }
+        /// <summary>
+        /// Label (Diamant) click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lblChoiceDiamand_Click(object sender, EventArgs e)
         { 
             JetonsBack(lblChoiceDiamant, lblDiamandCoin, nbDiamand, "Diamant");

@@ -47,7 +47,6 @@
             this.txtLevel12 = new System.Windows.Forms.TextBox();
             this.txtLevel11 = new System.Windows.Forms.TextBox();
             this.cmdInsertPlayer = new System.Windows.Forms.Button();
-            this.cmdPlay = new System.Windows.Forms.Button();
             this.txtPlayerEmeraudeCard = new System.Windows.Forms.TextBox();
             this.txtPlayerOnyxCard = new System.Windows.Forms.TextBox();
             this.txtPlayerSaphireCard = new System.Windows.Forms.TextBox();
@@ -78,6 +77,7 @@
             this.flwCardLevel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.flwCardNoble = new System.Windows.Forms.FlowLayoutPanel();
             this.txtNoble4 = new System.Windows.Forms.TextBox();
+            this.cmdPlay = new System.Windows.Forms.Button();
             this.flwCardLevel1.SuspendLayout();
             this.flwCardLevel2.SuspendLayout();
             this.flwCardLevel3.SuspendLayout();
@@ -280,17 +280,6 @@
             this.cmdInsertPlayer.Text = "Entrer joueur";
             this.cmdInsertPlayer.UseVisualStyleBackColor = true;
             this.cmdInsertPlayer.Click += new System.EventHandler(this.cmdInsertPlayer_Click);
-            // 
-            // cmdPlay
-            // 
-            this.cmdPlay.Location = new System.Drawing.Point(501, 211);
-            this.cmdPlay.Margin = new System.Windows.Forms.Padding(2);
-            this.cmdPlay.Name = "cmdPlay";
-            this.cmdPlay.Size = new System.Drawing.Size(82, 39);
-            this.cmdPlay.TabIndex = 19;
-            this.cmdPlay.Text = "Jouer";
-            this.cmdPlay.UseVisualStyleBackColor = true;
-            this.cmdPlay.Click += new System.EventHandler(this.cmdPlay_Click);
             // 
             // txtPlayerEmeraudeCard
             // 
@@ -628,7 +617,18 @@
             this.txtNoble4.Name = "txtNoble4";
             this.txtNoble4.Size = new System.Drawing.Size(102, 98);
             this.txtNoble4.TabIndex = 45;
-
+            // 
+            // cmdPlay
+            // 
+            this.cmdPlay.Enabled = false;
+            this.cmdPlay.Location = new System.Drawing.Point(501, 211);
+            this.cmdPlay.Margin = new System.Windows.Forms.Padding(2);
+            this.cmdPlay.Name = "cmdPlay";
+            this.cmdPlay.Size = new System.Drawing.Size(82, 39);
+            this.cmdPlay.TabIndex = 19;
+            this.cmdPlay.Text = "Jouer";
+            this.cmdPlay.UseVisualStyleBackColor = true;
+            this.cmdPlay.Click += new System.EventHandler(this.cmdPlay_Click);
             // 
             // frmSplendor
             // 
@@ -702,7 +702,6 @@
         private System.Windows.Forms.TextBox txtLevel12;
         private System.Windows.Forms.TextBox txtLevel11;
         private System.Windows.Forms.Button cmdInsertPlayer;
-        private System.Windows.Forms.Button cmdPlay;
         private System.Windows.Forms.TextBox txtPlayerEmeraudeCard;
         private System.Windows.Forms.TextBox txtPlayerOnyxCard;
         private System.Windows.Forms.TextBox txtPlayerSaphireCard;
@@ -738,6 +737,7 @@
         public System.Windows.Forms.Label lblEmeraudeCoin;
         public System.Windows.Forms.Label lblDiamandCoin;
         private System.Windows.Forms.TextBox txtNoble4;
+        public System.Windows.Forms.Button cmdPlay;
     }
 }
 

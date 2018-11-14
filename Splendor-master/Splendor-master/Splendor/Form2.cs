@@ -10,21 +10,29 @@ using System.Windows.Forms;
 
 namespace Splendor
 {
+    /// <summary>
+    /// manages the form that enables to insert player to play the Splendor
+    /// </summary>
     public partial class FormAddPlayer : Form
     {
-
-
         public string Nom;
         public bool Fermer;
         private ConnectionDB conn;
         private string Pseud = " ";
         private int NbPlayer = 0;
         private frmSplendor f1 = new frmSplendor();
+        /// <summary>
+        /// contructor
+        /// </summary>
         public FormAddPlayer()
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// loads the form and initialize data in it
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form2_Load(object sender, EventArgs e)
         {
             
@@ -41,7 +49,11 @@ namespace Splendor
             txtAddPlayer.Select();
 
         }
-
+        /// <summary>
+        /// click on the DeletePlayer button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdDeletePlayer_Click(object sender, EventArgs e)
         {
             cmdDeletePlayer.Enabled = false;
@@ -52,12 +64,23 @@ namespace Splendor
                 conn.DeletePlayer(Pseud);
                 
             }
+            if(conn.GetCountPlayer() < 2)
+            {
+                f1.cmdPlay.Enabled = false;
+            }
         }
-
+        /// <summary>
+        /// click on the AddPlayer button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdAddPlayer_Click(object sender, EventArgs e)
         {
             AddPlayer();
         }
+        /// <summary>
+        /// Create Player
+        /// </summary>
         private void AddPlayer()
         {
             conn = new ConnectionDB();
@@ -79,8 +102,15 @@ namespace Splendor
                 MessageBox.Show("Il ne peut avoir plus de quatre joueurs");
                 //this.Close();
             }
+            if (conn.GetCountPlayer() > 1)
+            {
+                f1.cmdPlay.Enabled = true;
+            }
             txtAddPlayer.Clear();
         }
+        /// <summary>
+        /// Message when we add a player
+        /// </summary>
         private void MessageAdd()
         {
 
@@ -100,7 +130,11 @@ namespace Splendor
             }
 
         }
-
+        /// <summary>
+        /// Select a player on the list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lstPlayer_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstPlayer.SelectedIndex >= 0)
@@ -108,16 +142,20 @@ namespace Splendor
                 cmdDeletePlayer.Enabled = true;
             }
         }
-
+        /// <summary>
+        /// click on the CloseAddPlayer button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmdCloseAddPlayer_Click(object sender, EventArgs e)
-        {
-            
+        {       
             this.Close();
-            
-            
-
         }
-
+        /// <summary>
+        /// Add player when the key Enter are down
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtAddPlayer_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

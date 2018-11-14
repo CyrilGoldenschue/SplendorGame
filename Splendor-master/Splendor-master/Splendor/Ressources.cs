@@ -10,6 +10,9 @@ namespace Splendor
     //https://openclassrooms.com/fr/courses/392266-developpement-c-net/391696-les-enumerations-et-structure
     //To display the string of the enumeration
     //https://stackoverflow.com/questions/309333/enum-string-name-from-value
+    /// <summary>
+    /// Enum Ressources to card
+    /// </summary>
     enum Ressources
     {
         Rubis = 1,
