@@ -192,7 +192,9 @@ namespace Splendor
             // Click card booked
             txtPlayerBookedCard.Click += ClickOnBooked;             //When we click it buys the booked card
         }
-
+        /// <summary>
+        /// see if there is more than one player and less than five before activating the play button
+        /// </summary>
         private void ActiveButtonPlay()
         {
             if(conn.GetCountPlayer() < 2)

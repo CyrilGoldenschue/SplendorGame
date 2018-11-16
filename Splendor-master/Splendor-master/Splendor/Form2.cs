@@ -21,6 +21,7 @@ namespace Splendor
         private string Pseud = " ";
         private int NbPlayer = 0;
         private frmSplendor f1 = new frmSplendor();
+
         /// <summary>
         /// contructor
         /// </summary>
@@ -28,6 +29,7 @@ namespace Splendor
         {
             InitializeComponent();
         }
+
         /// <summary>
         /// loads the form and initialize data in it
         /// </summary>
@@ -49,6 +51,7 @@ namespace Splendor
             txtAddPlayer.Select();
 
         }
+
         /// <summary>
         /// click on the DeletePlayer button
         /// </summary>
@@ -69,6 +72,7 @@ namespace Splendor
                 f1.cmdPlay.Enabled = false;
             }
         }
+
         /// <summary>
         /// click on the AddPlayer button
         /// </summary>
@@ -78,6 +82,7 @@ namespace Splendor
         {
             AddPlayer();
         }
+
         /// <summary>
         /// Create Player
         /// </summary>
@@ -100,7 +105,6 @@ namespace Splendor
             else
             {
                 MessageBox.Show("Il ne peut avoir plus de quatre joueurs");
-                //this.Close();
             }
             if (conn.GetCountPlayer() > 1)
             {
@@ -108,6 +112,7 @@ namespace Splendor
             }
             txtAddPlayer.Clear();
         }
+
         /// <summary>
         /// Message when we add a player
         /// </summary>
@@ -117,19 +122,37 @@ namespace Splendor
             NbPlayer = conn.GetCountPlayer();
             if (MessageBox.Show("Le joueur " + Nom + " a bien été créé", "Message de confirmation",  MessageBoxButtons.OK) == DialogResult.OK)
             {
-                if(NbPlayer == 4)
-                {
-                    MessageBox.Show("Il y a 4 joueurs si vous voulez en ajouter veuillez en supprimez");
-                }
-                else
-                {
-                    MessageBox.Show("Il y a "+ NbPlayer+" vous pouvez en ajouter encore "+ (4 - NbPlayer) +"");
-                }
 
-                //this.Close();
+                bool Add = true;
+                List<string> ListName = new List<string>();
+                for (int i = 0; i < lstPlayer.Items.Count; i++)
+                {
+                    ListName.Add(lstPlayer.Items[i].ToString());
+                }
+                for (int i = 0; i < lstPlayer.Items.Count; i++)
+                {
+                    for (int x = 0; x < ListName.Count(); x++) {
+                        if (lstPlayer.Items[i].ToString() == ListName[x])
+                        {
+                            Add = false;
+                            MessageBox.Show("Il y a déjà un joueur ayant ce nom");
+                        }
+                    }
+                }
+                if (Add)
+                {
+                    if (NbPlayer == 4)
+                    {
+                        MessageBox.Show("Il y a 4 joueurs si vous voulez en ajouter veuillez en supprimez");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Il y a " + NbPlayer + " vous pouvez en ajouter encore " + (4 - NbPlayer) + "");
+                    }
+                }
             }
-
         }
+
         /// <summary>
         /// Select a player on the list
         /// </summary>
@@ -142,15 +165,32 @@ namespace Splendor
                 cmdDeletePlayer.Enabled = true;
             }
         }
+
         /// <summary>
         /// click on the CloseAddPlayer button
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void cmdCloseAddPlayer_Click(object sender, EventArgs e)
-        {       
-            this.Close();
+        {
+            for (int i = 0; i < lstPlayer.Items.Count; i++)
+            {
+                if(lstPlayer.Items[i] == "")
+                {
+                    string Vide = lstPlayer.Items[i].ToString();
+                    conn.DeletePlayer(Vide);
+                }
+            }
+            if(lstPlayer.Items.Count >= 2)
+            {
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Il n'y a pas assez de joueurs (il faut qu'il y en ait au moins 2)");
+            }
         }
+
         /// <summary>
         /// Add player when the key Enter are down
         /// </summary>
