@@ -42,12 +42,7 @@ namespace Splendor
                 //Create and insert ressources
                 CreateInsertRessources();
             }
-
-            
-
-            
         }
-
 
         /// <summary>
         /// get the list of cards according to the level
@@ -57,7 +52,6 @@ namespace Splendor
         public Stack<Card> GetListCardAccordingToLevel(int level)
         {
             //Get all the data from card table selecting them according to the data
-            //TO DO
             //Create an object "Stack of Card"
             Stack<Card> listCard = new Stack<Card>();
 
@@ -175,16 +169,6 @@ namespace Splendor
         {
             string sql = "CREATE TABLE player (idPlayer INT PRIMARY KEY, pseudo VARCHAR(20))";
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
-            command.ExecuteNonQuery();
-
-            sql = "insert into player (idPlayer, pseudo) values (0, 'Sacha')";
-            command = new SQLiteCommand(sql, m_dbConnection);
-            command.ExecuteNonQuery();
-            sql = "insert into player (idPlayer, pseudo) values (1, 'Cyril')";
-            command = new SQLiteCommand(sql, m_dbConnection);
-            command.ExecuteNonQuery();
-            sql = "insert into player (idPlayer, pseudo) values (2, 'Sam')";
-            command = new SQLiteCommand(sql, m_dbConnection);
             command.ExecuteNonQuery();
         }
 
