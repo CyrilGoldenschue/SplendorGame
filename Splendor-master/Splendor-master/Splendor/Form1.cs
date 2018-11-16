@@ -573,7 +573,6 @@ namespace Splendor
                 int NbCardResidualThree = listCardThree.Count();
                 int NbCardResidualNoble = listCardNoble.Count();
 
-
                 string SorteRessourceMiss = "Vous n'avez pas assez de ";
                 int NbRessource = 2;
                 int NbRessourceMiss = 0;
@@ -756,7 +755,7 @@ namespace Splendor
 
                             if (TableauComparatif[0].Substring(7) != " ")
                             {
-                                if (TableauComparatif[0].Substring(9) != "\t")
+                                if (TableauComparatif[0].Substring(7) != "\t")
                                 {
                                     NbPtPrestige[id] += Convert.ToInt16(TableauComparatif[0].Substring(7));
                                 }
@@ -769,7 +768,7 @@ namespace Splendor
                             txtPlayerEmeraudeCard.Text = nbCardEmeraude.ToString();
                             if (TableauComparatif[0].Substring(10) != " ")
                             {
-                                if (TableauComparatif[0].Substring(12) != "\t")
+                                if (TableauComparatif[0].Substring(10) != "\t")
                                 {
                                     NbPtPrestige[id] += Convert.ToInt16(TableauComparatif[0].Substring(8));
                                 }
@@ -783,7 +782,7 @@ namespace Splendor
                             BanqueOnyx = BanqueOnyx + Convert.ToInt16(TableauComparatif[NbRessource].Substring(9));
                             if (TableauComparatif[0].Substring(6) != " ")
                             {
-                                if (TableauComparatif[0].Substring(8) != "\t")
+                                if (TableauComparatif[0].Substring(6) != "\t")
                                 {
                                     NbPtPrestige[id] += Convert.ToInt16(TableauComparatif[0].Substring(6));
                                 }
@@ -796,7 +795,7 @@ namespace Splendor
                             txtPlayerSaphireCard.Text = nbCardSaphire.ToString();
                             if (TableauComparatif[0].Substring(9) != " ")
                             {
-                                if (TableauComparatif[0].Substring(11) != "\t")
+                                if (TableauComparatif[0].Substring(9) != "\t")
                                 {
                                     NbPtPrestige[id] += Convert.ToInt16(TableauComparatif[0].Substring(9));
                                 }
@@ -809,7 +808,7 @@ namespace Splendor
                             txtPlayerDiamantCard.Text = nbCardDiamant.ToString();
                             if (TableauComparatif[0].Substring(9) != " ")
                             {
-                                if (TableauComparatif[0].Substring(11) != "\t")
+                                if (TableauComparatif[0].Substring(9) != "\t")
                                 {
                                     NbPtPrestige[id] += Convert.ToInt16(TableauComparatif[0].Substring(9));
                                 }
@@ -994,8 +993,6 @@ namespace Splendor
                             txtNoble2.Enabled = false;
                             txtNoble3.Enabled = false;
                             txtNoble4.Enabled = false;
-
-                           
                         }
                         else
                         {
@@ -1041,22 +1038,22 @@ namespace Splendor
             conn.NumberPlayer = conn.GetCountPlayer();
 
             Coin = new int[conn.NumberPlayer, 6];
-            Coin[id, 0] = 14;
-            Coin[id, 1] = 14;
-            Coin[id, 2] = 14;
-            Coin[id, 3] = 14;
-            Coin[id, 4] = 14;
-            Coin[id, 5] = 14;
+            Coin[id, 0] = 0;
+            Coin[id, 1] = 0;
+            Coin[id, 2] = 0;
+            Coin[id, 3] = 0;
+            Coin[id, 4] = 0;
+            Coin[id, 5] = 0;
 
             NbPtPrestige = new int[conn.GetCountPlayer()];
-            NbPtPrestige[0] = 14;
-            NbPtPrestige[1] = 14;
+            NbPtPrestige[0] = 0;
+            NbPtPrestige[1] = 0;
             if (conn.GetCountPlayer()-1 > 1)
             {
-                NbPtPrestige[2] = 14;
+                NbPtPrestige[2] = 0;
                 if (conn.GetCountPlayer()-1 > 2)
                 {
-                    NbPtPrestige[3] = 14;
+                    NbPtPrestige[3] = 0;
                 }
             }
 

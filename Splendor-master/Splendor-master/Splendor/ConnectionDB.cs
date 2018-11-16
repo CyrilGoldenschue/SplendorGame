@@ -191,7 +191,7 @@ namespace Splendor
                     }
                     else
                     {
-                        NumberForget = i-1;
+                        NumberForget = i;
                     }
                 }
                 

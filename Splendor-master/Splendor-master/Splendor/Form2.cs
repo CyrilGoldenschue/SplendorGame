@@ -39,7 +39,7 @@ namespace Splendor
         {
             
             conn = new ConnectionDB();
-            for (int i = 0; i <= conn.GetCountPlayer(); i++)
+            for (int i = 0; i <= conn.GetCountPlayer()-1; i++)
             {
                 if(conn.GetPlayerName(i) == "")
                 {
@@ -92,23 +92,49 @@ namespace Splendor
             Nom = txtAddPlayer.Text;
             int NbPlayer = conn.GetCountPlayer();
             int id = 0;
-            for (int i = 0; i <= NbPlayer; i++)
+            bool Add = true;
+            List<string> ListName = new List<string>();
+            for (int i = 0; i < lstPlayer.Items.Count; i++)
             {
-                id = conn.VerifyPlayer();
+                ListName.Add(lstPlayer.Items[i].ToString());
             }
-            if (NbPlayer <= 3)
+            for (int i = 0; i < lstPlayer.Items.Count; i++)
             {
-                conn.InsertNewPlayer(Nom, id);
-                MessageAdd();
-                lstPlayer.Items.Add(Nom);
+                for (int x = 0; x < ListName.Count(); x++)
+                {
+                    if (txtAddPlayer.Text == ListName[x])
+                    {
+                        Add = false;
+                        MessageBox.Show("Il y a déjà un joueur ayant ce nom");
+                        break;
+                        
+                    }
+                }
+                if (!Add)
+                {
+                    break;
+                }
             }
-            else
+            if (Add)
             {
-                MessageBox.Show("Il ne peut avoir plus de quatre joueurs");
-            }
-            if (conn.GetCountPlayer() > 1)
-            {
-                f1.cmdPlay.Enabled = true;
+                for (int i = 0; i <= NbPlayer; i++)
+                {
+                    id = conn.VerifyPlayer();
+                }
+                if (NbPlayer <= 3)
+                {
+                    conn.InsertNewPlayer(Nom, id);
+                    MessageAdd();
+                    lstPlayer.Items.Add(Nom);
+                }
+                else
+                {
+                    MessageBox.Show("Il ne peut avoir plus de quatre joueurs");
+                }
+                if (conn.GetCountPlayer() > 1)
+                {
+                    f1.cmdPlay.Enabled = true;
+                }
             }
             txtAddPlayer.Clear();
         }
@@ -123,24 +149,7 @@ namespace Splendor
             if (MessageBox.Show("Le joueur " + Nom + " a bien été créé", "Message de confirmation",  MessageBoxButtons.OK) == DialogResult.OK)
             {
 
-                bool Add = true;
-                List<string> ListName = new List<string>();
-                for (int i = 0; i < lstPlayer.Items.Count; i++)
-                {
-                    ListName.Add(lstPlayer.Items[i].ToString());
-                }
-                for (int i = 0; i < lstPlayer.Items.Count; i++)
-                {
-                    for (int x = 0; x < ListName.Count(); x++) {
-                        if (lstPlayer.Items[i].ToString() == ListName[x])
-                        {
-                            Add = false;
-                            MessageBox.Show("Il y a déjà un joueur ayant ce nom");
-                        }
-                    }
-                }
-                if (Add)
-                {
+                
                     if (NbPlayer == 4)
                     {
                         MessageBox.Show("Il y a 4 joueurs si vous voulez en ajouter veuillez en supprimez");
@@ -149,7 +158,7 @@ namespace Splendor
                     {
                         MessageBox.Show("Il y a " + NbPlayer + " vous pouvez en ajouter encore " + (4 - NbPlayer) + "");
                     }
-                }
+                
             }
         }
 
