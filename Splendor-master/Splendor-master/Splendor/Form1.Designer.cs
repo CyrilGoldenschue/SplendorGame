@@ -78,6 +78,7 @@
             this.flwCardNoble = new System.Windows.Forms.FlowLayoutPanel();
             this.txtNoble4 = new System.Windows.Forms.TextBox();
             this.cmdPlay = new System.Windows.Forms.Button();
+            this.txtNoble5 = new System.Windows.Forms.TextBox();
             this.flwCardLevel1.SuspendLayout();
             this.flwCardLevel2.SuspendLayout();
             this.flwCardLevel3.SuspendLayout();
@@ -526,7 +527,7 @@
             // 
             // txtNoble3
             // 
-            this.txtNoble3.Location = new System.Drawing.Point(108, 2);
+            this.txtNoble3.Location = new System.Drawing.Point(214, 2);
             this.txtNoble3.Margin = new System.Windows.Forms.Padding(2);
             this.txtNoble3.Multiline = true;
             this.txtNoble3.Name = "txtNoble3";
@@ -535,7 +536,7 @@
             // 
             // txtNoble2
             // 
-            this.txtNoble2.Location = new System.Drawing.Point(214, 2);
+            this.txtNoble2.Location = new System.Drawing.Point(108, 2);
             this.txtNoble2.Margin = new System.Windows.Forms.Padding(2);
             this.txtNoble2.Multiline = true;
             this.txtNoble2.Name = "txtNoble2";
@@ -544,7 +545,7 @@
             // 
             // txtNoble1
             // 
-            this.txtNoble1.Location = new System.Drawing.Point(320, 2);
+            this.txtNoble1.Location = new System.Drawing.Point(2, 2);
             this.txtNoble1.Margin = new System.Windows.Forms.Padding(2);
             this.txtNoble1.Multiline = true;
             this.txtNoble1.Name = "txtNoble1";
@@ -599,19 +600,20 @@
             // 
             // flwCardNoble
             // 
-            this.flwCardNoble.Controls.Add(this.txtNoble4);
-            this.flwCardNoble.Controls.Add(this.txtNoble3);
-            this.flwCardNoble.Controls.Add(this.txtNoble2);
             this.flwCardNoble.Controls.Add(this.txtNoble1);
+            this.flwCardNoble.Controls.Add(this.txtNoble2);
+            this.flwCardNoble.Controls.Add(this.txtNoble3);
+            this.flwCardNoble.Controls.Add(this.txtNoble4);
+            this.flwCardNoble.Controls.Add(this.txtNoble5);
             this.flwCardNoble.Location = new System.Drawing.Point(14, 37);
             this.flwCardNoble.Margin = new System.Windows.Forms.Padding(2);
             this.flwCardNoble.Name = "flwCardNoble";
-            this.flwCardNoble.Size = new System.Drawing.Size(452, 109);
+            this.flwCardNoble.Size = new System.Drawing.Size(537, 109);
             this.flwCardNoble.TabIndex = 50;
             // 
             // txtNoble4
             // 
-            this.txtNoble4.Location = new System.Drawing.Point(2, 2);
+            this.txtNoble4.Location = new System.Drawing.Point(320, 2);
             this.txtNoble4.Margin = new System.Windows.Forms.Padding(2);
             this.txtNoble4.Multiline = true;
             this.txtNoble4.Name = "txtNoble4";
@@ -629,6 +631,15 @@
             this.cmdPlay.Text = "Jouer";
             this.cmdPlay.UseVisualStyleBackColor = true;
             this.cmdPlay.Click += new System.EventHandler(this.cmdPlay_Click);
+            // 
+            // txtNoble5
+            // 
+            this.txtNoble5.Location = new System.Drawing.Point(426, 2);
+            this.txtNoble5.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNoble5.Multiline = true;
+            this.txtNoble5.Name = "txtNoble5";
+            this.txtNoble5.Size = new System.Drawing.Size(102, 98);
+            this.txtNoble5.TabIndex = 46;
             // 
             // frmSplendor
             // 
@@ -738,6 +749,7 @@
         public System.Windows.Forms.Label lblDiamandCoin;
         private System.Windows.Forms.TextBox txtNoble4;
         public System.Windows.Forms.Button cmdPlay;
+        private System.Windows.Forms.TextBox txtNoble5;
     }
 }
 
